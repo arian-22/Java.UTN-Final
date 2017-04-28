@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+.centrado{
+	margin-top: 40px;
+    margin-right: 300px;
+    margin-left: 300px;
+	
+}
+.baja-botones{
+	margin-top: 15px;
+}

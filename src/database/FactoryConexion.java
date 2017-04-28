@@ -11,7 +11,7 @@ public class FactoryConexion {
 	private String user = "java";
 	private String pass = "java";
 	private String dbType = "mysql";
-	private String db = "tp_java";
+	private String db = "Final_AlquilerDeVehiculos";
 	
 	private Connection conn;
 	private int cantConn = 0;
