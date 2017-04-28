@@ -46,29 +46,34 @@ public class Registro extends HttpServlet {
 		usuario = new Usuario();
 		
 		usuario.setNombre(request.getParameter("nombre"));
+		System.out.println("NOMBRE " + usuario.getNombre());
+		
 		usuario.setApellido(request.getParameter("apellido"));
+		System.out.println("APELLIDO " + usuario.getApellido());
+		
 		usuario.setMail(request.getParameter("mail"));
-		usuario.setPassword(request.getParameter("contraseña1"));
+		System.out.println("MAIL " + usuario.getMail());
+		
+		usuario.setPassword(request.getParameter("contrasena"));
+		System.out.println("CONTRASEÑA 1 " + usuario.getPassword());
 		//usuario.setPassword(request.getParameter("contraseña2"));
+		System.out.println("CONTRASEÑA 2 " + request.getParameter("contrasena2"));
 		
-		try {
-			usuario.setFechaNacimiento(request.getParameter("fechaNacimiento"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		usuario.setFechaNacimiento(request.getParameter("fechaNacimiento"));
+		System.out.println("NACIMIENTO " + usuario.getFechaNacimientoString());
 		
-
-		try {
-			usuario.setFechaVencimientoLicencia((request.getParameter("fechaVencimientoLicencia")));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		usuario.setFechaVencimientoLicencia(request.getParameter("fechaVencimientoLicencia"));
+		System.out.println("VENCIMIENTO " + usuario.getFechaVencimientoLicenciaString());
+		
 		
 		usuario.setDni(Integer.parseInt(request.getParameter("dni")));
+		System.out.println("DNI " + usuario.getDni());
+		
 		usuario.setDireccion(request.getParameter("direccion"));
+		System.out.println("DIRECCION " + usuario.getDireccion());
+		
 		usuario.setTelefono(request.getParameter("telefono"));
+		System.out.println("TELEFONO " + usuario.getTelefono());
 		
 		controlador.registrarUsuario(usuario);
 		

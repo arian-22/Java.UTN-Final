@@ -27,8 +27,8 @@ public class DataUsuarios {
 			stmt.setString(3, u.getMail());
 			stmt.setString(4, u.getPassword());
 			stmt.setInt(5, u.getDni());
-			stmt.setDate(6, (Date) u.getFechaNacimiento());
-			stmt.setDate(7, (Date) u.getFechaVencimientoLicencia());
+			stmt.setString(6, u.getFechaNacimientoString());
+			stmt.setString(7, u.getFechaVencimientoLicenciaString());
 			stmt.setString(8, u.getDireccion());
 			stmt.setString(9, u.getTelefono());
 

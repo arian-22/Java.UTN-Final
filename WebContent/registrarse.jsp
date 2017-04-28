@@ -109,42 +109,37 @@
 					
 					<form role="form" action="Registro" method="post">
 						<div class="form-group">
-							 
 							<label>
 								Nombre
 							</label>
 							<input type="text" class="form-control" name="nombre"/>
 						</div>
 						<div class="form-group">
-							 
 							<label>
 								Apellido
 							</label>
 							<input type="text" class="form-control" name="apellido" />
 						</div>
 						<div class="form-group">
-							 
 							<label>
 								Email address
 							</label>
 							<input type="email" class="form-control" name="mail"/>
 						</div>
 						<div class="form-group">
-							 
 							<label>
 								Contraseña
 							</label>
-							<input type="password" class="form-control" name="contraseña1"/>
+							<input type="password" class="form-control" name="contrasena"/>
 						</div>
 						<div class="form-group">
 							 
 							<label>
 								Repetir Contraseña 
 							</label>
-							<input type="password" class="form-control" name="contraseña2"/>
+							<input type="password" class="form-control" name="contrasena2"/>
 						</div>
 						<div class="form-group">
-							 
 							<label>
 								Fecha de nacimiento
 							</label>

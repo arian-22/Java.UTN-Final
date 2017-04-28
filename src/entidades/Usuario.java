@@ -6,8 +6,7 @@ import java.util.Date;
 
 public class Usuario {
 	
-	private String nombre, apellido, direccion, telefono, mail, password, nro_tarjeta;
-	private Date fechaNacimiento, fechaVencimientoLicencia;
+	private String nombre, apellido, direccion, telefono, mail, password, nro_tarjeta, fechaNacimiento, fechaVencimientoLicencia;
 	private int dni;
 	
 	public String getNombre() {
@@ -52,18 +51,6 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-	public Date getFechaVencimientoLicencia() {
-		return fechaVencimientoLicencia;
-	}
-	public void setFechaVencimientoLicencia(Date fechaVencimientoLicencia) {
-		this.fechaVencimientoLicencia = fechaVencimientoLicencia;
-	}
 	public String getNro_tarjeta() {
 		return nro_tarjeta;
 	}
@@ -71,18 +58,23 @@ public class Usuario {
 		this.nro_tarjeta = nro_tarjeta;
 	}
 	
-	public void setFechaNacimiento(String parameter) throws ParseException {
-		String expectedPattern = "yyyy-dd-MM";
-	    SimpleDateFormat formatter = new SimpleDateFormat(expectedPattern);
-	    
-	    this.fechaNacimiento = formatter.parse(parameter);
-	}
-	public void setFechaVencimientoLicencia(String string) throws ParseException {
-		String expectedPattern = "yyyy-dd-MM";
-	    SimpleDateFormat formatter = new SimpleDateFormat(expectedPattern);
-	    
-	    this.fechaVencimientoLicencia = formatter.parse(string);
+	public void setFechaNacimiento(String parameter) {
 		
+	    this.fechaNacimiento = parameter;
+	}
+	
+	public void setFechaVencimientoLicencia(String string) {
+	  
+	    this.fechaVencimientoLicencia = string;	
+	}
+	
+	public String getFechaNacimientoString(){
+		
+		return this.fechaNacimiento.toString();
 	}
 
+	public String getFechaVencimientoLicenciaString(){
+		
+		return this.fechaVencimientoLicencia.toString();
+	}
 }
