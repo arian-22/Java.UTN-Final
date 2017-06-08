@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.text.ParseException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -77,7 +76,7 @@ public class Registro extends HttpServlet {
 		
 		controlador.registrarUsuario(usuario);
 		
-		request.getRequestDispatcher("index.html").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }

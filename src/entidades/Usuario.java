@@ -8,6 +8,7 @@ public class Usuario {
 	
 	private String nombre, apellido, direccion, telefono, mail, password, nro_tarjeta, fechaNacimiento, fechaVencimientoLicencia;
 	private int dni;
+	private String admin;
 	
 	public String getNombre() {
 		return nombre;
@@ -29,6 +30,18 @@ public class Usuario {
 	}
 	public String getDireccion() {
 		return direccion;
+	}
+	public String getAdmin() {
+		return admin;
+	}
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public String getFechaVencimientoLicencia() {
+		return fechaVencimientoLicencia;
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;

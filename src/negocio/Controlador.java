@@ -21,4 +21,25 @@ public class Controlador {
 		dbUsuario.add(u);
 	}
 	
+	public boolean auntenticarUsuario(String mail, String pass){
+		DataUsuarios dbUsuario = new DataUsuarios();
+		boolean logueo = false;
+		
+		try {
+			logueo = dbUsuario.authenticate(mail, pass);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return logueo;
+		
+	}
+
+	public Usuario recuperarUsuario(String mail) {
+		DataUsuarios dbUsuario = new DataUsuarios();
+		Usuario user = new Usuario();
+		
+		user = dbUsuario.getById(mail);
+		return user;
+	}
 }

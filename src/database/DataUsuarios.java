@@ -1,7 +1,7 @@
 package database;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 //import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,8 +20,8 @@ public class DataUsuarios {
 		
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into Usuario(nombre, "
-					+ "apellido, mail, contraseña, dni, fecha_nac, fecha_venc_licencia, direccion, telefono) "
-					+ "values(?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+					+ "apellido, mail, contraseña, dni, fecha_nac, fecha_venc_licencia, direccion, telefono, admin) "
+					+ "values(?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, u.getNombre());
 			stmt.setString(2, u.getApellido());
 			stmt.setString(3, u.getMail());
@@ -31,7 +31,7 @@ public class DataUsuarios {
 			stmt.setString(7, u.getFechaVencimientoLicenciaString());
 			stmt.setString(8, u.getDireccion());
 			stmt.setString(9, u.getTelefono());
-
+			stmt.setString(10, u.getAdmin());
 			
 			stmt.execute();
 			
@@ -45,6 +45,28 @@ public class DataUsuarios {
 		} 
 		
 	}
+	
+	public boolean authenticate(String email, String password) throws Exception 
+    {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		//boolean t = false;
+		
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM Usuario "
+				+ "WHERE mail = ? AND contraseña = ?");
+		stmt.setString(1, email);
+		stmt.setString(2, password);
+		
+        rs = stmt.executeQuery();
+        
+       /* if(rs!=null && rs.next()){
+        	t = true;
+        }else{
+        	t = false;
+        }*/
+        
+        return rs.next();
+    }
 	
 	/*public void update(Usuario u){
 		
@@ -84,34 +106,38 @@ public class DataUsuarios {
 	public void delete(Personaje p){
 		
 		
-	}
+	}*/
 	
-public Personaje getById(int id){
+	public Usuario getById(String mail){
 		
-		Personaje p = null;
+		Usuario p = null;
 		
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
 		try{
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT idPersonaje, nombre, vida, energia, defensa, evasion, puntosTotales FROM personajes WHERE idPersonaje = ?");
-			stmt.setInt(1, id);
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nombre, apellido, mail, contraseña, dni, fecha_nac, fecha_venc_licencia, direccion, telefono, admin FROM Usuario WHERE mail = ?");
+			stmt.setString(1, mail);
 			rs = stmt.executeQuery();
-			
+						
 			if(rs!=null && rs.next()){
-				p = new Personaje();
-				p.setIdPersonaje(rs.getInt("idPersonaje"));
+				p = new Usuario();
 				p.setNombre(rs.getString("nombre"));
-				p.setVida(rs.getInt("vida"));
-				p.setEnergia(rs.getInt("energia"));
-				p.setDefensa(rs.getInt("defensa"));
-				p.setEvasion(rs.getInt("evasion"));
-				p.setPuntosTotales(rs.getInt("puntosTotales"));
+				p.setApellido(rs.getString("apellido"));
+				p.setMail(rs.getString("mail"));
+				p.setPassword(rs.getString("contraseña"));
+				p.setDni(rs.getInt("dni"));
+				p.setFechaNacimiento(rs.getString("fecha_nac"));
+				p.setFechaVencimientoLicencia(rs.getString("fecha_venc_licencia"));
+				p.setDireccion(rs.getString("direccion"));
+				p.setTelefono(rs.getString("telefono"));
+				p.setAdmin(rs.getString("admin"));
+								
+				}else{
+					System.out.println("La consulta no devuelve nada.");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} catch (ApplicationException e) {
-				e.errorDePuntajes();
 			}finally{
 				if(rs!=null) {
 					try {
@@ -124,12 +150,17 @@ public Personaje getById(int id){
 				FactoryConexion.getInstancia().releaseConn();
 		}
 		
+		/*if(p != null){
+			System.out.println("Usuario en BD: " + p.getNombre() + " " + p.getApellido());
+		}else{
+			System.out.println("El usuario está vacio en BD");
+		}*/
 		
 		return p;
 	}
 	
 	
-public Boolean getByNombre(String nombre){
+	/*public Boolean getByNombre(String nombre){
 				
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
