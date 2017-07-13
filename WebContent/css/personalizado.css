@@ -9,3 +9,7 @@
 .baja-botones{
 	margin-top: 15px;
 }
+
+ul.navbar-nav li.active {
+    background-color: red;
+}
