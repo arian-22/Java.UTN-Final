@@ -213,7 +213,7 @@ CREATE TABLE `vehículos` (
   `marca` varchar(45) NOT NULL,
   `cant_asientos` int(11) NOT NULL,
   `año` int(11) NOT NULL,
-  `transmisión` varchar(20) NOT NULL,
+  `transmision` varchar(20) NOT NULL,
   `estado` varchar(20) NOT NULL,
   `baul` varchar(4) DEFAULT NULL,
   `tipo` varchar(15) DEFAULT NULL,
@@ -242,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-14 12:01:50
+-- Dump completed on 2017-07-14 12:23:46
