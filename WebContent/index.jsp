@@ -27,7 +27,7 @@ response.setDateHeader("Expires", 0);
 						</ol>
 						<div class="carousel-inner">
 							<div class="item active">
-								<img alt="Carousel Bootstrap First" src="http://lorempixel.com/output/sports-q-c-1600-500-1.jpg" />
+								<img alt="Carousel Bootstrap First" src="http://www.autosparalquilar.com/imagenes/carousel-1.jpg" width="1000" />
 								<div class="carousel-caption">
 									<h4>
 										First Thumbnail label
@@ -38,7 +38,7 @@ response.setDateHeader("Expires", 0);
 								</div>
 							</div>
 							<div class="item">
-								<img alt="Carousel Bootstrap Second" src="http://lorempixel.com/output/sports-q-c-1600-500-2.jpg" />
+								<img alt="Carousel Bootstrap Second" src="http://alcalaoliver.com/wp-content/uploads/2015/01/seguro_de_autos.jpg" />
 								<div class="carousel-caption">
 									<h4>
 										Second Thumbnail label
@@ -49,7 +49,7 @@ response.setDateHeader("Expires", 0);
 								</div>
 							</div>
 							<div class="item">
-								<img alt="Carousel Bootstrap Third" src="http://lorempixel.com/output/sports-q-c-1600-500-3.jpg" />
+								<img alt="Carousel Bootstrap Third" src="https://ceca-blogs-sp.s3.amazonaws.com/blogs/cotizar-un-seguro-de-auto203689.jpg" />
 								<div class="carousel-caption">
 									<h4>
 										Third Thumbnail label
@@ -67,10 +67,10 @@ response.setDateHeader("Expires", 0);
 				<div class="col-md-4">
 					<div class="jumbotron">
 						<h2>
-							Hello, world!
+							¡Bienvenidos!
 						</h2>
 						<p>
-							This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content.
+							Nuestro trabajo es hacer que tengas una experiencia satisfactoria, por lo que nuestra flota consta de autos 0KM y damos atención personalizada a cada uno de nuestros clientes. ¡Te invitamos a registrarte a nuestro sitio y hacer tu reserva online!
 						</p>
 						<p>
 							<a class="btn btn-primary btn-large" href="#">Learn more</a>
@@ -81,10 +81,10 @@ response.setDateHeader("Expires", 0);
 					<div class="row">
 						<div class="col-md-6">
 							<div class="thumbnail">
-								<img alt="Bootstrap Thumbnail First" src="http://lorempixel.com/output/people-q-c-600-200-1.jpg" />
+								<img alt="Bootstrap Thumbnail First" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjHp1q20Gb_7rWsDtZoMBCMx2afInP-smD6KIkM5we-aqA9IsI" />
 								<div class="caption">
 									<h3>
-										Thumbnail label
+										Autos
 									</h3>
 									<p>
 										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
@@ -97,10 +97,10 @@ response.setDateHeader("Expires", 0);
 						</div>
 						<div class="col-md-6">
 							<div class="thumbnail">
-								<img alt="Bootstrap Thumbnail Second" src="http://lorempixel.com/output/city-q-c-600-200-1.jpg" />
+								<img alt="Bootstrap Thumbnail Second" src="http://alnasrrentacar.com/wp-content/uploads/2016/08/hyundai.jpg" />
 								<div class="caption">
 									<h3>
-										Thumbnail label
+										Camionetas
 									</h3>
 									<p>
 										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
