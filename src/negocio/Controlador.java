@@ -2,7 +2,8 @@ package negocio;
 
 import database.DataUsuarios;
 import entidades.Usuario;
-
+import entidades.Vehiculos;
+import database.DataVehiculos;
 public class Controlador {
 	
 	private Usuario usuario;
@@ -41,5 +42,11 @@ public class Controlador {
 		
 		user = dbUsuario.getById(mail);
 		return user;
+	}
+
+	public void registrarVehiculos(Vehiculos v){
+		DataVehiculos dbVehiculos = new DataVehiculos();
+		
+		dbVehiculos.add(v);
 	}
 }
