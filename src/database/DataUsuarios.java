@@ -20,7 +20,7 @@ public class DataUsuarios {
 		
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into usuario(nombre, "
-					+ "apellido, mail, contraseÃ±a, dni, fecha_nac, fecha_venc_licencia, direccion, telefono, admin) "
+					+ "apellido, mail, contraseña, dni, fecha_nac, fecha_venc_licencia, direccion, telefono, admin) "
 					+ "values(?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, u.getNombre());
 			stmt.setString(2, u.getApellido());
@@ -51,9 +51,9 @@ public class DataUsuarios {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		//boolean t = false;
-		
+		System.out.println("Antes del factory cocection");
 		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM usuario "
-				+ "WHERE mail = ? AND contraseÃ±a = ?");
+				+ "WHERE mail = ? AND contraseña = ?");
 		stmt.setString(1, email);
 		stmt.setString(2, password);
 		
@@ -64,7 +64,7 @@ public class DataUsuarios {
         }else{
         	t = false;
         }*/
-        
+        System.out.println("antes de return");
         return rs.next();
     }
 	
@@ -116,7 +116,7 @@ public class DataUsuarios {
 		ResultSet rs = null;
 		
 		try{
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nombre, apellido, mail, contraseÃ±a, dni, fecha_nac, fecha_venc_licencia, direccion, telefono, admin FROM usuario WHERE mail = ?");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nombre, apellido, mail, contraseña, dni, fecha_nac, fecha_venc_licencia, direccion, telefono, admin FROM usuario WHERE mail = ?");
 			stmt.setString(1, mail);
 			rs = stmt.executeQuery();
 						
@@ -125,7 +125,7 @@ public class DataUsuarios {
 				p.setNombre(rs.getString("nombre"));
 				p.setApellido(rs.getString("apellido"));
 				p.setMail(rs.getString("mail"));
-				p.setPassword(rs.getString("contraseÃ±a"));
+				p.setPassword(rs.getString("contraseña"));
 				p.setDni(rs.getInt("dni"));
 				p.setFechaNacimiento(rs.getString("fecha_nac"));
 				p.setFechaVencimientoLicencia(rs.getString("fecha_venc_licencia"));

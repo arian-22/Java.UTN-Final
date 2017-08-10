@@ -131,15 +131,15 @@
 	         <h3>Ingrese patente  del vehículo a dar de baja</h3>
 	         	<div class="row">
 		<div class="col-md-12">
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" role="form" action="BuscarVehiculo" method="post">
 				
 				<div class="form-group">
 					 
-					<label for="inputPassword3" class="col-sm-2 control-label">
+					<label class="col-sm-2 control-label">
 						Patente
 					</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control"/>
+						<input type="text" class="form-control" name="patente"/>
 					</div>
 				</div>
 				
@@ -152,6 +152,53 @@
 					</div>
 				</div>
 			</form>
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			
+			<div class="alert alert-dismissable alert-danger">
+				 
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+					×
+				</button>
+				<h4>
+					<strong> Error! </strong>
+				</h4> El vehículo no fue encontrado <a href="#" class="alert-link"></a>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-dismissable alert-info">
+						 
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+							×
+						</button>
+						<h4>
+							<strong> Vehículo: </strong> 
+						</h4> <strong> Marca:</strong>  
+								<strong> Modelo:</strong>  
+								<strong> Tipo:</strong>  
+								
+						<div>
+						<button type="button" class="btn btn-danger btn-default">
+							Eliminar
+						</button> 
+						<button type="button" class="btn btn-default">
+							Cancelar
+						</button>
+						</div>		
+					</div> 
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+		
+			
+	
+	
+	
 		</div>
 	</div>
 </div>

@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
 			if(usuario != null){
 				System.out.println("Usuario: " + usuario.getNombre() + " " + usuario.getApellido());
 			}else{
-				System.out.println("El usuario está vacio");
+				System.out.println("El usuario esta vacio");
 			}
 						
 			request.getSession().setAttribute("user", usuario);

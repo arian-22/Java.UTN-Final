@@ -49,4 +49,12 @@ public class Controlador {
 		
 		dbVehiculos.add(v);
 	}
+	
+	public Vehiculos recuperarVehiculo(String nroPatente) {
+		DataVehiculos dbVehiculos = new DataVehiculos();
+		Vehiculos vehiculo = new Vehiculos();
+		
+		vehiculo = dbVehiculos.getByPatente(nroPatente);
+		return vehiculo;
+	}
 }
