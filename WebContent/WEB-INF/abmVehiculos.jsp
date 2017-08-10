@@ -37,7 +37,7 @@
 						Nuevo Registro
 					</h3>
 					
-					<form role="form" action="Registro" method="post">
+					<form role="form" action="AltaVehiculo" method="post">
 						<div class="form-group">
 							<label>
 								Patente
@@ -58,7 +58,7 @@
 						</div>
 						<div class="form-group">
 							<label>
-								Cantidad Pasajeros
+								Cantidad Asientos
 							</label>
 							<input type="text" class="form-control" name="cant_asientos"/>
 						</div>
