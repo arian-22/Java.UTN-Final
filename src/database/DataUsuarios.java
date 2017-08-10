@@ -19,7 +19,7 @@ public class DataUsuarios {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into Usuario(nombre, "
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into usuario(nombre, "
 					+ "apellido, mail, contraseña, dni, fecha_nac, fecha_venc_licencia, direccion, telefono, admin) "
 					+ "values(?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, u.getNombre());
@@ -52,7 +52,7 @@ public class DataUsuarios {
 		ResultSet rs = null;
 		//boolean t = false;
 		
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM Usuario "
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM usuario "
 				+ "WHERE mail = ? AND contraseña = ?");
 		stmt.setString(1, email);
 		stmt.setString(2, password);
@@ -116,7 +116,7 @@ public class DataUsuarios {
 		ResultSet rs = null;
 		
 		try{
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nombre, apellido, mail, contraseña, dni, fecha_nac, fecha_venc_licencia, direccion, telefono, admin FROM Usuario WHERE mail = ?");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nombre, apellido, mail, contraseña, dni, fecha_nac, fecha_venc_licencia, direccion, telefono, admin FROM usuario WHERE mail = ?");
 			stmt.setString(1, mail);
 			rs = stmt.executeQuery();
 						

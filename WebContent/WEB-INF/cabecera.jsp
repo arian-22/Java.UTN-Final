@@ -81,7 +81,7 @@
 										<a href="login.jsp">Login</a>
 									</li>
 									<%}else{ 
-										Usuario u = (Usuario)session.getAttribute("user");
+										//Usuario u = (Usuario)session.getAttribute("user");
 									%>
 									<li class="dropdown">
 										 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario<strong class="caret"></strong></a>
