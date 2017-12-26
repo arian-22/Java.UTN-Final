@@ -115,8 +115,7 @@ response.setDateHeader("Expires", 0);
 					</div>
 				</div>
 			</div>
-	</div>
-
+		</div>
 
 <%@ include file="WEB-INF/footer.html"%>
 	

@@ -15,11 +15,12 @@
 								Ver Informes
 							</h3>
 							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								- Vehículos de EasyCar.<br>
+								- Vehículos reservados.
 							</p>
-							<p>
-								<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
+							<form action="Informes" method="post">
+								<button type="submit" class="btn btn-primary">Ingresar</button>
+							</form>
 						</div>
 					</div>
 				</div>
