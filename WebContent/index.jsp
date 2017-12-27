@@ -74,7 +74,7 @@ response.setDateHeader("Expires", 0);
 							Nuestro trabajo es hacer que tengas una experiencia satisfactoria, por lo que nuestra flota consta de autos 0KM y damos atención personalizada a cada uno de nuestros clientes. ¡Te invitamos a registrarte a nuestro sitio y hacer tu reserva online!
 						</p>
 						<p>
-							<a class="btn btn-primary btn-large" href="#">Learn more</a>
+							<a class="btn btn-warning btn-lg" href="login.jsp">¡Reserve su coche aquí!</a>
 						</p>
 					</div>
 				</div>
@@ -91,7 +91,7 @@ response.setDateHeader("Expires", 0);
 										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
 									</p>
 									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+										<a class="btn btn-info btn-default" href="#">Ver</a> 
 									</p>
 								</div>
 							</div>
@@ -107,7 +107,7 @@ response.setDateHeader("Expires", 0);
 										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
 									</p>
 									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+										<a class="btn btn-info btn-default" href="#">Ver</a>
 									</p>
 								</div>
 							</div>

@@ -36,7 +36,7 @@
 							 
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 								 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-							</button> <a class="navbar-brand" href="index.jsp" style="font-size: 30px;">EasyCar</a>
+							</button> <a class="navbar-brand" href="index.jsp" style="font-size: 30px;"><font color="orange">EasyCar</font></a>
 						</div>
 						
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -62,13 +62,13 @@
 										 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrador<strong class="caret"></strong></a>
 										<ul class="dropdown-menu">
 											<li>
-												<a href="#">Action</a>
+												<a href="#">Perfil</a>
 											</li>
 											<li>
-												<a href="#">Another action</a>
+												<a href="#">Configuración</a>
 											</li>
 											<li>
-												<a href="#">Something else here</a>
+												<a href="#">Ayuda</a>
 											</li>
 											<li class="divider">
 											</li>
