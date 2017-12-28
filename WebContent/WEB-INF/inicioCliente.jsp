@@ -1,57 +1,65 @@
 <%@ include file="cabecera.jsp"%>
 
-<div class="container-fluid">	
+<br><br>
+<div class="container-fluid">
 	<div class="row">
-				<div class="col-md-4">
-					<div class="jumbotron">
-						<h2>
-							¡Bienvenidos!
-						</h2>
-						<p>
-							Nuestro trabajo es hacer que tengas una experiencia satisfactoria, por lo que nuestra flota consta de autos 0KM y damos atención personalizada a cada uno de nuestros clientes. ¡Te invitamos a registrarte a nuestro sitio y hacer tu reserva online!
-						</p>
-						<p>
-							<a class="btn btn-primary btn-large" href="#">Learn more</a>
-						</p>
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="thumbnail">
-								<img alt="Bootstrap Thumbnail First" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjHp1q20Gb_7rWsDtZoMBCMx2afInP-smD6KIkM5we-aqA9IsI" />
-								<div class="caption">
-									<h3>
-										Autos
-									</h3>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
-									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-									</p>
-								</div>
+		<div class="col-md-12">
+			<div class="page-header">
+				<h3>
+					Reserva 
+				</h3>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<form class="form-horizontal AVAST_PAM_loginform" role="form">
+						<div class="form-group">
+							 
+							<label for="inputFecha" class="col-sm-2 control-label">
+								Fecha de alquiler
+							</label>
+							<div class="col-sm-4">
+								<input type="date" class="form-control" id="inputFecha" />
+							</div>
+							<label for="inputHora" class="col-sm-2 control-label">
+								Hora de retiro
+							</label>
+							<div class="col-sm-4">
+								<input type="time" class="form-control" id="inputHora" />
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="thumbnail">
-								<img alt="Bootstrap Thumbnail Second" src="http://alnasrrentacar.com/wp-content/uploads/2016/08/hyundai.jpg" />
-								<div class="caption">
-									<h3>
-										Camionetas
-									</h3>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
-									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-									</p>
-								</div>
+						<div class="form-group">
+							 
+							<label for="inputFechaD" class="col-sm-2 control-label">
+								Fecha de devolución
+							</label>
+							<div class="col-sm-4">
+								<input type="date" class="form-control" id="inputFechaD" />
 							</div>
-					</div>
-					</div>
+							<label for="inputHoraD" class="col-sm-2 control-label">
+								Hora de devolución
+							</label>
+							<div class="col-sm-4">
+								<input type="time" class="form-control" id="inputHoraD" />
+							</div>
+							
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								 
+								<button type="submit" class="btn btn-warning btn-default">
+									Buscar vehículos disponibles
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-6">
 				</div>
 			</div>
+			<a href="index.jsp" class="btn btn-link" type="button">Atrás</a>
+		</div>
+	</div>
 </div>
 
 <%@ include file="footer.html"%>

@@ -30,34 +30,16 @@ response.setDateHeader("Expires", 0);
 							<div class="item active">
 								<img alt="Carousel Bootstrap First" src="http://www.autosparalquilar.com/imagenes/carousel-1.jpg" width="1000" />
 								<div class="carousel-caption">
-									<h4>
-										First Thumbnail label
-									</h4>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
 								</div>
 							</div>
 							<div class="item">
 								<img alt="Carousel Bootstrap Second" src="http://alcalaoliver.com/wp-content/uploads/2015/01/seguro_de_autos.jpg" />
 								<div class="carousel-caption">
-									<h4>
-										Second Thumbnail label
-									</h4>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
 								</div>
 							</div>
 							<div class="item">
 								<img alt="Carousel Bootstrap Third" src="https://ceca-blogs-sp.s3.amazonaws.com/blogs/cotizar-un-seguro-de-auto203689.jpg" />
 								<div class="carousel-caption">
-									<h4>
-										Third Thumbnail label
-									</h4>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
 								</div>
 							</div>
 						</div> <a class="left carousel-control" href="#carousel-193883" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-193883" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -88,7 +70,7 @@ response.setDateHeader("Expires", 0);
 										Autos
 									</h3>
 									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+										Te damos la bienvenida a la exhaustiva búsqueda de coches de alquiler de EasyCar. Te ayudamos a que tu viaje sea lo más barato posible, para que te pongas al volante con una sonrisa.
 									</p>
 									<p>
 										<a class="btn btn-info btn-default" href="#">Ver</a> 
@@ -104,7 +86,7 @@ response.setDateHeader("Expires", 0);
 										Camionetas
 									</h3>
 									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+										También te ofrecemos una amplia gama de camionetas para que puedas disfrutar con toda tu familia!
 									</p>
 									<p>
 										<a class="btn btn-info btn-default" href="#">Ver</a>

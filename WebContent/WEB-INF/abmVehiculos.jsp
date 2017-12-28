@@ -233,7 +233,7 @@
 	     </div>
 	     
 	 </div>
-	 <a href="javascript:window.history.go(-1);" class="btn btn-default" type="button">Atrás</a>
+	 <a href="javascript:window.history.go(-1);" class="btn btn-link" type="button">Atrás</a>
 	<hr>
 </div>
 

@@ -59,7 +59,7 @@
 										Usuario u = (Usuario)session.getAttribute("user");
 									%>
 									<li class="dropdown">
-										 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrador<strong class="caret"></strong></a>
+										 <a href="inicioAdmin.jsp" class="dropdown-toggle" data-toggle="dropdown">Administrador<strong class="caret"></strong></a>
 										<ul class="dropdown-menu">
 											<li>
 												<a href="#">Perfil</a>
