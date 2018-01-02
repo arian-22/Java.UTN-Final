@@ -1,5 +1,9 @@
 <%@ include file="cabeceraAdmin.jsp"%>
 
+<%
+Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
+%>
+
 
 <script type="text/javascript"> $(document).ready(function() {
 	  $(".nav-tabs a").click(function() {

@@ -17,7 +17,7 @@ public class DataVehiculos {
 	ResultSet rs = null;
 	
 	try{
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen FROM vehículos WHERE nro_patente = ?");
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen FROM vehÃ­culos WHERE nro_patente = ?");
 		stmt.setString(1, nroPatente);
 		rs = stmt.executeQuery();
 					

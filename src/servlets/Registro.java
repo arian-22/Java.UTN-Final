@@ -1,4 +1,4 @@
-package servlets;
+ 	package servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -73,6 +73,8 @@ public class Registro extends HttpServlet {
 		
 		usuario.setTelefono(request.getParameter("telefono"));
 		System.out.println("TELEFONO " + usuario.getTelefono());
+		
+		usuario.setAdmin("N");
 		
 		controlador.registrarUsuario(usuario);
 		
