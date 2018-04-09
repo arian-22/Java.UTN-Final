@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `Final_AlquilerDeVehiculos` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `Final_AlquilerDeVehiculos`;
--- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.20, for Linux (x64)
 --
 -- Host: localhost    Database: Final_AlquilerDeVehiculos
 -- ------------------------------------------------------
