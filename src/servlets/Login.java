@@ -57,7 +57,7 @@ public class Login extends HttpServlet {
 				request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);	
 				System.out.println("es admin " + usuario.getAdmin());
 			}else{
-				request.getRequestDispatcher("index.jsp").forward(request, response);
+				request.getRequestDispatcher("WEB-INF/inicioCliente.jsp").forward(request, response);
 				System.out.println(" no es admin " + usuario.getAdmin());
 			}
 			

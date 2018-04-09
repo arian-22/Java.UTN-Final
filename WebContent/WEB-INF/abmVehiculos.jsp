@@ -24,7 +24,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 <br><br>
 
 <div class="container">
-	<h2>Modulo ABM </h2>
+	<h2>Módulo ABM </h2>
 	
 	<ul class="nav nav-tabs">
 	    <li class="active"><a href="#altas">Altas</a></li>
@@ -75,7 +75,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 						</div>
 						<div class="form-group">
 							<label>
-								Transmision
+								Transmisión
 							</label>
 							<input type="text" class="form-control" name="transmision" />
 						</div>
@@ -102,13 +102,13 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 						</div>
 						<div class="form-group">
 							<label>
-								km
+								Km
 							</label>
 							<input type="text" class="form-control" name="km"/>
 						</div>
 						<div class="form-group">
 							<label>
-								Precio por dia
+								Precio por día
 							</label><!-- Esta en la tabla valores -->
 							<input type="text" class="form-control" name="precio_base"/>
 						</div>
@@ -130,8 +130,8 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 </div>
 	        
 	     </div>
+	     
 	     <div id="bajas" class="tab-pane fade">
-	         
 	         <h3>Ingrese patente  del vehículo a dar de baja</h3>
 	         	<div class="row">
 		<div class="col-md-12">
@@ -237,6 +237,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 	     </div>
 	     
 	 </div>
+	 <a href="javascript:window.history.go(-1);" class="btn btn-link" type="button">Atrás</a>
 	<hr>
 </div>
 

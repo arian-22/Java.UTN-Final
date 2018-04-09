@@ -34,14 +34,14 @@
 						<div class="navbar-header">
 							 
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-								 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-							</button> <a class="navbar-brand" href="index.jsp" style="font-size: 30px;">EasyCar</a>
-						</div>
+								 <span class="sr-only"></span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+							</button> <a class="navbar-brand" href="index.jsp" style="font-size: 30px;"><font color="orange">EasyCar</font></a>
+						</div>   
 						
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 								<li class="dropdown">
-									 <a class="dropdown-toggle" data-toggle="dropdown">Vehiculos<strong class="caret"></strong></a>
+									 <a class="dropdown-toggle" data-toggle="dropdown">Vehículos<strong class="caret"></strong></a>
 									<ul class="dropdown-menu">
 										<li>
 											<a href="#">Autos</a>
@@ -49,19 +49,13 @@
 										<li>
 											<a href="#">Camionetas</a>
 										</li>
-										<li>
-											<a href="#">Motos</a>
-										</li>
-										<li class="divider">
-										</li>
-										<li>
-											<a href="#">Todos</a>
-										</li>
+										
 									</ul>
 								</li>
-								<li class="active">
+								<li>
 									<a href="#">Promociones</a>
 								</li>
+							
 								<li>
 									<a href="#">Nosotros</a>
 								</li>
@@ -84,16 +78,19 @@
 										//Usuario u = (Usuario)session.getAttribute("user");
 									%>
 									<li class="dropdown">
-										 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario<strong class="caret"></strong></a>
+										 <a href="inicioCliente.jsp" class="dropdown-toggle" data-toggle="dropdown">Usuario<strong class="caret"></strong></a>
 										<ul class="dropdown-menu">
 											<li>
-												<a href="#">Action</a>
+												<a href="#">Perfil</a>
 											</li>
 											<li>
-												<a href="#">Another action</a>
+												<a href="#">Mis Reservas</a>
 											</li>
 											<li>
-												<a href="#">Something else here</a>
+												<a href="#">Configuración</a>
+											</li>
+											<li>
+												<a href="#">Ayuda</a>
 											</li>
 											<li class="divider">
 											</li>
