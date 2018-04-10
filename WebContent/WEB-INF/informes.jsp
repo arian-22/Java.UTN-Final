@@ -22,37 +22,90 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h3>
+			<h1>
 				Informes
-			</h3>
-			<h3 class="text-center">
-				¿Qué desea hacer?
-			</h3>
-			<a id="modal-865240" href="#modal-container-865240" role="button" class="btn btn-lg btn-block" data-toggle="modal">- Ver vehículos de EasyCar</a>
+			</h1>
+			<ul class="nav nav-tabs">
+	    		<li class="active"><a href="#stock">Stock de Vehículos</a> </li>
+	    		<li><a href="#alquilados">Vehículos alquilados actualmente</a></li>
+			</ul>
 			
-			<a href="#" class="btn btn-lg btn-block" type="button">- Ver vehículos reservados</a>
+			 <div class="tab-content">
+	     <div id="stock" class="tab-pane fade in active">
+	         <h3>Ingrese todos los datos del vehículo que desea agregar al catálogo</h3>
+	         <div class="container-fluid">
+				<table class="table table-striped">
+					  <thead>
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">First</th>
+					      <th scope="col">Last</th>
+					      <th scope="col">Handle</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">1</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>@mdo</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">2</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>@fat</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">3</th>
+					      <td>Larry</td>
+					      <td>the Bird</td>
+					      <td>@twitter</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div> 
+	     </div>
+	     
+	     <div id="alquilados" class="tab-pane fade">
+	         <h3>Ingrese patente  del vehículo a dar de baja</h3>
+	         	 <div class="container-fluid">
+				<table class="table table-striped">
+					  <thead>
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">First</th>
+					      <th scope="col">Last</th>
+					      <th scope="col">Handle</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">1</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>@mdo</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">2</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>@fat</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">3</th>
+					      <td>Larry</td>
+					      <td>the Bird</td>
+					      <td>@twitter</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div> 
+</div>
+	     
+	 </div>
 			
-			<form class="form-horizontal AVAST_PAM_loginform" role="form">
-				<div class="form-group">
-					 
-					<label for="inputDate" class="col-sm-2 control-label">
-						Fecha
-					</label>
-					<div class="col-sm-10">
-						<input type="date" class="form-control" id="inputDate" />
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						 
-						<button type="submit" class="btn btn-default">
-							Buscar
-						</button>
-					</div>
-				</div>
-			</form>
-			
+						
 			<div class="modal fade" id="modal-container-865240" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">

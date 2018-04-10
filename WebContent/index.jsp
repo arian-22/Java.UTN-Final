@@ -72,9 +72,9 @@ response.setDateHeader("Expires", 0);
 									<p>
 										Te damos la bienvenida a la exhaustiva búsqueda de coches de alquiler de EasyCar. Te ayudamos a que tu viaje sea lo más barato posible, para que te pongas al volante con una sonrisa.
 									</p>
-									<p>
-										<a class="btn btn-info btn-default" href="autos.jsp">Ver</a> 
-									</p>
+									<form action="Autos" method="post">
+										<button type="submit" class="btn btn-primary">Ver</button>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -88,16 +88,16 @@ response.setDateHeader("Expires", 0);
 									<p>
 										También te ofrecemos una amplia gama de camionetas para que puedas disfrutar con toda tu familia!
 									</p>
-									<p>
-										<a class="btn btn-info btn-default" href="camionetas.jsp">Ver</a>
-									</p>
+									<form action="Camionetas" method="post">
+										<button type="submit" class="btn btn-primary">Ver</button>
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+	
 
 <%@ include file="WEB-INF/footer.html"%>
 	
