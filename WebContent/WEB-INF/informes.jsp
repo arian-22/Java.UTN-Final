@@ -1,5 +1,6 @@
+<%@page import="java.util.ArrayList"%>
 <%@ include file="cabeceraAdmin.jsp"%>
-
+<%@ page import = "entidades.*"%>
 
 <script type="text/javascript"> $(document).ready(function() {
 	  $(".nav-tabs a").click(function() {
@@ -22,227 +23,107 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h1>
+			<h1 style="text-align: center">
 				Informes
 			</h1>
 			<ul class="nav nav-tabs">
 	    		<li class="active"><a href="#stock">Stock de Vehículos</a> </li>
-	    		<li><a href="#alquilados">Vehículos alquilados actualmente</a></li>
+	    		<li><a href="#alquilados">Vehículos Alquilados Actualmente</a></li>
 			</ul>
 			
 			 <div class="tab-content">
-	     <div id="stock" class="tab-pane fade in active">
-	         <h3>Ingrese todos los datos del vehículo que desea agregar al catálogo</h3>
-	         <div class="container-fluid">
-				<table class="table table-striped">
-					  <thead>
-					    <tr>
-					      <th scope="col">#</th>
-					      <th scope="col">First</th>
-					      <th scope="col">Last</th>
-					      <th scope="col">Handle</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <tr>
-					      <th scope="row">1</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>@mdo</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>@fat</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>Larry</td>
-					      <td>the Bird</td>
-					      <td>@twitter</td>
-					    </tr>
-					  </tbody>
-					</table>
-				</div> 
-	     </div>
-	     
-	     <div id="alquilados" class="tab-pane fade">
-	         <h3>Ingrese patente  del vehículo a dar de baja</h3>
-	         	 <div class="container-fluid">
-				<table class="table table-striped">
-					  <thead>
-					    <tr>
-					      <th scope="col">#</th>
-					      <th scope="col">First</th>
-					      <th scope="col">Last</th>
-					      <th scope="col">Handle</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <tr>
-					      <th scope="row">1</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>@mdo</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>@fat</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>Larry</td>
-					      <td>the Bird</td>
-					      <td>@twitter</td>
-					    </tr>
-					  </tbody>
-					</table>
-				</div> 
-</div>
-	     
-	 </div>
-			
+				     <div id="stock" class="tab-pane fade in active">
+				  		
+				  		<h2>Stok de Vehiculos</h2>
 						
-			<div class="modal fade" id="modal-container-865240" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h4 class="modal-title" id="myModalLabel">
-								Vehículos de EasyCar
-							</h4>
-						</div>
-					<table class="table table-hover table-bordered">
-				<thead>
-					<tr>
-						<th>
-							#
-						</th>
-						<th>
-							Patente
-						</th>
-						<th>
-							Modelo
-						</th>
-						<th>
-							Marca
-						</th>
-						<th>
-							Asientos
-						</th>
-						<th>
-							Año
-						</th>
-						<th>
-							Transmisión
-						</th>
-						<th>
-							Estado
-						</th>
-						<th>
-							Baúl
-						</th>
-						<th>
-							Tipo
-						</th>
-						<th>
-							Km
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-					</tr>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Approved
-						</td>
-					</tr>
-					<tr>
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr>
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr>
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Cerrar
-							</button> 
-						
-						</div>
-					</div>
-					
-				</div>
-				
+				         <div class="container-fluid">
+							<table class="table table-striped">
+								  <thead>
+								    <tr class="bg-primary">
+								      <th scope="col">Patente</th>
+								      <th scope="col">Marca</th>
+								      <th scope="col">Modelo</th>
+								      <th scope="col">Tipo</th>
+								      <th scope="col">Estado</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								  
+								  <% if(session.getAttribute("vehiculos-stock")!=null){ 
+									  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
+									  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock");
+									  
+									  for(int i = 0 ; i < vehiculos.size() ; i++){
+										 
+										  %>  
+										<tr>
+											
+									      <th scope="row"><%=  vehiculos.get(i).getPatente()  %></th>
+									      <td><%= vehiculos.get(i).getMarca() %></td>
+									      <td><%= vehiculos.get(i).getModelo()  %></td>
+									      <td><%= vehiculos.get(i).getTipo()  %></td>
+									      <td><%= vehiculos.get(i).getEstado()  %></td>
+									      
+									    </tr>
+									<%}  
+									
+									}%>
+									
+								    
+								  </tbody>
+								</table>
+							</div> 
+				     </div>
+				     
+				     <div id="alquilados" class="tab-pane fade">
+				         <h2>Vehiculos Alquilados Actualmente</h2>
+				         
+				         <div class="container-fluid">
+							<table class="table table-striped">
+								<thead>
+									<tr class="bg-primary">
+										<th scope="col">Nro. Alquiler</th>
+								    	<th scope="col">Patente</th>
+								      	<th scope="col">Marca</th>
+								      	<th scope="col">Modelo</th>
+								      	<th scope="col">Tipo</th>
+								      	<th scope="col">Cliente</th>
+									  	<th scope="col">Nro. Documento</th>
+									    <th scope="col">Desde</th>
+									    <th scope="col">Hasta</th>
+								    </tr>
+								 </thead>
+								 <tbody>
+								    
+									<% if(session.getAttribute("alquileres")!=null){ 
+									  ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
+									  cva = (ArrayList<Cli_Veh_Alq>)session.getAttribute("alquileres");
+									  
+									  for(int i = 0 ; i < cva.size() ; i++){
+										 
+										  %>  
+										<tr>
+											
+									      <th scope="row"><%=  cva.get(i).getAlquiler().getNro_alquiler()  %></th>
+									      <td><%= cva.get(i).getVehiculo().getPatente()  %></td>
+									      <td><%= cva.get(i).getVehiculo().getMarca()  %></td>
+									      <td><%= cva.get(i).getVehiculo().getModelo()  %></td>
+									      <td><%= cva.get(i).getVehiculo().getTipo()  %></td>
+									      <td><%= cva.get(i).getCliente().getApellido()  %>, <%= cva.get(i).getCliente().getNombre()  %></td>
+									      <td><%= cva.get(i).getCliente().getDni()  %></td>
+									      <td><%= cva.get(i).getAlquiler().getFechaDesde() %></td>
+									      <td><%= cva.get(i).getAlquiler().getFechaHasta()  %></td>
+									      
+									    </tr>
+									<%}  
+									
+									}%>
+									
+								</tbody>
+							</table>
+						</div> 
+					</div>	 
 			</div>
-			<a href="javascript:window.history.go(-1);" class="btn btn-link" type="button">Atrás</a>
 		</div>
 	</div>
 </div>
