@@ -74,12 +74,34 @@
 									<li>
 										<a href="login.jsp">Login</a>
 									</li>
-									<%}else{ 
-										//Usuario u = (Usuario)session.getAttribute("user");
-									%>
-									<li class="dropdown">
-										 <a href="inicioCliente.jsp" class="dropdown-toggle" data-toggle="dropdown">Usuario<strong class="caret"></strong></a>
-										<ul class="dropdown-menu">
+									<%}else{
+										Usuario u = new Usuario();
+										u = (Usuario)session.getAttribute("user");
+										
+										 if(u.getAdmin().equals("S")){ %>
+												<li class="dropdown">
+											 		<a href="inicioAdmin.jsp" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>, <%= u.getNombre() %><strong class="caret"></strong></a>
+													<ul class="dropdown-menu">
+												<li>
+													<a href="#">Perfil</a>
+												</li>
+												<li>
+													<a href="#">Configuración</a>
+												</li>
+												<li>
+													<a href="#">Ayuda</a>
+												</li>
+												<li class="divider">
+												</li>
+												<li>
+													<a href="CerrarSesion">Cerrar sesión</a>
+												</li>
+												</ul>
+												</li>
+											<%} else { %>
+											<li class="dropdown">
+										 		<a href="inicioCliente.jsp" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>, <%= u.getNombre() %><strong class="caret"></strong></a>
+												<ul class="dropdown-menu">
 											<li>
 												<a href="#">Perfil</a>
 											</li>
@@ -97,9 +119,9 @@
 											<li>
 												<a href="CerrarSesion">Cerrar sesión</a>
 											</li>
-										</ul>
-									</li>
-								<%} %>
+											</ul>
+											</li>
+										<%} } %>
 							</ul>
 						</div>
 						

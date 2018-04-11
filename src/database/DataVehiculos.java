@@ -18,7 +18,7 @@ public class DataVehiculos {
 	ResultSet rs = null;
 	
 	try{
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen FROM vehículos WHERE nro_patente = ?");
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen FROM vehiculos WHERE nro_patente = ?");
 		stmt.setString(1, nroPatente);
 		rs = stmt.executeQuery();
 					
@@ -62,8 +62,8 @@ public class DataVehiculos {
 			PreparedStatement stmt = null;
 			
 			try {
-				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into vehículos(nro_patente, "
-						+ "modelo, marca, cant_asientos, año, baul, transmision, km, tipo, estado,imagen) "
+				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into vehiculos(nro_patente, "
+						+ "modelo, marca, cant_asientos, a�o, baul, transmision, km, tipo, estado,imagen) "
 						+ "values(?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 				stmt.setString(1, v.getPatente());
 				stmt.setString(2, v.getModelo());
@@ -100,7 +100,7 @@ public class DataVehiculos {
 		
 		
 		try {
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM vehículos");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM vehiculos");
 	
 		    rs = stmt.executeQuery();
 		    

@@ -1,9 +1,5 @@
 package entidades;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Usuario {
 	
 	private String nombre, apellido, direccion, telefono, mail, password, nro_tarjeta, fechaNacimiento, fechaVencimientoLicencia;

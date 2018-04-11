@@ -1,4 +1,4 @@
-<%@ include file="cabeceraAdmin.jsp"%>
+<%@ include file="cabecera.jsp"%>
 
 <%
 Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
@@ -108,7 +108,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 						</div>
 						<div class="form-group">
 							<label>
-								Precio por día
+								Precio base
 							</label><!-- Esta en la tabla valores -->
 							<input type="text" class="form-control" name="precio_base"/>
 						</div>

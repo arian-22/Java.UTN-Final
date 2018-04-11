@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@ include file="cabeceraAdmin.jsp"%>
+<%@ include file="cabecera.jsp"%>
 <%@ page import = "entidades.*"%>
 
 <script type="text/javascript"> $(document).ready(function() {
@@ -34,7 +34,7 @@
 			 <div class="tab-content">
 				     <div id="stock" class="tab-pane fade in active">
 				  		
-				  		<h2>Stok de Vehiculos</h2>
+				  		<h2>Stock de Vehiculos</h2>
 						
 				         <div class="container-fluid">
 							<table class="table table-striped">
@@ -126,6 +126,8 @@
 			</div>
 		</div>
 	</div>
+	<a href="javascript:window.history.go(-1);" class="btn btn-link" type="button">Atrás</a>
+	<hr>
 </div>
 
 <%@ include file="footer.html"%>	
