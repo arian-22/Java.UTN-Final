@@ -56,7 +56,7 @@ response.setDateHeader("Expires", 0);
 							Nuestro trabajo es hacer que tengas una experiencia satisfactoria, por lo que nuestra flota consta de autos 0KM y damos atención personalizada a cada uno de nuestros clientes. ¡Te invitamos a registrarte a nuestro sitio y hacer tu reserva online!
 						</p>
 						<p>
-							<a class="btn btn-warning btn-lg" href="login.jsp">¡Reserve su coche aquí!</a>
+							<a class="btn btn-warning" href="login.jsp">¡Reserve su coche aquí!</a>
 						</p>
 					</div>
 				</div>

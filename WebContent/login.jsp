@@ -8,12 +8,12 @@
 				<form role="form" action="Login" method="post">
 					<div class="form-group">
 						<label>
-							Email address
+							Email
 						</label>
 						<input type="email" class="form-control" name="mail" />
 						 
 						<label>
-							Password
+							Contraseña
 						</label>
 						<input type="password" class="form-control" name="pass" />
 					</div>

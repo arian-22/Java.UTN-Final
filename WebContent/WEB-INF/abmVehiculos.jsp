@@ -1,4 +1,4 @@
-<%@ include file="cabeceraAdmin.jsp"%>
+<%@ include file="cabecera.jsp"%>
 
 <%
 Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
