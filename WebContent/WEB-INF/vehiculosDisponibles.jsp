@@ -48,9 +48,9 @@
 								  </thead>
 								  <tbody>
 								  
-								  <% if(session.getAttribute("vehiculos-stock")!=null){ 
+								  <% if(session.getAttribute("vehiculos-stock-disponibles")!=null){ 
 									  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-									  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock");
+									  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock-disponibles");
 									  
 									  for(int i = 0 ; i < vehiculos.size() ; i++){
 										 

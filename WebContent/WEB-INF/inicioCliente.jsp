@@ -18,7 +18,7 @@
 								Fecha de alquiler
 							</label>
 							<div class="col-sm-4">
-								<input type="date" class="form-control" id="inputFecha" />
+								<input type="date" class="form-control" id="inputFecha" name="fecha_desde"/>
 							</div>
 							
 						</div>
@@ -28,7 +28,7 @@
 								Fecha de devolución
 							</label>
 							<div class="col-sm-4">
-								<input type="date" class="form-control" id="inputFechaD" />
+								<input type="date" class="form-control" id="inputFechaD" name="fecha_hasta" />
 							</div>
 							
 						</div>

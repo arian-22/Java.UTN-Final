@@ -19,7 +19,7 @@ public class DataVehiculos {
 	ResultSet rs = null;
 	
 	try{
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen FROM vehículos WHERE nro_patente = ?");
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen, estado FROM vehículos WHERE nro_patente = ?");
 		stmt.setString(1, nroPatente);
 		rs = stmt.executeQuery();
 					
@@ -129,6 +129,54 @@ public class DataVehiculos {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM vehículos");
 	
 		    rs = stmt.executeQuery();
+		    
+		    while(rs!=null && rs.next()){
+		    	Vehiculos v = new Vehiculos();
+		    	
+		    	v.setPatente(rs.getString("nro_patente"));
+				v.setModelo(rs.getString("modelo"));
+				v.setMarca(rs.getString("marca"));
+				v.setTipo(rs.getString("tipo"));
+				v.setEstado(rs.getString("estado"));
+				//v.setFoto(rs.getString("imagen"));
+				
+				vehiculos.add(v);
+		    };
+		    
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}
+		
+	
+	    
+	    
+	    return vehiculos;
+	}
+
+	public ArrayList<Vehiculos> getVehiculosDisponiblesParaAlquilar(String fechaDesde, String fechaHasta) {
+		ArrayList<Vehiculos> vehiculos = new ArrayList<>();
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT v.nro_patente, v.modelo, v.marca, v.tipo, v.estado FROM vehículos v WHERE v.nro_patente NOT IN (SELECT DISTINCT v.nro_patente FROM vehículos v INNER JOIN `cli-veh-alq` cva ON v.nro_patente = cva.nro_patente INNER JOIN usuario u ON cva.mail = u.mail INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler WHERE (? BETWEEN a.fecha_desde AND a.fecha_hasta) OR (a.fecha_desde BETWEEN ? AND ?))");
+			stmt.setString(1, fechaDesde);
+			stmt.setString(2, fechaDesde);
+			stmt.setString(3, fechaHasta);
+			rs = stmt.executeQuery();
 		    
 		    while(rs!=null && rs.next()){
 		    	Vehiculos v = new Vehiculos();
