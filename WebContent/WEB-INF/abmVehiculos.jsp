@@ -157,44 +157,63 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 				</div>
 			</form>
 	<div class="container-fluid">
+	
 	<div class="row">
-		<div class="col-md-12">
+		<!--  <div class="col-md-12"> -->
 			
-			<div class="alert alert-dismissable alert-danger">
-				 
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-					×
-				</button>
-				<h4>
-					<strong> Error! </strong>
-				</h4> El vehículo no fue encontrado <a href="#" class="alert-link"></a>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="alert alert-dismissable alert-info">
-						 
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-							×
-						</button>
-						<h4>
-							<strong> Vehículo: </strong> 
-						</h4> <strong> Marca:</strong>  
-								<strong> Modelo:</strong>  
-								<strong> Tipo:</strong>  
+			
+			<% if(session.getAttribute("vehiculo-baja")!=null){ 
+				  Vehiculos v = new Vehiculos();
+				  v = (Vehiculos)session.getAttribute("vehiculo-baja");
+				  
+			%>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="alert alert-dismissable alert-info">
+								 
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+									×
+								</button>
+								<h4><strong> Vehículo: <%= v.getPatente() %> </strong></h4> 
 								
-						<div>
-						<button type="button" class="btn btn-danger btn-default">
-							Eliminar
-						</button> 
-						<button type="button" class="btn btn-default">
-							Cancelar
-						</button>
-						</div>		
-					</div> 
-				
+								<strong> Marca: <%= v.getMarca() %> </strong>
+								<br>  
+								<strong> Modelo: <%= v.getModelo() %> </strong>
+								<br>
+								<strong> Estado: <%= v.getEstado() %> </strong>
+								<br>	
+								<form role="form" action="EliminarVehiculo" method="post">
+								<div>
+								
+									<button type="submit"  class="btn btn-danger btn-default">
+										Eliminar
+									</button> 
+									<button type="button" class="btn btn-default " data-dismiss="alert" aria-hidden="true">
+										Cancelar
+									</button>
+								
+								</div>	
+								</form>	
+							</div> 
+						
+						</div>
+					</div>
+				<%}else {
+					if(session.getAttribute("bandera")!=null){ 
+				%>	
+				<div class="alert alert-dismissable alert-danger">
+				 
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+						×
+					</button>
+					<h4>
+						<strong> Error! </strong>
+					</h4> El vehículo no fue encontrado <a href="#" class="alert-link"></a>
 				</div>
-			</div>
-		</div>
+				<% }
+				} %>
+					
+		<!--  </div> -->
 	</div>
 </div>
 
@@ -208,7 +227,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 </div>
 	     <div id="modificaciones" class="tab-pane fade">
 	         <h3>Ingrese patente del vehículo a modificar</h3>
-	                 	<div class="row">
+	        <div class="row">
 		<div class="col-md-12">
 			<form class="form-horizontal" role="form">
 				
@@ -232,9 +251,9 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 				</div>
 			</form>
 		</div>
-	</div>
+		</div>
 	         
-	     </div>
+	   </div>
 	     
 	 </div>
 	 <a href="javascript:window.history.go(-1);" class="btn btn-link" type="button">Atrás</a>

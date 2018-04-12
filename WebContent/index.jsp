@@ -28,17 +28,17 @@ response.setDateHeader("Expires", 0);
 						</ol>
 						<div class="carousel-inner">
 							<div class="item active">
-								<img alt="Carousel Bootstrap First" src="http://www.autosparalquilar.com/imagenes/carousel-1.jpg" width="1000" />
+								<img alt="Carousel Bootstrap First" src="https://evolutionrentacar.com/wp-content/uploads/2017/05/Alquiler-de-Vehiculos-en-Medell%C3%ADn.png" width="100%" height="100px"/>
 								<div class="carousel-caption">
 								</div>
 							</div>
 							<div class="item">
-								<img alt="Carousel Bootstrap Second" src="http://alcalaoliver.com/wp-content/uploads/2015/01/seguro_de_autos.jpg" />
+								<img alt="Carousel Bootstrap Second" src="http://www.creagroupevents.com/Resources/images/OPGRTURQWF.jpg" width="100%" height="100px" />
 								<div class="carousel-caption">
 								</div>
 							</div>
 							<div class="item">
-								<img alt="Carousel Bootstrap Third" src="https://ceca-blogs-sp.s3.amazonaws.com/blogs/cotizar-un-seguro-de-auto203689.jpg" />
+								<img alt="Carousel Bootstrap Third" src="https://www.16valvulas.com.ar/wp-content/uploads/2017/11/peugeot-vehiculos-utilitari.jpg" width="100%" height="100px" />
 								<div class="carousel-caption">
 								</div>
 							</div>
@@ -64,7 +64,7 @@ response.setDateHeader("Expires", 0);
 					<div class="row">
 						<div class="col-md-6">
 							<div class="thumbnail">
-								<img alt="Bootstrap Thumbnail First" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjHp1q20Gb_7rWsDtZoMBCMx2afInP-smD6KIkM5we-aqA9IsI" />
+								<img alt="Bootstrap Thumbnail First" height="250px" src="http://www.elfinanciero.com.mx/uploads/2018/02/05/bc29e1f1231517854121_standard_desktop_medium_retina.jpeg" />
 								<div class="caption">
 									<h3>
 										Autos
@@ -80,7 +80,7 @@ response.setDateHeader("Expires", 0);
 						</div>
 						<div class="col-md-6">
 							<div class="thumbnail">
-								<img alt="Bootstrap Thumbnail Second" src="http://alnasrrentacar.com/wp-content/uploads/2016/08/hyundai.jpg" />
+								<img alt="Bootstrap Thumbnail Second" height="250px" src="https://k60.kn3.net/taringa/D/F/0/8/4/A/TaringueroAnonim/2E9.jpg" />
 								<div class="caption">
 									<h3>
 										Camionetas

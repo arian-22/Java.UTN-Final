@@ -33,16 +33,21 @@ public class BuscarVehiculo extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
+	/**	
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		doGet(request, response);
+		request.getSession().setAttribute("bandera",1);
 		Controlador ctrl = new Controlador();
 		Vehiculos v = new Vehiculos();
 		v = ctrl.recuperarVehiculo(request.getParameter("patente"));
-		System.out.println("Marca: " + v.getMarca());
+		request.getSession().setAttribute("vehiculo-baja", v);
+		
+		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
+		
 		
 		
 		

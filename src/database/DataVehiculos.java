@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ public class DataVehiculos {
 	ResultSet rs = null;
 	
 	try{
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen FROM vehículos WHERE nro_patente = ?");
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen, estado FROM vehículos WHERE nro_patente = ?");
 		stmt.setString(1, nroPatente);
 		rs = stmt.executeQuery();
 					
@@ -29,6 +30,7 @@ public class DataVehiculos {
 			v.setMarca(rs.getString("marca"));
 			v.setTipo(rs.getString("tipo"));
 			v.setFoto(rs.getString("imagen"));
+			v.setEstado(rs.getString("estado"));
 							
 			}else{
 				System.out.println("La consulta no devuelve nada.");
@@ -78,19 +80,43 @@ public class DataVehiculos {
 				stmt.setString(11, v.getFoto());
 				stmt.execute();
 				
+				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into valores(nro_patente, fecha_desde, precio_base) values(?,?,?)");
+				stmt.setString(1, v.getPatente());
 				
-	
+				java.util.Date d = new java.util.Date();
+				Date fechaActual = new java.sql.Date(d.getTime());
+				System.out.println("Fecha actual: " + fechaActual);
 				
-				/*rs = stmt.getGeneratedKeys();
-				if(rs!=null && rs.next()){
-					u.setIdPersonaje(rs.getInt(1));
-				}*/
+				stmt.setDate(2, (Date) fechaActual);
+				stmt.setFloat(3, v.getPrecio());
+				stmt.execute();
+
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} 
+			} finally {
+				
+				
+				FactoryConexion.getInstancia().releaseConn();
+			}
 			
 		}
+	public void delete(String nroPatente) {
+		
+		PreparedStatement stmt = null;
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("DELETE FROM vehículos WHERE nro_patente = ?");
+			stmt.setString(1, nroPatente);
+			stmt.execute();
+		}catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}
+		
+	}
 
 	public ArrayList<Vehiculos> getVehiculos() {
 		ArrayList<Vehiculos> vehiculos = new ArrayList<>();

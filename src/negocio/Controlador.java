@@ -57,4 +57,10 @@ public class Controlador {
 		vehiculo = dbVehiculos.getByPatente(nroPatente);
 		return vehiculo;
 	}
+	public void eliminarVehiculo(String nroPatente) {
+		System.out.println("patenteController "+ nroPatente);
+		
+		DataVehiculos dbVehiculos = new DataVehiculos();
+		dbVehiculos.delete(nroPatente);
+	}
 }
