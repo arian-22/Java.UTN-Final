@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entidades.Vehiculos;
-import negocio.Controlador;
-
 /**
- * Servlet implementation class BuscarVehiculo
+ * Servlet implementation class ModificarVehiculo
  */
-@WebServlet("/BuscarVehiculo")
-public class BuscarVehiculo extends HttpServlet {
+@WebServlet("/ModificarVehiculo")
+public class ModificarVehiculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BuscarVehiculo() {
+    public ModificarVehiculo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,31 +30,12 @@ public class BuscarVehiculo extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**	
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		doGet(request, response);
-		Controlador ctrl = new Controlador();
-		Vehiculos v = new Vehiculos();
-		v = ctrl.recuperarVehiculo(request.getParameter("patente"));
-		
-		if (request.getParameter("btnbaja")!= null){
-			request.getSession().setAttribute("msjErrorBaja",1);
-			request.getSession().setAttribute("vehiculo-baja", v);
-			}
-		else if(request.getParameter("btnmod")!= null){
-			request.getSession().setAttribute("msjErrorMod",1);
-			request.getSession().setAttribute("vehiculo-mod", v);
-			}
-			
-		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
-		
-		
-		
-		
 	}
 
 }

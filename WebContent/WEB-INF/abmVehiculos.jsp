@@ -150,7 +150,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						 
-						<button type="submit" class="btn btn-default">
+						<button type="submit" name="btnbaja" class="btn btn-default">
 							Buscar
 						</button>
 					</div>
@@ -199,7 +199,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 						</div>
 					</div>
 				<%}else {
-					if(session.getAttribute("bandera")!=null){ 
+					if(session.getAttribute("msjErrorBaja")!=null){ 
 				%>	
 				<div class="alert alert-dismissable alert-danger">
 				 
@@ -228,8 +228,8 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 	     <div id="modificaciones" class="tab-pane fade">
 	         <h3>Ingrese patente del vehículo a modificar</h3>
 	        <div class="row">
-		<div class="col-md-12">
-			<form class="form-horizontal" role="form">
+			<div class="col-md-12">
+			<form class="form-horizontal" role="form" action="BuscarVehiculo" method="post">
 				
 				<div class="form-group">
 					 
@@ -244,12 +244,123 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						 
-						<button type="submit" class="btn btn-default">
+						<button type="submit" name="btnmod" class="btn btn-default">
 							Buscar
 						</button>
 					</div>
 				</div>
 			</form>
+			
+			<div class="container-fluid">
+			<div class="row">
+				<!--  <div class="col-md-12"> -->
+
+			<% if(session.getAttribute("vehiculo-mod")!=null){ 
+				  Vehiculos v = new Vehiculos();
+				  v = (Vehiculos)session.getAttribute("vehiculo-mod");  
+			%>
+					<form role="form" action="ModVehiculo" method="post">
+						<div class="form-group">
+							<label>
+								Patente
+							</label>
+							<input type="text" class="form-control" name="nro_patente"/>
+						</div>
+						<div class="form-group">
+							<label>
+								Marca
+							</label>
+							<input type="text" class="form-control" name="marca" />
+						</div>
+						<div class="form-group">
+							<label>
+								Modelo
+							</label>
+							<input type="text" class="form-control" name="modelo"/>
+						</div>
+						<div class="form-group">
+							<label>
+								Cantidad Asientos
+							</label>
+							<input type="text" class="form-control" name="cant_asientos"/>
+						</div>
+						<div class="form-group">
+							 
+							<label>
+								Año
+							</label>
+							<input type="text" class="form-control" name="anio"/>
+						</div>
+						<div class="form-group">
+							<label>
+								Transmisión
+							</label>
+							<input type="text" class="form-control" name="transmision" />
+						</div>
+						<div class="form-group">
+							 
+							<label>
+								Estado
+							</label>
+							<input type="text" class="form-control" name="estado" />
+						</div>
+
+						<div class="form-group">
+							 
+							<label>
+								Baul
+							</label>
+							<input type="text" class="form-control" name="baul"/>
+						</div>
+						<div class="form-group">
+							<label>
+								Tipo
+							</label>
+							<input type="text" class="form-control" name="tipo"/>
+						</div>
+						<div class="form-group">
+							<label>
+								Km
+							</label>
+							<input type="text" class="form-control" name="km"/>
+						</div>
+						<div class="form-group">
+							<label>
+								Precio por día
+							</label><!-- Esta en la tabla valores -->
+							<input type="text" class="form-control" name="precio_base"/>
+						</div>
+					<div class="form-group">
+					 
+					<label for="exampleInputFile">
+						Imagen del vehículo
+					</label>
+					<input type="file" id="exampleInputFile" />
+					<button type="submit" class="btn btn-primary btn-block">
+							Guardar modificaciones
+						</button>
+					</form>
+					
+					<%}else {
+					if(session.getAttribute("msjErrorMod")!=null){ 
+				    %>	
+					<div class="alert alert-dismissable alert-danger">
+				 
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+						×
+					</button>
+					<h4>
+						<strong> Error! </strong>
+					</h4> El vehículo no fue encontrado <a href="#" class="alert-link"></a>
+					</div>
+					<% }
+					} %>
+					
+				</div>
+			
+			</div>
+			</div>
+			
 		</div>
 		</div>
 	         
@@ -258,7 +369,6 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 	 </div>
 	 <a href="javascript:window.history.go(-1);" class="btn btn-link" type="button">Atrás</a>
 	<hr>
-</div>
 
 
 <%@ include file="footer.html"%>
