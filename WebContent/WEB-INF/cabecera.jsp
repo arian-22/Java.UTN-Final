@@ -19,6 +19,8 @@
 	    <script src="js/ie-emulation-modes-warning.js"></script>
 	    
 	    <link href="css/personalizado.css" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      			rel="stylesheet">
 	    <script
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -43,6 +45,7 @@
 								<li class="dropdown">
 									 <a class="dropdown-toggle" data-toggle="dropdown">Vehículos<strong class="caret"></strong></a>
 									<ul class="dropdown-menu">
+										
 										<li>
 											<a href="#">Autos</a>
 										</li>
@@ -74,28 +77,35 @@
 									<li>
 										<a href="login.jsp">Login</a>
 									</li>
+								
 									<%}else{
 										Usuario u = new Usuario();
 										u = (Usuario)session.getAttribute("user");
 										
 										 if(u.getAdmin().equals("S")){ %>
+												<i class="material-icons">
+												<a href="inicioAdmin.jsp">home</a>
+												</i>
+												
 												<li class="dropdown">
+													
 											 		<a href="inicioAdmin.jsp" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>, <%= u.getNombre() %><strong class="caret"></strong></a>
-													<ul class="dropdown-menu">
-												<li>
+												
+												<ul class="dropdown-menu">
+													<li>
 													<a href="#">Perfil</a>
-												</li>
-												<li>
+													</li>
+													<li>
 													<a href="#">Configuración</a>
-												</li>
-												<li>
+													</li>
+													<li>
 													<a href="#">Ayuda</a>
-												</li>
-												<li class="divider">
-												</li>
-												<li>
+													</li>
+													<li class="divider">
+													</li>
+													<li>
 													<a href="CerrarSesion">Cerrar sesión</a>
-												</li>
+													</li>
 												</ul>
 												</li>
 											<%} else { %>

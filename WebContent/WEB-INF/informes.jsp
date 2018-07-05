@@ -44,7 +44,7 @@
 								      <th scope="col">Marca</th>
 								      <th scope="col">Modelo</th>
 								      <th scope="col">Tipo</th>
-								      <th scope="col">Estado</th>
+								      <th scope="col">Estado</th> 
 								    </tr>
 								  </thead>
 								  <tbody>
@@ -61,9 +61,8 @@
 									      <th scope="row"><%=  vehiculos.get(i).getPatente()  %></th>
 									      <td><%= vehiculos.get(i).getMarca() %></td>
 									      <td><%= vehiculos.get(i).getModelo()  %></td>
-									      <td><%= vehiculos.get(i).getTipo()  %></td>
-									      <td><%= vehiculos.get(i).getEstado()  %></td>
-									      
+									      <td><%= vehiculos.get(i).getTipo() %></td>
+									      <td><%= vehiculos.get(i).getEstado() %></td>
 									    </tr>
 									<%}  
 									
