@@ -25,8 +25,9 @@
 				Alquileres
 			</h1>
 			<ul class="nav nav-tabs">
-	    		<li class="active"><a href="#stock">Stock de Vehículos</a> </li>
-	    		<li><a href="#alquilados">Vehículos Alquilados Actualmente</a></li>
+	    		<li class="active"><a href="#stock">Retirar vehiculo</a> </li>
+	    		<li><a href="#alquilados">Devolucion</a></li>
+	    		<li><a href="#alquilados">Cancelacion</a></li>
 			</ul>
 		</div>
 	</div>

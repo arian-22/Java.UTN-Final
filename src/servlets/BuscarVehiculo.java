@@ -43,6 +43,7 @@ public class BuscarVehiculo extends HttpServlet {
 		Controlador ctrl = new Controlador();
 		Vehiculos v = new Vehiculos();
 		v = ctrl.recuperarVehiculo(request.getParameter("patente"));
+		System.out.println("Asientos servlet: " + v.getCantAsientos());
 		
 		if (request.getParameter("btnbaja")!= null){
 			request.getSession().setAttribute("msjErrorBaja",1);

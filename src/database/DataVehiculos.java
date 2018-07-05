@@ -19,7 +19,7 @@ public class DataVehiculos {
 	ResultSet rs = null;
 	
 	try{
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen, estado FROM vehículos WHERE nro_patente = ?");
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen, estado,cant_asientos, año, baul, transmision, km FROM vehículos WHERE nro_patente = ?");
 		stmt.setString(1, nroPatente);
 		rs = stmt.executeQuery();
 					
@@ -31,7 +31,12 @@ public class DataVehiculos {
 			v.setTipo(rs.getString("tipo"));
 			v.setFoto(rs.getString("imagen"));
 			v.setEstado(rs.getString("estado"));
-							
+			v.setCantAsientos(rs.getInt("cant_asientos"));
+			v.setAnio(rs.getInt("año"));
+			v.setBaul(rs.getString("baul"));
+			v.setTransmision(rs.getString("transmision"));
+			v.setKm(rs.getInt("km"));
+			
 			}else{
 				System.out.println("La consulta no devuelve nada.");
 			}
@@ -60,12 +65,11 @@ public class DataVehiculos {
 
 	public void add(Vehiculos v){
 			
-			//ResultSet rs = null;
 			PreparedStatement stmt = null;
 			
 			try {
 				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into vehículos(nro_patente, "
-						+ "modelo, marca, cant_asientos, a�o, baul, transmision, km, tipo, estado,imagen) "
+						+ "modelo, marca, cant_asientos, año, baul, transmision, km, tipo, estado,imagen) "
 						+ "values(?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 				stmt.setString(1, v.getPatente());
 				stmt.setString(2, v.getModelo());
@@ -210,6 +214,51 @@ public class DataVehiculos {
 	    
 	    
 	    return vehiculos;
+	}
+
+	public void update(Vehiculos v) {
+		PreparedStatement stmt = null;
+		System.out.println("Patente: "+v.getPatente());
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update vehículos set modelo=?, marca=?, cant_asientos=?, año=?, baul=?, transmision=?, km=?, tipo=?, estado=?,imagen=? "
+					+ "where nro_patente=?");
+			
+			
+			stmt.setString(1, v.getModelo());
+			stmt.setString(2, v.getMarca());
+			stmt.setInt(3, v.getCantAsientos());
+			stmt.setInt(4, v.getAnio());
+			stmt.setString(5, v.getBaul());
+			stmt.setString(6, v.getTransmision());
+			stmt.setInt(7, v.getKm());
+			stmt.setString(8, v.getTipo());
+			stmt.setString(9, v.getEstado());
+			stmt.setString(10, v.getFoto());
+			
+			stmt.setString(11, v.getPatente());
+			
+			stmt.execute();
+			
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into valores(nro_patente, fecha_desde, precio_base) values(?,?,?)");
+			stmt.setString(1, v.getPatente());
+			
+			java.util.Date d = new java.util.Date();
+			Date fechaActual = new java.sql.Date(d.getTime());
+			System.out.println("Fecha actual: " + fechaActual);
+			
+			stmt.setDate(2, (Date) fechaActual);
+			stmt.setFloat(3, v.getPrecio());
+			stmt.execute();
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}
+		
 	}
 }
 

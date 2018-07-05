@@ -12,8 +12,8 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 		  $('.nav-tabs a').on('shown.bs.tab', function(event) {
 		    var x = $(event.target).text(); // active tab
 		    var y = $(event.relatedTarget).text(); // previous tab
-		    console.log(x);
-		    console.log('y');
+		    //console.log(x);
+		    //console.log('y');
 
 		    $(".act span").text(x);
 		    $(".prev span").text(y);
@@ -231,13 +231,13 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 			<div class="col-md-12">
 			<form class="form-horizontal" role="form" action="BuscarVehiculo" method="post">
 				
-				<div class="form-group">
+				<div id="imputBusqueda" class="form-group">
 					 
 					<label for="inputPassword3" class="col-sm-2 control-label">
 						Patente
 					</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" />
+						<input type="text" class="form-control" name="patente" />
 					</div>
 				</div>
 				
@@ -257,52 +257,52 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 
 			<% if(session.getAttribute("vehiculo-mod")!=null){ 
 				  Vehiculos v = new Vehiculos();
-				  v = (Vehiculos)session.getAttribute("vehiculo-mod");  
+				  v = (Vehiculos)session.getAttribute("vehiculo-mod");
+				 
+				  
 			%>
-					<form role="form" action="ModVehiculo" method="post">
+					<form role="form" action="ModificarVehiculo" method="post">
 						<div class="form-group">
-							<label>
-								Patente
-							</label>
-							<input type="text" class="form-control" name="nro_patente"/>
+							<h2><strong>Patente:</strong> <%= v.getPatente()%></h2>
+							<input type="text" class="form-control" name="nro_patente" style="display:none" value="<%= v.getPatente() %>"/>
 						</div>
 						<div class="form-group">
 							<label>
 								Marca
 							</label>
-							<input type="text" class="form-control" name="marca" />
+							<input type="text" class="form-control" name="marca" value="<%= v.getMarca() %>" />
 						</div>
 						<div class="form-group">
 							<label>
 								Modelo
 							</label>
-							<input type="text" class="form-control" name="modelo"/>
+							<input type="text" class="form-control" name="modelo" value="<%= v.getModelo() %>"/>
 						</div>
 						<div class="form-group">
 							<label>
 								Cantidad Asientos
 							</label>
-							<input type="text" class="form-control" name="cant_asientos"/>
+							<input type="number" class="form-control" name="cant_asientos" value="<%= v.getCantAsientos() %>"/>
 						</div>
 						<div class="form-group">
 							 
 							<label>
 								Año
 							</label>
-							<input type="text" class="form-control" name="anio"/>
+							<input type="number" class="form-control" name="anio" value="<%= v.getAnio() %>"/>
 						</div>
 						<div class="form-group">
 							<label>
 								Transmisión
 							</label>
-							<input type="text" class="form-control" name="transmision" />
+							<input type="text" class="form-control" name="transmision" value="<%= v.getTransmision() %>"/>
 						</div>
 						<div class="form-group">
 							 
 							<label>
 								Estado
 							</label>
-							<input type="text" class="form-control" name="estado" />
+							<input type="text" class="form-control" name="estado" value="<%= v.getEstado() %>" />
 						</div>
 
 						<div class="form-group">
@@ -310,25 +310,25 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 							<label>
 								Baul
 							</label>
-							<input type="text" class="form-control" name="baul"/>
+							<input type="text" class="form-control" name="baul" value="<%= v.getBaul() %>"/>
 						</div>
 						<div class="form-group">
 							<label>
 								Tipo
 							</label>
-							<input type="text" class="form-control" name="tipo"/>
+							<input type="text" class="form-control" name="tipo" value="<%= v.getTipo() %>"/>
 						</div>
 						<div class="form-group">
 							<label>
 								Km
 							</label>
-							<input type="text" class="form-control" name="km"/>
+							<input type="text" class="form-control" name="km" value="<%= v.getKm() %>"/>
 						</div>
 						<div class="form-group">
 							<label>
 								Precio por día
 							</label><!-- Esta en la tabla valores -->
-							<input type="text" class="form-control" name="precio_base"/>
+							<input type="text" class="form-control" name="precio_base" value="<%= v.getPrecio() %>"/>
 						</div>
 					<div class="form-group">
 					 
@@ -338,7 +338,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 					<input type="file" id="exampleInputFile" />
 					<button type="submit" class="btn btn-primary btn-block">
 							Guardar modificaciones
-						</button>
+					</button>
 					</form>
 					
 					<%}else {
