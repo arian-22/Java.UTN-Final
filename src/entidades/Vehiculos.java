@@ -1,14 +1,15 @@
 package entidades;
 
 public class Vehiculos {
-	private String patente, marca,modelo,transmision,estado,baul,tipo,foto;
-	private int cantAsientos,anio,precio,km;
+	private String patente, marca,modelo,transmision,estado,baul,tipo,imagen;
+	private int cantAsientos,anio,precio;
+	private float km;
 	
 	
-	public int getKm() {
+	public float getKm() {
 		return km;
 	}
-	public void setKm(int km) {
+	public void setKm(float km) {
 		this.km = km;
 	}
 	public String getPatente() {
@@ -53,11 +54,11 @@ public class Vehiculos {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public String getFoto() {
-		return foto;
+	public String getImagen() {
+		return imagen;
 	}
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	public int getCantAsientos() {
 		return cantAsientos;
@@ -77,6 +78,7 @@ public class Vehiculos {
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
+	
  
 	
 	

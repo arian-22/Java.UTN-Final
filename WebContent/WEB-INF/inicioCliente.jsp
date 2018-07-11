@@ -34,7 +34,7 @@
 						</div>
 						
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-primary">Buscar Vehículos Disponibles</button>
+								<button type="submit" class="btn btn-warning">Buscar Vehículos Disponibles</button>
 							</div>
 						
 					</form>

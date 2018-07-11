@@ -90,7 +90,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 						<div class="form-group">
 							 
 							<label>
-								Baul
+								Baúl
 							</label>
 							<input type="text" class="form-control" name="baul"/>
 						</div>

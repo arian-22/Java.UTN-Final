@@ -19,7 +19,7 @@
 					</div>
 					<div class="row baja-botones">
 						<div class="col-md-6">
-							<button type="submit" class="btn btn-primary btn-block">
+							<button type="submit" class="btn btn-primary btn-block" style="background:#6900cc">
 								Iniciar sesión
 							</button>
 						</div>

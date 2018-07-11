@@ -44,7 +44,7 @@
 									      <td><%= vehiculos.get(i).getTransmision()  %></td>
 									      <td><%= vehiculos.get(i).getBaul()  %></td>
 									      <td><%= vehiculos.get(i).getKm()  %></td>
-									      <td><%= vehiculos.get(i).getFoto()  %></td>
+									      <td><%= vehiculos.get(i).getImagen()  %></td>
 									    </tr>
 									<%	}	
 									  } 
@@ -56,9 +56,11 @@
 							</table>
 							</div> 
 				     </div>
+			</div>
 		</div>
 	</div>
-</div>
+	<a href="javascript:window.history.go(-1);" class="btn btn-link" type="button">Atrás</a>
+	<hr>
 
 </div>
 

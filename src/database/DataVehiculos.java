@@ -19,7 +19,7 @@ public class DataVehiculos {
 	ResultSet rs = null;
 	
 	try{
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, tipo, imagen, estado,cant_asientos, año, baul, transmision, km FROM vehículos WHERE nro_patente = ?");
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, cant_asientos, año, transmision, estado, baul, tipo, imagen, km FROM vehículos WHERE nro_patente = ?");
 		stmt.setString(1, nroPatente);
 		rs = stmt.executeQuery();
 					
@@ -28,13 +28,13 @@ public class DataVehiculos {
 			v.setPatente(rs.getString("nro_patente"));
 			v.setModelo(rs.getString("modelo"));
 			v.setMarca(rs.getString("marca"));
-			v.setTipo(rs.getString("tipo"));
-			v.setFoto(rs.getString("imagen"));
-			v.setEstado(rs.getString("estado"));
 			v.setCantAsientos(rs.getInt("cant_asientos"));
 			v.setAnio(rs.getInt("año"));
-			v.setBaul(rs.getString("baul"));
 			v.setTransmision(rs.getString("transmision"));
+			v.setEstado(rs.getString("estado"));
+			v.setBaul(rs.getString("baul"));
+			v.setTipo(rs.getString("tipo"));
+			v.setImagen(rs.getString("imagen"));
 			v.setKm(rs.getInt("km"));
 			
 			}else{
@@ -69,19 +69,19 @@ public class DataVehiculos {
 			
 			try {
 				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into vehículos(nro_patente, "
-						+ "modelo, marca, cant_asientos, año, baul, transmision, km, tipo, estado,imagen) "
+						+ "modelo, marca, cant_asientos, año, transmision, estado, baul, tipo, imagen, km) "
 						+ "values(?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 				stmt.setString(1, v.getPatente());
 				stmt.setString(2, v.getModelo());
 				stmt.setString(3, v.getMarca());
 				stmt.setInt(4, v.getCantAsientos());
 				stmt.setInt(5, v.getAnio());
-				stmt.setString(6, v.getBaul());
-				stmt.setString(7, v.getTransmision());
-				stmt.setInt(8, v.getKm());
+				stmt.setString(6, v.getTransmision());
+				stmt.setString(7, v.getEstado());
+				stmt.setString(8, v.getBaul());
 				stmt.setString(9, v.getTipo());
-				stmt.setString(10, v.getEstado());
-				stmt.setString(11, v.getFoto());
+				stmt.setString(10, v.getImagen());
+				stmt.setFloat(11, v.getKm());
 				stmt.execute();
 				
 				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into valores(nro_patente, fecha_desde, precio_base) values(?,?,?)");
@@ -140,9 +140,14 @@ public class DataVehiculos {
 		    	v.setPatente(rs.getString("nro_patente"));
 				v.setModelo(rs.getString("modelo"));
 				v.setMarca(rs.getString("marca"));
-				v.setTipo(rs.getString("tipo"));
+				v.setCantAsientos(rs.getInt("cant_asientos"));
+				v.setAnio(rs.getInt("año"));
+				v.setTransmision(rs.getString("transmision"));
 				v.setEstado(rs.getString("estado"));
-				//v.setFoto(rs.getString("imagen"));
+				v.setBaul(rs.getString("baul"));
+				v.setTipo(rs.getString("tipo"));
+				v.setImagen(rs.getString("imagen"));
+				v.setKm(rs.getFloat("km"));
 				
 				vehiculos.add(v);
 		    };
@@ -161,9 +166,7 @@ public class DataVehiculos {
 			
 			FactoryConexion.getInstancia().releaseConn();
 		}
-		
-	
-	    
+    
 	    
 	    return vehiculos;
 	}
@@ -188,9 +191,14 @@ public class DataVehiculos {
 		    	v.setPatente(rs.getString("nro_patente"));
 				v.setModelo(rs.getString("modelo"));
 				v.setMarca(rs.getString("marca"));
-				v.setTipo(rs.getString("tipo"));
+				v.setCantAsientos(rs.getInt("cant_asientos"));
+				v.setAnio(rs.getInt("año"));
+				v.setTransmision(rs.getString("transmision"));
 				v.setEstado(rs.getString("estado"));
-				//v.setFoto(rs.getString("imagen"));
+				v.setBaul(rs.getString("baul"));
+				v.setTipo(rs.getString("tipo"));
+				v.setImagen(rs.getString("imagen"));
+				v.setKm(rs.getFloat("km"));
 				
 				vehiculos.add(v);
 		    };
@@ -210,9 +218,6 @@ public class DataVehiculos {
 			FactoryConexion.getInstancia().releaseConn();
 		}
 		
-	
-	    
-	    
 	    return vehiculos;
 	}
 
@@ -223,20 +228,17 @@ public class DataVehiculos {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update vehículos set modelo=?, marca=?, cant_asientos=?, año=?, baul=?, transmision=?, km=?, tipo=?, estado=?,imagen=? "
 					+ "where nro_patente=?");
 			
-			
-			stmt.setString(1, v.getModelo());
-			stmt.setString(2, v.getMarca());
-			stmt.setInt(3, v.getCantAsientos());
-			stmt.setInt(4, v.getAnio());
-			stmt.setString(5, v.getBaul());
+			stmt.setString(1, v.getPatente());
+			stmt.setString(2, v.getModelo());
+			stmt.setString(3, v.getMarca());
+			stmt.setInt(4, v.getCantAsientos());
+			stmt.setInt(5, v.getAnio());
 			stmt.setString(6, v.getTransmision());
-			stmt.setInt(7, v.getKm());
-			stmt.setString(8, v.getTipo());
-			stmt.setString(9, v.getEstado());
-			stmt.setString(10, v.getFoto());
-			
-			stmt.setString(11, v.getPatente());
-			
+			stmt.setString(7, v.getEstado());
+			stmt.setString(8, v.getBaul());
+			stmt.setString(9, v.getTipo());
+			stmt.setString(10, v.getImagen());
+			stmt.setFloat(11, v.getKm());	
 			stmt.execute();
 			
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into valores(nro_patente, fecha_desde, precio_base) values(?,?,?)");
@@ -260,6 +262,7 @@ public class DataVehiculos {
 		}
 		
 	}
+	
 }
 
 

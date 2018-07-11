@@ -68,4 +68,5 @@ public class Controlador {
 		DataVehiculos dbVehiculos = new DataVehiculos();
 		dbVehiculos.delete(nroPatente);
 	}
+	
 }

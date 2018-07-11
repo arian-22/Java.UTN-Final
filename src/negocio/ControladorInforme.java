@@ -28,13 +28,12 @@ public class ControladorInforme {
 		return vehiculos;
 	}
 	
-	public ArrayList<Cli_Veh_Alq> getVehiculosAlquilados(){
+	public ArrayList<Cli_Veh_Alq> getVehiculosAlquiladosActualmente(){
 		DataAlquileres da = new DataAlquileres();
 		
-		cva = da.getVehiculosAlquilados();
+		cva = da.getVehiculosAlquiladosActualmente();
 		
 		return cva;
-		
 	}
 	
 
