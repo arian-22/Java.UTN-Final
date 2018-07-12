@@ -263,6 +263,56 @@ public class DataVehiculos {
 		
 	}
 	
+	/*
+	public ArrayList<Vehiculos> getAutosCamionetas(String tipo) {
+		ArrayList<Vehiculos> vehiculos = new ArrayList<>();
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM vehículos where tipo = ?");
+			stmt.setString(1, tipo);
+		    rs = stmt.executeQuery();
+		    
+		    while(rs!=null && rs.next()){
+		    	Vehiculos v = new Vehiculos();
+		    	
+		    	v.setPatente(rs.getString("nro_patente"));
+				v.setModelo(rs.getString("modelo"));
+				v.setMarca(rs.getString("marca"));
+				v.setCantAsientos(rs.getInt("cant_asientos"));
+				v.setAnio(rs.getInt("año"));
+				v.setTransmision(rs.getString("transmision"));
+				v.setEstado(rs.getString("estado"));
+				v.setBaul(rs.getString("baul"));
+				v.setTipo(rs.getString("tipo"));
+				v.setImagen(rs.getString("imagen"));
+				v.setKm(rs.getFloat("km"));
+				
+				vehiculos.add(v);
+		    };
+		    
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}
+    
+	    
+	    return vehiculos;
+	}    */
+	
 }
 
 

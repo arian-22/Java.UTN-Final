@@ -32,7 +32,11 @@
 									  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
 									  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock");
 									  
-									  for(int i = 0 ; i < vehiculos.size() ; i++){
+									 /* if(session.getAttribute("vehiculos-por-tipo")!=null){ 
+										  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
+										  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-pot-tipo");   */
+									  
+										  for(int i = 0 ; i < vehiculos.size() ; i++){
 										  if (vehiculos.get(i).getTipo().equals("A")){
 										 
 										  %>  

@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.ArrayList;
+
 import database.DataUsuarios;
 import entidades.Usuario;
 import entidades.Vehiculos;
@@ -68,5 +70,14 @@ public class Controlador {
 		DataVehiculos dbVehiculos = new DataVehiculos();
 		dbVehiculos.delete(nroPatente);
 	}
+	
+	/*
+	public ArrayList<Vehiculos> getVehiculosPorTipo(String tipo) {
+		DataVehiculos dv = new DataVehiculos();
+		
+		ArrayList<Vehiculos> vehiculos = dv.getAutosCamionetas(tipo);
+		
+		return vehiculos;
+	}  */
 	
 }
