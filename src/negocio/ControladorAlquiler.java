@@ -2,7 +2,9 @@ package negocio;
 
 import java.util.ArrayList;
 
+import database.DataAlquileres;
 import database.DataVehiculos;
+import entidades.Alquiler;
 import entidades.Vehiculos;
 
 public class ControladorAlquiler {
@@ -24,5 +26,15 @@ public class ControladorAlquiler {
 		
 		return vehiculos;
 	}
+
+	public Alquiler buscarAlquiler(int nro_alquiler) {
+		DataAlquileres dbAlquileres = new DataAlquileres();
+		Alquiler alquiler = new Alquiler();
+		
+		alquiler = dbAlquileres.getByNroAlquiler(nro_alquiler);
+		return alquiler;
+	}
+	
+
 
 }

@@ -166,4 +166,46 @@ public class DataAlquileres {
 	}
 
 
+	public Alquiler getByNroAlquiler(int nro_alquiler) {
+		Alquiler a = null;
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try{
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT *  FROM alquileres WHERE nro_alquiler = ?");
+			stmt.setInt(1, nro_alquiler);
+			rs = stmt.executeQuery();
+						
+			if(rs!=null && rs.next()){
+				a = new Alquiler();
+				a.setNro_alquiler(rs.getInt("nro_alquiler"));
+				a.setHora(rs.getDate("hora"));
+				a.setFechaDesde(rs.getDate("fecha_desde"));
+				a.setFechaHasta(rs.getDate("fecha_hasta"));
+				a.setFechaCancelacion(rs.getDate("fecha_cancelacion"));
+				a.setImporteCancelacion(rs.getFloat("importe_cancelacion"));
+							
+				}else{
+					System.out.println("La consulta no devuelve nada.");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				if(rs!=null) {
+					try {
+						rs.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				FactoryConexion.getInstancia().releaseConn();
+		}
+		
+		return a;
+	}
+		
+
+
 }

@@ -29,10 +29,10 @@
 						<img alt="Bootstrap Thumbnail Second" src="http://lorempixel.com/output/city-q-c-600-200-1.jpg" />
 						<div class="caption">
 							<h3>
-								Alquileres
+								Gestión de Alquileres
 							</h3>
 							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								Ingrese aquí para registrar el Retiro de un vehículo, la Devolución de un vehículo o la Cancelación de un alquiler.
 							</p>
 							<form action="Alquiler" method="post">
 								<button type="submit" class="btn btn-primary">Ingresar</button>
@@ -48,7 +48,7 @@
 								Alta/Baja Vehículos
 							</h3>
 							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								Ingrese aquí para registar un nuevo vehículo, eliminar un vehículo existente o modificar datos de los vehículos.
 							</p>
 							<form action="ABMVehiculos" method="post">
 								<button type="submit" class="btn btn-primary">Ingresar</button>

@@ -14,7 +14,7 @@ import negocio.Controlador;
  * Servlet implementation class Registro
  */
 @WebServlet("/Registro")
-public class Registro extends HttpServlet {
+public class RegistroUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Controlador controlador;
 	private Usuario usuario;
@@ -22,7 +22,7 @@ public class Registro extends HttpServlet {
     /**
      * Default constructor. 
      */
-    public Registro() {
+    public RegistroUsuario() {
         // TODO Auto-generated constructor stub
     }
 

@@ -39,6 +39,7 @@ public class EliminarVehiculo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 		Controlador ctrl = new Controlador();
 		Vehiculos vehiculo = new Vehiculos();
 		vehiculo=(Vehiculos)request.getSession().getAttribute("vehiculo-baja");

@@ -127,8 +127,7 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 					</form>
 				</div>
 			</div>
-</div>
-	        
+		</div>	        
 	     </div>
 	     
 	     <div id="bajas" class="tab-pane fade">
@@ -156,8 +155,8 @@ Controlador ctrl = ((Controlador)session.getAttribute("Ctrl"));
 					</div>
 				</div>
 			</form>
+			
 	<div class="container-fluid">
-	
 	<div class="row">
 		<!--  <div class="col-md-12"> -->
 			
