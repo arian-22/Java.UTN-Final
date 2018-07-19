@@ -223,27 +223,29 @@ public class DataVehiculos {
 
 	public void update(Vehiculos v) {
 		PreparedStatement stmt = null;
-		System.out.println("Patente: "+v.getPatente());
+		
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update vehículos set modelo=?, marca=?, cant_asientos=?, año=?, baul=?, transmision=?, km=?, tipo=?, estado=?,imagen=? "
-					+ "where nro_patente=?");
-			
-			stmt.setString(1, v.getPatente());
-			stmt.setString(2, v.getModelo());
-			stmt.setString(3, v.getMarca());
-			stmt.setInt(4, v.getCantAsientos());
-			stmt.setInt(5, v.getAnio());
+				+ "where nro_patente=?");
+		
+			stmt.setString(1, v.getModelo());
+			stmt.setString(2, v.getMarca());
+			stmt.setInt(3, v.getCantAsientos());
+			stmt.setInt(4, v.getAnio());
+			stmt.setString(5, v.getBaul());
 			stmt.setString(6, v.getTransmision());
-			stmt.setString(7, v.getEstado());
-			stmt.setString(8, v.getBaul());
-			stmt.setString(9, v.getTipo());
+			stmt.setFloat(7, v.getKm());
+			stmt.setString(8, v.getTipo());
+			stmt.setString(9, v.getEstado());
 			stmt.setString(10, v.getImagen());
-			stmt.setFloat(11, v.getKm());	
+		
+			stmt.setString(11, v.getPatente());
+			
 			stmt.execute();
 			
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into valores(nro_patente, fecha_desde, precio_base) values(?,?,?)");
 			stmt.setString(1, v.getPatente());
-			
+					
 			java.util.Date d = new java.util.Date();
 			Date fechaActual = new java.sql.Date(d.getTime());
 			System.out.println("Fecha actual: " + fechaActual);
@@ -251,13 +253,10 @@ public class DataVehiculos {
 			stmt.setDate(2, (Date) fechaActual);
 			stmt.setFloat(3, v.getPrecio());
 			stmt.execute();
-
-			
+					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
-			
 			FactoryConexion.getInstancia().releaseConn();
 		}
 		

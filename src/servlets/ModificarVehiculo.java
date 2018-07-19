@@ -61,7 +61,7 @@ public class ModificarVehiculo extends HttpServlet {
 		
 		vehiculos.setAnio(Integer.parseInt(request.getParameter("anio")));
 		
-		vehiculos.setKm(Integer.parseInt(request.getParameter("km")));
+		vehiculos.setKm(Float.parseFloat(request.getParameter("km")));
 		
 		vehiculos.setPrecio(Integer.parseInt(request.getParameter("precio_base")));
 		
