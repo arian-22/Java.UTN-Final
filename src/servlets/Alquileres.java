@@ -40,10 +40,12 @@ public class Alquileres extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		if (request.getParameter("btn-reserva")!= null){
-			
+		
 			Controlador ctrl = new Controlador();
 			Cli_Veh_Alq cva = new Cli_Veh_Alq();
+		
+		if (request.getParameter("btn-reserva")!= null){
+			
 			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-reserva");
 			System.out.println("estado:" + cva.getVehiculo().getEstado());
 			System.out.println("patente:" + cva.getVehiculo().getPatente());
@@ -52,6 +54,13 @@ public class Alquileres extends HttpServlet {
 			ctrl.actualizarVehiculos(cva.getVehiculo());
 			}
 		else if (request.getParameter("btn-devolucion")!= null){
+			
+			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-dev");
+			System.out.println("estado:" + cva.getVehiculo().getEstado());
+			System.out.println("patente:" + cva.getVehiculo().getPatente());
+			System.out.println("alquiler:" + cva.getAlquiler().getNro_alquiler());
+			cva.getVehiculo().setEstado("En uso");
+			ctrl.actualizarVehiculos(cva.getVehiculo());
 			
 			}
 		else if (request.getParameter("btn-cancelar")!= null){

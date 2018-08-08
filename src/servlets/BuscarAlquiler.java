@@ -49,14 +49,15 @@ public class BuscarAlquiler extends HttpServlet {
 			request.getSession().setAttribute("msjErrorReserva",1);
 			request.getSession().setAttribute("alquiler-reserva", alq);
 			}
-		else if(request.getParameter("btnCancelacion")!= null){
-			request.getSession().setAttribute("msjErrorCancel",1);
-			request.getSession().setAttribute("alquiler-cancel", alq);
+			else if(request.getParameter("btnDevolucion")!= null){
+				request.getSession().setAttribute("msjErrorDev",1);
+				request.getSession().setAttribute("alquiler-dev", alq);
+				}
+			else if(request.getParameter("btnCancelacion")!= null){
+				request.getSession().setAttribute("msjErrorCancel",1);
+				request.getSession().setAttribute("alquiler-cancel", alq);
 			}
-		else if(request.getParameter("btnDevolucion")!= null){
-			request.getSession().setAttribute("msjErrorDev",1);
-			request.getSession().setAttribute("alquiler-dev", alq);
-			}
+		
 			
 		request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
 		
