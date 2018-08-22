@@ -41,6 +41,7 @@
 								      <th scope="col">Baul</th>
 								      <th scope="col">Asientos</th>
 								      <th scope="col">Km</th>
+								      <th scope="col">Precio por día</th>
 								      <th scope="col">Imagen</th>
 								      <th scope="col">Acción</th>
 								    </tr>
@@ -65,6 +66,7 @@
 									      <td><%= vehiculos.get(i).getBaul()  %></td>
 									      <td><%= vehiculos.get(i).getCantAsientos()  %></td>
 									      <td><%= vehiculos.get(i).getKm()  %></td>
+									      <td><%= vehiculos.get(i).getPrecio()  %></td>
 									      <td><%= vehiculos.get(i).getImagen()  %></td>
 									      <td> 
 									      		<form role="form" action="DetalleAlquiler?vehiculo-selected=<%=  vehiculos.get(i).getPatente() %>" method="post">

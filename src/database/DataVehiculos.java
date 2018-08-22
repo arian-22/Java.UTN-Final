@@ -207,7 +207,7 @@ public class DataVehiculos {
 				v.setTipo(rs.getString("tipo"));
 				v.setImagen(rs.getString("imagen"));
 				v.setKm(rs.getFloat("km"));
-			v.setPrecio(rs.getFloat("precio_base"));
+				v.setPrecio(rs.getFloat("precio_base"));
 				
 				vehiculos.add(v);
 		    };
