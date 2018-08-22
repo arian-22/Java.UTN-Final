@@ -71,13 +71,12 @@ public class Controlador {
 		dbVehiculos.delete(nroPatente);
 	}
 	
-	/*
 	public ArrayList<Vehiculos> getVehiculosPorTipo(String tipo) {
 		DataVehiculos dv = new DataVehiculos();
 		
 		ArrayList<Vehiculos> vehiculos = dv.getAutosCamionetas(tipo);
 		
 		return vehiculos;
-	}  */
+	} 
 	
 }

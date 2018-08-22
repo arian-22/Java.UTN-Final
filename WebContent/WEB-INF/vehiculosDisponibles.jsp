@@ -27,8 +27,6 @@
 				Vehículos Disponibles
 		</h1>
 		<div id="stock" class="tab-pane fade in active">
-				  		
-				  		<h2>Stock de Vehiculos</h2>
 						
 				         <div class="container-fluid">
 							<table class="table table-striped">
@@ -37,13 +35,14 @@
 								      <th scope="col">Patente</th>
 								      <th scope="col">Marca</th>
 								      <th scope="col">Modelo</th>
-								      <th scope="col">Asientos</th>
+								      <th scope="col">Tipo</th>
 								      <th scope="col">Año</th>
 								      <th scope="col">Transmisión</th>
 								      <th scope="col">Baul</th>
-								      <th scope="col">Tipo</th>
+								      <th scope="col">Asientos</th>
 								      <th scope="col">Km</th>
 								      <th scope="col">Imagen</th>
+								      <th scope="col">Acción</th>
 								    </tr>
 								  </thead>
 								  <tbody>
@@ -57,12 +56,22 @@
 										  %>  
 										<tr>
 											
-									      <th scope="row"><%=  vehiculos.get(i).getPatente()  %></th>
+									      <th scope="row"><%= vehiculos.get(i).getPatente() %></th>
 									      <td><%= vehiculos.get(i).getMarca() %></td>
 									      <td><%= vehiculos.get(i).getModelo()  %></td>
 									      <td><%= vehiculos.get(i).getTipo()  %></td>
-									      <td><%= vehiculos.get(i).getEstado()  %></td>
-									      
+									      <td><%= vehiculos.get(i).getAnio()  %></td>
+									      <td><%= vehiculos.get(i).getTransmision()%></td>
+									      <td><%= vehiculos.get(i).getBaul()  %></td>
+									      <td><%= vehiculos.get(i).getCantAsientos()  %></td>
+									      <td><%= vehiculos.get(i).getKm()  %></td>
+									      <td><%= vehiculos.get(i).getImagen()  %></td>
+									      <td> 
+									      		<form role="form" action="DetalleAlquiler?vehiculo-selected=<%=  vehiculos.get(i).getPatente() %>" method="post">
+									      			<button type="submit" class="btn btn-outline-dark" name="btn<%= i %>" >Seleccionar</button>
+									      		</form>
+									      </td>
+									      									      
 									    </tr>
 									<%}  
 									

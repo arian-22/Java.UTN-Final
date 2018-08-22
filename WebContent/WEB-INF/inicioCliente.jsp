@@ -42,7 +42,6 @@
 				<div class="col-md-6">
 				</div>
 			</div>
-			<a href="index.jsp" class="btn btn-link" type="button">Atrás</a>
 		</div>
 	</div>
 </div>

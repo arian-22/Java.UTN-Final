@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entidades.Vehiculos;
+import negocio.Controlador;
 import negocio.ControladorInforme;
 
 /**
@@ -45,13 +46,19 @@ public class URLs extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);
 			
 		}else if (request.getParameter("btn-stock-autos")!= null){
-			ControladorInforme ci = new ControladorInforme();
+			
+			Controlador ctrl = new Controlador();
 			ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-			vehiculos = ci.getStockVehiculos();
+			vehiculos = ctrl.getVehiculosPorTipo("A");
 			request.getSession().setAttribute("vehiculos-stock", vehiculos);
 			request.getRequestDispatcher("WEB-INF/autos.jsp").forward(request, response);
 			
-		}else if (request.getParameter("btn-stock-camionetas")!= null){
+		}else if (request.getParameter("btn-stock-camionetas")!= null) {
+			
+			Controlador ctrl = new Controlador();
+			ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
+			vehiculos = ctrl.getVehiculosPorTipo("C");
+			request.getSession().setAttribute("vehiculos-stock", vehiculos);
 			request.getRequestDispatcher("WEB-INF/camionetas.jsp").forward(request, response);
 		}
 		

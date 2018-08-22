@@ -32,9 +32,7 @@
 									  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
 									  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock");
 									  
-									  for(int i = 0 ; i < vehiculos.size() ; i++){
-										  if (vehiculos.get(i).getTipo().equals("C")){
-										 
+									  for(int i = 0 ; i < vehiculos.size() ; i++){										 
 										  %>  
 										<tr>
 											
@@ -46,7 +44,7 @@
 									      <td><%= vehiculos.get(i).getKm()  %></td>
 									      <td><%= vehiculos.get(i).getImagen()  %></td>
 									    </tr>
-									<%	}	
+									<%	
 									  } 
 									
 									}%>

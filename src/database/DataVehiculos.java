@@ -19,7 +19,7 @@ public class DataVehiculos {
 	ResultSet rs = null;
 	
 	try{
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nro_patente, modelo, marca, cant_asientos, año, transmision, estado, baul, tipo, imagen, km FROM vehículos WHERE nro_patente = ?");
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT v.nro_patente, v.modelo, v.marca, v.cant_asientos, v.año, v.transmision, v.estado, v.baul, v.tipo, v.imagen, v.km, va.precio_base FROM vehículos v INNER JOIN valores va  on v.nro_patente = va.nro_patente where va.fecha_desde = (SELECT Max(vv.fecha_desde) from valores vv where nro_patente = ?) ");
 		stmt.setString(1, nroPatente);
 		rs = stmt.executeQuery();
 					
@@ -36,6 +36,7 @@ public class DataVehiculos {
 			v.setTipo(rs.getString("tipo"));
 			v.setImagen(rs.getString("imagen"));
 			v.setKm(rs.getInt("km"));
+			v.setPrecio(rs.getFloat("precio_base"));
 			
 			}else{
 				System.out.println("La consulta no devuelve nada.");
@@ -52,16 +53,9 @@ public class DataVehiculos {
 			}
 			
 			FactoryConexion.getInstancia().releaseConn();
+		}
+		return v;
 	}
-	
-	/*if(p != null){
-		System.out.println("Usuario en BD: " + p.getNombre() + " " + p.getApellido());
-	}else{
-		System.out.println("El usuario está vacio en BD");
-	}*/
-	
-	return v;
-}
 
 	public void add(Vehiculos v){
 			
@@ -176,10 +170,24 @@ public class DataVehiculos {
 		
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
-		
+				
 		try {
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT v.nro_patente, v.modelo, v.marca, v.tipo, v.estado FROM vehículos v WHERE v.nro_patente NOT IN (SELECT DISTINCT v.nro_patente FROM vehículos v INNER JOIN `cli-veh-alq` cva ON v.nro_patente = cva.nro_patente INNER JOIN usuario u ON cva.mail = u.mail INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler WHERE (? BETWEEN a.fecha_desde AND a.fecha_hasta) OR (a.fecha_desde BETWEEN ? AND ?))");
+
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT v.nro_patente, v.modelo, v.marca, v.cant_asientos, v.año, v.transmision, v.estado, v.baul, v.tipo, v.imagen, v.km, pp.precio_base, pp.fecha_max\n" + 
+					"FROM vehículos v \n" + 
+					"INNER JOIN (\n" + 
+					"	SELECT aa.nro_patente, aa.precio_base, max(aa.fecha_desde) as 'fecha_max'\n" + 
+					"    FROM valores aa\n" + 
+					"    group by aa.nro_patente, aa.precio_base) pp on v.nro_patente=pp.nro_patente\n" + 
+					"WHERE v.nro_patente NOT IN (\n" + 
+					"	SELECT DISTINCT v.nro_patente \n" + 
+					"	FROM vehículos v \n" + 
+					"	INNER JOIN `cli-veh-alq` cva ON v.nro_patente = cva.nro_patente \n" + 
+					"	INNER JOIN usuario u ON cva.mail = u.mail \n" + 
+					"	INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler \n" + 
+					"	WHERE (? BETWEEN a.fecha_desde AND a.fecha_hasta) OR (a.fecha_desde BETWEEN ? AND ?)\n" + 
+					"	)\n" + 
+					"GROUP BY v.nro_patente, v.modelo, v.marca, v.cant_asientos, v.año, v.transmision, v.estado, v.baul, v.tipo, v.imagen, v.km, pp.precio_base, pp.fecha_max");
 			stmt.setString(1, fechaDesde);
 			stmt.setString(2, fechaDesde);
 			stmt.setString(3, fechaHasta);
@@ -199,6 +207,7 @@ public class DataVehiculos {
 				v.setTipo(rs.getString("tipo"));
 				v.setImagen(rs.getString("imagen"));
 				v.setKm(rs.getFloat("km"));
+			v.setPrecio(rs.getFloat("precio_base"));
 				
 				vehiculos.add(v);
 		    };
@@ -262,7 +271,6 @@ public class DataVehiculos {
 		
 	}
 	
-	/*
 	public ArrayList<Vehiculos> getAutosCamionetas(String tipo) {
 		ArrayList<Vehiculos> vehiculos = new ArrayList<>();
 		
@@ -310,7 +318,7 @@ public class DataVehiculos {
     
 	    
 	    return vehiculos;
-	}    */
+	}    
 	
 }
 

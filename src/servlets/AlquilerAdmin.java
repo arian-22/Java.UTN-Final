@@ -40,8 +40,8 @@ public class AlquilerAdmin extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		ControladorAlquiler ctrl = new ControladorAlquiler();
-		Alquiler alquiler = new Alquiler();
+		//ControladorAlquiler ctrl = new ControladorAlquiler();
+		//Alquiler alquiler = new Alquiler();
 		
 		//alquiler =(Alquiler)request.getSession().getAttribute("buscarAlquiler");
 		//ctrl.buscarAlquiler(alquiler.getNro_alquiler());

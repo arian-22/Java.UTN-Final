@@ -45,18 +45,18 @@ public class BuscarAlquiler extends HttpServlet {
 		Cli_Veh_Alq alq = new Cli_Veh_Alq();
 		alq = ctrl.buscarAlquiler(Integer.parseInt(request.getParameter("num_alquiler")));
 		
-			if (request.getParameter("btnReserva")!= null){
+		if (request.getParameter("btnReserva")!= null){
 			request.getSession().setAttribute("msjErrorReserva",1);
 			request.getSession().setAttribute("alquiler-reserva", alq);
+		}
+		else if(request.getParameter("btnDevolucion")!= null){
+			request.getSession().setAttribute("msjErrorDev",1);
+			request.getSession().setAttribute("alquiler-dev", alq);
 			}
-			else if(request.getParameter("btnDevolucion")!= null){
-				request.getSession().setAttribute("msjErrorDev",1);
-				request.getSession().setAttribute("alquiler-dev", alq);
-				}
-			else if(request.getParameter("btnCancelacion")!= null){
-				request.getSession().setAttribute("msjErrorCancel",1);
-				request.getSession().setAttribute("alquiler-cancel", alq);
-			}
+		else if(request.getParameter("btnCancelacion")!= null){
+			request.getSession().setAttribute("msjErrorCancel",1);
+			request.getSession().setAttribute("alquiler-cancel", alq);
+		}
 		
 			
 		request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);

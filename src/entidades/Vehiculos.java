@@ -2,8 +2,8 @@ package entidades;
 
 public class Vehiculos {
 	private String patente, marca,modelo,transmision,estado,baul,tipo,imagen;
-	private int cantAsientos,anio,precio;
-	private float km;
+	private int cantAsientos,anio;
+	private float km, precio;
 	
 	
 	public float getKm() {
@@ -72,10 +72,10 @@ public class Vehiculos {
 	public void setAnio(int anio) {
 		this.anio = anio;
 	}
-	public int getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
-	public void setPrecio(int precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 	

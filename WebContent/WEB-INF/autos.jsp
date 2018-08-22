@@ -37,7 +37,6 @@
 										  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-pot-tipo");   */
 									  
 										  for(int i = 0 ; i < vehiculos.size() ; i++){
-										  if (vehiculos.get(i).getTipo().equals("A")){
 										 
 										  %>  
 										<tr>
@@ -49,7 +48,7 @@
 									      <td><%= vehiculos.get(i).getKm()  %></td>
 									      <td><%= vehiculos.get(i).getImagen()  %></td>
 									    </tr>
-									<%	}	
+									<%	
 									  } 
 									
 									}%>
