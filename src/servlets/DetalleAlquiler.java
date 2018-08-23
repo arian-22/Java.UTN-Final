@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.Vehiculos;
+import negocio.Controlador;
+
 /**
  * Servlet implementation class DetalleAlquiler
  */
@@ -36,9 +39,17 @@ public class DetalleAlquiler extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 		
-		String parametro = request.getParameter("vehiculo-selected");
+		String patente = request.getParameter("vehiculo-selected");
 		
-		System.out.println("Parámetro: " + parametro);
+		System.out.println("Parámetro: " + patente);
+		
+		Controlador ctrl = new Controlador();
+		Vehiculos v = new Vehiculos();
+		v = ctrl.recuperarVehiculo(patente);
+		
+		System.out.println("Dato auto: " + v.getMarca());
+		System.out.println("Dato auto: " + v.getPatente());
+		request.getSession().setAttribute("vehiculo", v);
 		
 		request.getRequestDispatcher("WEB-INF/detalleConfirmacionAlquiler.jsp").forward(request, response);
 	}

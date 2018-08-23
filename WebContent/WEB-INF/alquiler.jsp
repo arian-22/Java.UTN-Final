@@ -165,9 +165,10 @@
 
 										<button type="button" class="close" data-dismiss="alert"
 											aria-hidden="true">×</button>
-											<h4>
-										<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%>
-										</strong></h4>
+										<h4>
+											<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%>
+											</strong>
+										</h4>
 
 										<strong> Patente: <%=a.getVehiculo().getPatente()%>
 										</strong> <br> <strong> Fecha Desde: <%=a.getAlquiler().getFechaDesde()%>
