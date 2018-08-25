@@ -207,13 +207,14 @@ public class DataAlquileres {
 				v.setImagen(rs.getString("imagen"));
 				v.setKm(rs.getFloat("km"));
 				
-		    	Alquiler a = new Alquiler();
+				Alquiler a = new Alquiler();
 		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));
 		    	a.setHora(rs.getDate("hora"));
 		    	a.setFechaDesde(rs.getDate("fecha_desde"));
 		    	a.setFechaHasta(rs.getDate("fecha_hasta"));
 		    	a.setFechaCancelacion(rs.getDate("fecha_cancelacion"));
 		    	a.setImporteCancelacion(rs.getFloat("importe_cancelacion"));
+		    	a.setPrecioAlquiler(rs.getFloat("precio_alquiler"));
 		    	
 		    	
 		    	cva.setVehiculo(v);

@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entidades.Alquiler;
+import negocio.Controlador;
 import negocio.ControladorAlquiler;
 import entidades.Cli_Veh_Alq;
+import entidades.Vehiculos;
 
 /**
  * Servlet implementation class BuscarAlquiler
@@ -42,8 +43,18 @@ public class BuscarAlquiler extends HttpServlet {
 		doGet(request, response);
 		
 		ControladorAlquiler ctrl = new ControladorAlquiler();
+		
+		Controlador ctrlVehiculo = new Controlador();
+		
 		Cli_Veh_Alq alq = new Cli_Veh_Alq();
+		
+		Vehiculos vehiculo= new Vehiculos();
+		
 		alq = ctrl.buscarAlquiler(Integer.parseInt(request.getParameter("num_alquiler")));
+		
+		vehiculo = ctrlVehiculo.recuperarVehiculo(alq.getVehiculo().getPatente()); 
+		
+		System.out.println("PrecioBase"+vehiculo.getPrecio());
 		
 		if (request.getParameter("btnReserva")!= null){
 			request.getSession().setAttribute("msjErrorReserva",1);
@@ -53,11 +64,6 @@ public class BuscarAlquiler extends HttpServlet {
 			request.getSession().setAttribute("msjErrorDev",1);
 			request.getSession().setAttribute("alquiler-dev", alq);
 			}
-		else if(request.getParameter("btnCancelacion")!= null){
-			request.getSession().setAttribute("msjErrorCancel",1);
-			request.getSession().setAttribute("alquiler-cancel", alq);
-		}
-		
 			
 		request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
 		

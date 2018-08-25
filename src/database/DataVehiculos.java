@@ -187,7 +187,7 @@ public class DataVehiculos {
 					"	INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler \n" + 
 					"	WHERE (? BETWEEN a.fecha_desde AND a.fecha_hasta) OR (a.fecha_desde BETWEEN ? AND ?)\n" + 
 					"	)\n" + 
-					"GROUP BY v.nro_patente, v.modelo, v.marca, v.cant_asientos, v.año, v.transmision, v.estado, v.baul, v.tipo, v.imagen, v.km, pp.precio_base, pp.fecha_max");
+					"GROUP BY v.nro_patente");
 			stmt.setString(1, fechaDesde);
 			stmt.setString(2, fechaDesde);
 			stmt.setString(3, fechaHasta);

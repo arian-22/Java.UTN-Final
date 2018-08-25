@@ -87,8 +87,7 @@
 											<div>
 
 												<button type="submit" name="btn-reserva"
-													class="btn btn-danger btn-default">Registrar
-													Retiro</button>
+													class="btn btn-danger btn-default">Registrar Retiro</button>
 												<button type="button" class="btn btn-default "
 													data-dismiss="alert" aria-hidden="true">Cancelar</button>
 
@@ -179,7 +178,7 @@
 											<div>
 
 												<button type="submit" name="btn-devolucion"
-													class="btn btn-danger btn-default">Registrar</button>
+													class="btn btn-danger btn-default">Registrar Devolución</button>
 												<button type="button" class="btn btn-default "
 													data-dismiss="alert" aria-hidden="true">Cancelar</button>
 

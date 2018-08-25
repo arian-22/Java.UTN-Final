@@ -6,7 +6,7 @@ public class Alquiler {
 	
 	private int nro_alquiler;
 	private Date hora, fechaDesde, fechaHasta, fechaCancelacion;
-	private float importeCancelacion;
+	private float importeCancelacion, precioAlquiler;
 	public int getNro_alquiler() {
 		return nro_alquiler;
 	}
@@ -42,6 +42,13 @@ public class Alquiler {
 	}
 	public void setImporteCancelacion(float importeCancelacion) {
 		this.importeCancelacion = importeCancelacion;
+	}
+	public float getPrecioAlquiler() {
+		return precioAlquiler;
+	}
+	public void setPrecioAlquiler(float precioAlquiler) {
+		this.precioAlquiler = precioAlquiler;
+		
 	}
 	
 	
