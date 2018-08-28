@@ -41,8 +41,8 @@ public class DetalleAlquiler extends HttpServlet {
 		
 		String patente = request.getParameter("vehiculo-selected");
 		
-		String fecha_desde = request.getParameter("fecha-desde");
-		String fecha_hasta = request.getParameter("fecha-hasta");
+		String fecha_desde = request.getParameter("fecha_desde");
+		String fecha_hasta = request.getParameter("fecha_hasta");
 		
 		System.out.println("Parámetro: " + patente);
 		System.out.println("Fecha desde: " + fecha_desde + " | Fecha hasta: " + fecha_hasta);

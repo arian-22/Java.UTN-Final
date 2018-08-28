@@ -51,8 +51,10 @@
 									  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
 									  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock-disponibles");
 									  
-									  String fecha_desde = (String) session.getAttribute("fecha-desde");
-									  String fecha_hasta = (String) session.getAttribute("fecha-hasta");
+									  String fecha_desde = session.getAttribute("fecha-desde").toString();
+									  String fecha_hasta = session.getAttribute("fecha-hasta").toString();
+									  
+									  System.out.println("Hola Mundo! " + fecha_desde );
 									  
 									  for(int i = 0 ; i < vehiculos.size() ; i++){
 										 

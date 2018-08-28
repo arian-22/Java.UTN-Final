@@ -46,11 +46,14 @@ public class VehiculosDisponibles extends HttpServlet {
 		doGet(request, response);
 		
 		String fecha_desde = request.getParameter("fecha_desde");
-		System.out.println("Fecha desde: " + fecha_desde);
+		System.out.println("Fecha desde PPP: " + fecha_desde);
 		String fecha_hasta = request.getParameter("fecha_hasta");
-		System.out.println("Fecha hasta: " + fecha_hasta);
+		System.out.println("Fecha hasta PPP: " + fecha_hasta);
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		request.getSession().setAttribute("fecha-desde", fecha_desde);
+		request.getSession().setAttribute("fecha-hasta", fecha_hasta);
+		
+		/*SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
 		try {
 			Date fechaDesde = formatter.parse(fecha_desde);
@@ -62,7 +65,7 @@ public class VehiculosDisponibles extends HttpServlet {
 			request.getSession().setAttribute("fecha-hasta", fechaHasta);
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		ControladorAlquiler ctrl = new ControladorAlquiler();
 		ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
