@@ -41,7 +41,11 @@ public class DetalleAlquiler extends HttpServlet {
 		
 		String patente = request.getParameter("vehiculo-selected");
 		
+		String fecha_desde = request.getParameter("fecha-desde");
+		String fecha_hasta = request.getParameter("fecha-hasta");
+		
 		System.out.println("Parámetro: " + patente);
+		System.out.println("Fecha desde: " + fecha_desde + " | Fecha hasta: " + fecha_hasta);
 		
 		Controlador ctrl = new Controlador();
 		Vehiculos v = new Vehiculos();
@@ -49,6 +53,9 @@ public class DetalleAlquiler extends HttpServlet {
 		
 		System.out.println("Dato auto: " + v.getMarca());
 		System.out.println("Dato auto: " + v.getPatente());
+		
+		request.getSession().setAttribute("fecha-desde", fecha_desde);
+		request.getSession().setAttribute("fecha-hasta", fecha_hasta);
 		request.getSession().setAttribute("vehiculo", v);
 		
 		request.getRequestDispatcher("WEB-INF/detalleConfirmacionAlquiler.jsp").forward(request, response);

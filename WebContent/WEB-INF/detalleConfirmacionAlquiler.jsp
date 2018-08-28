@@ -1,4 +1,5 @@
 <%@page import="java.util.ArrayList"%>
+
 <%@ include file="cabecera.jsp"%>
 
 <br><br><br>
@@ -7,20 +8,22 @@
 	if (session.getAttribute("vehiculo") != null) {
 		Vehiculos v = new Vehiculos();
 		v = (Vehiculos) session.getAttribute("vehiculo");
+		String fecha_desde = (String) session.getAttribute("fecha-desde");
+		String fecha_hasta = (String) session.getAttribute("fecha-hasta");
+		
 %>
 
-<div class="panel panel-info">
+<div style="width: 50%;  margin: auto 20%" class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title"><%=v.getModelo()%>
-			|
-			<%=v.getMarca()%></h3>
+		<h3 class="panel-title"><%=v.getModelo()%> | <%=v.getMarca()%></h3>
 	</div>
 
 	<div class="panel-body">
-		<p>
-			Patente:
-			<%=v.getPatente()%>
-		</p>
+		<p>Patente: <%=v.getPatente()%></p>
+		<p>Kilómetros: <%=v.getKm()%></p>
+		<p>Fecha desde: <%= fecha_desde %>
+		<p>Fecha hasta: <%= fecha_hasta %>
+		
 	</div>
 
 	<div class="panel-footer">

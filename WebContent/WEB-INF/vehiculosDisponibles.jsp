@@ -51,6 +51,9 @@
 									  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
 									  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock-disponibles");
 									  
+									  String fecha_desde = (String) session.getAttribute("fecha-desde");
+									  String fecha_hasta = (String) session.getAttribute("fecha-hasta");
+									  
 									  for(int i = 0 ; i < vehiculos.size() ; i++){
 										 
 										  %>
@@ -69,7 +72,7 @@
 								<td><%= vehiculos.get(i).getImagen()  %></td>
 								<td>
 									<form role="form"
-										action="DetalleAlquiler?vehiculo-selected=<%=  vehiculos.get(i).getPatente() %>"
+										action="DetalleAlquiler?vehiculo-selected=<%=  vehiculos.get(i).getPatente() %>&fecha_desde=<%= fecha_desde %>&fecha_hasta=<%=fecha_hasta %>"
 										method="post">
 										<button type="submit" class="btn btn-outline-dark"
 											name="btn<%= i %>">Seleccionar</button>

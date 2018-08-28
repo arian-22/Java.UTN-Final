@@ -57,6 +57,9 @@ public class VehiculosDisponibles extends HttpServlet {
 			System.out.println("Fecha desde: " + fechaDesde);
 			Date fechaHasta = formatter.parse(fecha_hasta);
 			System.out.println("Fecha hasta: " + fechaHasta);
+			
+			request.getSession().setAttribute("fecha-desde", fechaDesde);
+			request.getSession().setAttribute("fecha-hasta", fechaHasta);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
