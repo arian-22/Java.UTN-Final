@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import negocio.Controlador;
+import org.omg.Messaging.SyncScopeHelper;
+
 import negocio.ControladorAlquiler;
 import entidades.Cli_Veh_Alq;
-import entidades.Vehiculos;
 
 /**
  * Servlet implementation class BuscarAlquiler
@@ -44,18 +44,13 @@ public class BuscarAlquiler extends HttpServlet {
 		
 		ControladorAlquiler ctrl = new ControladorAlquiler();
 		
-		Controlador ctrlVehiculo = new Controlador();
 		
 		Cli_Veh_Alq alq = new Cli_Veh_Alq();
 		
-		Vehiculos vehiculo= new Vehiculos();
+		System.out.println(Integer.parseInt(request.getParameter("num_alquiler")));
 		
 		alq = ctrl.buscarAlquiler(Integer.parseInt(request.getParameter("num_alquiler")));
-		
-		vehiculo = ctrlVehiculo.recuperarVehiculo(alq.getVehiculo().getPatente()); 
-		
-		System.out.println("PrecioBase"+vehiculo.getPrecio());
-		
+				
 		if (request.getParameter("btnReserva")!= null){
 			request.getSession().setAttribute("msjErrorReserva",1);
 			request.getSession().setAttribute("alquiler-reserva", alq);

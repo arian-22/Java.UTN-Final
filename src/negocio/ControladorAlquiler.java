@@ -29,10 +29,15 @@ public class ControladorAlquiler {
 	}
 
 	public Cli_Veh_Alq buscarAlquiler(int nro_alquiler) {
+		
 		DataAlquileres dbAlquileres = new DataAlquileres();
+		
 		Cli_Veh_Alq alquiler = new Cli_Veh_Alq();
 		
 		alquiler = dbAlquileres.getByNroAlquiler(nro_alquiler);
+		
+		System.out.println("alquiler:" + alquiler.getAlquiler().getPrecioAlquiler());
+		
 		return alquiler;
 	}
 	
