@@ -257,7 +257,6 @@ public class DataVehiculos {
 					
 			java.util.Date d = new java.util.Date();
 			Date fechaActual = new java.sql.Date(d.getTime());
-			System.out.println("Fecha actual: " + fechaActual);
 			
 			stmt.setDate(2, (Date) fechaActual);
 			stmt.setFloat(3, v.getPrecio());

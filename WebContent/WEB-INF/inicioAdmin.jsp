@@ -26,8 +26,7 @@
 							src="http://lorempixel.com/output/city-q-c-600-200-1.jpg" />
 						<div class="caption">
 							<h3>Gestión de Alquileres</h3>
-							<p>Ingrese aquí para registrar el Retiro de un vehículo, la
-								Devolución de un vehículo o la Cancelación de un alquiler.</p>
+							<p>Ingrese aquí para registrar el Retiro de un vehículo o la Devolución de un vehículo.</p>
 							<form action="Alquiler" method="post">
 								<button type="submit" class="btn btn-primary">Ingresar</button>
 							</form>

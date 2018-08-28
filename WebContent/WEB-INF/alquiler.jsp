@@ -150,13 +150,15 @@
 
 					<div class="container-fluid">
 						<div class="row">
-							<!--  <div class="col-md-12"> -->
-
-
+							
 							<%
 								if (session.getAttribute("alquiler-dev") != null) {
 									Cli_Veh_Alq a = new Cli_Veh_Alq();
 									a = (Cli_Veh_Alq) session.getAttribute("alquiler-dev");
+									 Float totalApagar = (Float) session.getAttribute("total-pagar");
+									 Integer dias = (Integer) session.getAttribute("dias");
+									 Float precioAlquiler = (Float) session.getAttribute("precioAlquiler");
+									 
 							%>
 							<div class="row">
 								<div class="col-md-12">
@@ -188,6 +190,29 @@
 
 								</div>
 							</div>
+								<div class="col-md-12">
+									<div class="alert alert-dismissable alert-success">
+
+										<button type="button" class="close" data-dismiss="alert"
+											aria-hidden="true">×</button>
+										<h4>
+											<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%> </strong>
+										</h4>
+
+										<strong> Patente: <%=a.getVehiculo().getPatente()%>
+										</strong> <br> <strong> Cliente: <%=a.getCliente().getNombre() + ' ' + a.getCliente().getApellido()%>
+										</strong> <br> <strong> Fecha Desde: <%=a.getAlquiler().getFechaDesde()%>
+										</strong> <br> <strong> Fecha Hasta: <%=a.getAlquiler().getFechaHasta()%>
+										</strong> <br> <strong> Precio del Alquiler: AR$ <%= precioAlquiler%>
+										</strong> <br> <strong> Días de diferencia con la fecha de entrega: <%= dias%>
+										</strong> <br>
+										<h4>
+											 <strong> TOTAL A PAGAR: AR$  <%= totalApagar%> </strong>
+										</h4>
+										
+									</div>
+
+								</div>
 							<%
 								} else {
 									if (session.getAttribute("msjErrorDev") != null) {
@@ -207,8 +232,6 @@
 							%>
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
