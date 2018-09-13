@@ -185,7 +185,7 @@ public class DataVehiculos {
 					"	INNER JOIN `cli-veh-alq` cva ON v.nro_patente = cva.nro_patente \n" + 
 					"	INNER JOIN usuario u ON cva.mail = u.mail \n" + 
 					"	INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler \n" + 
-					"	WHERE (? BETWEEN a.fecha_desde AND a.fecha_hasta) OR (a.fecha_desde BETWEEN ? AND ?)\n" + 
+					"	WHERE (? BETWEEN DATE_ADD(a.fecha_desde, INTERVAL 1 DAY) AND date_add(a.fecha_hasta, INTERVAL 1 DAY)) OR (date_add(a.fecha_desde, INTERVAL 1 DAY) BETWEEN ? AND ?)\n" + 
 					"	)\n" + 
 					"GROUP BY v.nro_patente, v.modelo, v.marca, v.cant_asientos, v.año, v.transmision, v.estado, v.baul, v.tipo, v.imagen, v.km, pp.precio_base, pp.fecha_max");
 			stmt.setString(1, fechaDesde);
