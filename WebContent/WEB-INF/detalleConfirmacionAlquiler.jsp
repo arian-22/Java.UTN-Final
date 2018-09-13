@@ -12,6 +12,9 @@
 		v = (Vehiculos) session.getAttribute("vehiculo");
 		String fecha_desde =  session.getAttribute("fecha-desde").toString();
 		String fecha_hasta = session.getAttribute("fecha-hasta").toString();
+		
+		System.out.println("FECHA DESDE: " + fecha_desde);
+		System.out.println("FECHA HASTA: " + fecha_hasta);
 				
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaD = format.parse(fecha_desde);
@@ -51,13 +54,15 @@
 	</div>
 
 	<div class="panel-footer">
-	<label> Tarjeta de Credito </label> <input type="number" class="form-control"	name="credit-card" />
+	<label> Tarjeta de Credito </label> <input type="number" class="form-control" name="credit-card" required/>
 	
 	<div class="row">
 		<div class="col-md-6">
-			<button style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-success" aria-label="Left Align">
-				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Confirmar Alquiler
-			</button>
+			<form action="RegistrarAlquiler" role="form" method="post">
+				<button type="submit" style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-success" aria-label="Left Align">
+					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Confirmar Alquiler
+				</button>
+			</form>
 		</div>
 		<div class="col-md-6" style="text-align: right;">
 			<button style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-danger" aria-label="Left Align">
@@ -67,11 +72,7 @@
 	</div>
 		
 	</div>
-	
-	<a href="javascript:window.history.go(-1);" class="btn btn-link"
-		type="button">Atrás</a>
-	<hr>
-	
+
 </div>
 <%
 } else {
