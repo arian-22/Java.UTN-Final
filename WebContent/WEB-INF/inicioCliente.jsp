@@ -12,35 +12,52 @@
 				<div class="col-md-6">
 					<form class="form-horizontal AVAST_PAM_loginform" role="form"
 						action="VehiculosDisponibles" method="post">
+						
 						<div class="form-group">
 
 							<label for="inputFecha" class="col-sm-2 control-label">
 								Fecha de alquiler </label>
 							<div class="col-sm-4">
-								<input type="date" class="form-control" id="inputFecha"
+								<input type="date" class="form-control" id="inputFecha" data-date-format= "dd-MM-yyyy"
 									name="fecha_desde" />
 							</div>
 
 						</div>
+						
+										
 						<div class="form-group">
 
 							<label for="inputFechaD" class="col-sm-2 control-label">
 								Fecha de devolución </label>
 							<div class="col-sm-4">
-								<input type="date" class="form-control" id="inputFechaD"
+								<input type="date" class="form-control" id="inputFechaD" data-date-format= "dd-MM-yyyy"
 									name="fecha_hasta" />
 							</div>
 
 						</div>
 
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-warning">Buscar
-								Vehículos Disponibles</button>
+							<button type="submit" class="btn btn-warning">Buscar Vehículos Disponibles</button>
 						</div>
+						
+						</form>
+					<% if (session.getAttribute("msjErrorFecha") != null) {
+							
+							String msj = (String)session.getAttribute("msjErrorFecha");
+							%>
+							<div class="alert alert-dismissable alert-danger col-sm-offset-1 col-sm-10"
+							style="padding-bottom: 5px; padding-top:5px; margin-top:19px; width: 387px">
 
-					</form>
-				</div>
-				<div class="col-md-6"></div>
+								<button type="button" class="close" data-dismiss="alert"
+									aria-hidden="true">×</button>
+								<h4>
+									<strong> Error! </strong>
+								</h4>
+								  <%= msj %>  <a href="#" class="alert-link"></a>
+							</div>
+							
+							<% } %> 
+				</div>				
 			</div>
 		</div>
 	</div>

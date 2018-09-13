@@ -52,6 +52,8 @@ public class Login extends HttpServlet {
 						
 			request.getSession().setAttribute("user", usuario);
 			
+			request.getSession().setAttribute("msjErrorFecha", null);
+			
 			
 			if(usuario.getAdmin().equals("S")){
 				request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);	

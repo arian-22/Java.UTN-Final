@@ -48,6 +48,11 @@
 			<span class="glyphicon glyphicon-align-left" aria-hidden="true"><i>Confirmar Alquiler</i></span>
 		</button>
 	</div>
+	
+	<a href="javascript:window.history.go(-1);" class="btn btn-link"
+		type="button">Atrás</a>
+	<hr>
+	
 </div>
 <%
 } else {
