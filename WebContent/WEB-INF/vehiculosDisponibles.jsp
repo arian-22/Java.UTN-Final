@@ -36,10 +36,10 @@
 								<th scope="col">Modelo</th>
 								<th scope="col">Tipo</th>
 								<th scope="col">Año</th>
+								<th scope="col">Km</th>
 								<th scope="col">Transmisión</th>
 								<th scope="col">Baul</th>
 								<th scope="col">Asientos</th>
-								<th scope="col">Km</th>
 								<th scope="col">Precio por día</th>
 								<th scope="col">Imagen</th>
 								<th scope="col">Acción</th>
@@ -53,8 +53,6 @@
 									  
 									  String fecha_desde = session.getAttribute("fecha-desde").toString();
 									  String fecha_hasta = session.getAttribute("fecha-hasta").toString();
-									  
-									  System.out.println("Hola Mundo! " + fecha_desde );
 									  
 									  for(int i = 0 ; i < vehiculos.size() ; i++){
 										 
