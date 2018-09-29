@@ -14,8 +14,7 @@ public class DataUsuarios {
 	}
 	
 	public void add(Usuario u){
-		
-		//ResultSet rs = null;
+	
 		PreparedStatement stmt = null;
 		
 		try {
@@ -35,11 +34,6 @@ public class DataUsuarios {
 			
 			stmt.execute();
 			
-			/*rs = stmt.getGeneratedKeys();
-			if(rs!=null && rs.next()){
-				u.setIdPersonaje(rs.getInt(1));
-			}*/
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -50,63 +44,17 @@ public class DataUsuarios {
     {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		//boolean t = false;
-		System.out.println("Antes del factory cocection");
+		
 		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM usuario "
 				+ "WHERE mail = ? AND contraseña = ?");
 		stmt.setString(1, email);
 		stmt.setString(2, password);
 		
         rs = stmt.executeQuery();
-        
-       /* if(rs!=null && rs.next()){
-        	t = true;
-        }else{
-        	t = false;
-        }*/
+
         System.out.println("antes de return");
         return rs.next();
     }
-	
-	/*public void update(Usuario u){
-		
-		PreparedStatement stmt=null;
-		
-		try {
-			stmt= FactoryConexion.getInstancia().getConn().prepareStatement("UPDATE personajes "
-					+ "SET vida=?, energia=?, defensa=?, evasion=?, puntosTotales=? "
-					+ "WHERE idPersonaje=?");
-			
-			stmt.setInt(1, u.getVida());
-			stmt.setInt(2, u.getEnergia());
-			stmt.setInt(3, u.getDefensa());
-			stmt.setInt(4, u.getEvasion());
-			stmt.setInt(5, u.getPuntosTotales());
-			
-			stmt.setInt(6, u.getIdPersonaje());
-			
-			stmt.execute();
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
-			try {
-				if(stmt!=null)stmt.close();
-				FactoryConexion.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			
-		}
-	}
-		
-	}
-	
-	public void delete(Personaje p){
-		
-		
-	}*/
 	
 	public Usuario getById(String mail){
 		
@@ -150,48 +98,7 @@ public class DataUsuarios {
 				FactoryConexion.getInstancia().releaseConn();
 		}
 		
-		/*if(p != null){
-			System.out.println("Usuario en BD: " + p.getNombre() + " " + p.getApellido());
-		}else{
-			System.out.println("El usuario está vacio en BD");
-		}*/
-		
 		return p;
 	}
-	
-	
-	/*public Boolean getByNombre(String nombre){
-				
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		
-		Boolean p = true;
-		
-		try{
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT nombre FROM personajes WHERE nombre like ?");
-			stmt.setString(1, nombre);
-			rs = stmt.executeQuery();
-			
-			if(rs!=null && rs.next()){
-				p = false;
-			}
-				
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-				if(rs!=null) {
-					try {
-						rs.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				
-				FactoryConexion.getInstancia().releaseConn();
-		}
-		
-		
-		return p;
-	}*/
 	
 }

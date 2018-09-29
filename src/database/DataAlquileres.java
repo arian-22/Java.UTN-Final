@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import entidades.Alquiler;
 import entidades.Cli_Veh_Alq;
@@ -239,43 +240,70 @@ public class DataAlquileres {
 			FactoryConexion.getInstancia().releaseConn();
 		}
 		return cva;
-		
-		
-		
-		/*try{
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT *  FROM alquileres WHERE nro_alquiler = ?");
-			stmt.setInt(1, nro_alquiler);
-			rs = stmt.executeQuery();
-						
-			if(rs!=null && rs.next()){
-				a = new Alquiler();
-				a.setNro_alquiler(rs.getInt("nro_alquiler"));
-				a.setHora(rs.getDate("hora"));
-				a.setFechaDesde(rs.getDate("fecha_desde"));
-				a.setFechaHasta(rs.getDate("fecha_hasta"));
-				a.setFechaCancelacion(rs.getDate("fecha_cancelacion"));
-				a.setImporteCancelacion(rs.getFloat("importe_cancelacion"));
-							
-				}else{
-					System.out.println("La consulta no devuelve nada.");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}finally{
-				if(rs!=null) {
-					try {
-						rs.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				
-				FactoryConexion.getInstancia().releaseConn();
-		}
-		
-		return a;*/
 	}
 		
+	public int registrarAlquiler (String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, int tarjetaCredito) {
+		int nroAlquiler = 0;
+		
+		try{
+			PreparedStatement stmt1 = null;
+			PreparedStatement stmt2 = null;
+			PreparedStatement stmt3 = null;
+			ResultSet rs = null;
+			
+			System.out.println("Entro");
+			
+			FactoryConexion.getInstancia().getConn().setAutoCommit(false);
+			
+			String updateCreditCardUser = "UPDATE usuario SET nro_tarjeta = ? WHERE mail = ?";
+			stmt1 = FactoryConexion.getInstancia().getConn().prepareStatement(updateCreditCardUser);
+			stmt1.setInt(1, tarjetaCredito);
+			stmt1.setString(2, mailUsuario);
+			stmt1.execute();
+						
+			String insertNewAlquiler = "INSERT INTO alquileres (fecha_desde, fecha_hasta, precio_alquiler) VALUES (?, ?, ?)"; 
+			stmt2 = FactoryConexion.getInstancia().getConn().prepareStatement(insertNewAlquiler, PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt2.setString(1, fecha_hasta);
+			stmt2.setString(2, fecha_desde);
+			stmt2.setFloat(3, precioAlquiler);
+			stmt2.execute();
+			
+			rs = stmt2.getGeneratedKeys();
+			if(rs!=null && rs.next()){
+				nroAlquiler = rs.getInt(1);
+				System.out.println("Nro. Alquiler: " + nroAlquiler);
+			}
+			
+			String insertCLI_VEH_ALQ = "INSERT INTO `cli-veh-alq` (mail, nro_alquiler, nro_patente) VALUES (?, ?, ?)";
+			stmt3 = FactoryConexion.getInstancia().getConn().prepareStatement(insertCLI_VEH_ALQ);
+			stmt3.setString(1, mailUsuario);			
+			stmt3.setInt(2, nroAlquiler);
+			stmt3.setString(3, patenteVehiculo);
+			stmt3.execute();
+			
+			FactoryConexion.getInstancia().getConn().commit();
+			System.out.println("Commit");
+
+		}
+		catch (Exception e) {
+			try {
+				FactoryConexion.getInstancia().getConn().rollback();
+				System.out.println("Rollback");
+
+			} catch (SQLException e1) {
+				System.out.println("Error :" + e1);			
+			}
+			System.out.println("Error: " + e);
+		}
+		finally {
+			try {
+				FactoryConexion.getInstancia().getConn().setAutoCommit(true);
+			} catch (SQLException e2) {
+				System.out.println("Finally error: " + e2);
+			}
+		}
+		return nroAlquiler;
+	}
 
 
 }

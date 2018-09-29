@@ -1,6 +1,5 @@
 package negocio;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,6 +22,7 @@ public class ControladorAlquiler {
 	}
 	
 	public ArrayList<Vehiculos> getStockVehiculosDisponiblesParaAlquilar(String fechaDesde, String fechaHasta) {
+		
 		DataVehiculos dv = new DataVehiculos();
 		
 		vehiculos = dv.getVehiculosDisponiblesParaAlquilar(fechaDesde, fechaHasta);
@@ -38,9 +38,18 @@ public class ControladorAlquiler {
 		
 		alquiler = dbAlquileres.getByNroAlquiler(nro_alquiler);
 		
-		System.out.println("alquiler:" + alquiler.getAlquiler().getPrecioAlquiler());
-		
 		return alquiler;
+	}
+	
+	public int registrarAlquiler(String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, int tarjetaCredito) {
+		
+		DataAlquileres dataAlquileres = new DataAlquileres();
+		
+		int nroAlquiler;
+		
+		nroAlquiler = dataAlquileres.registrarAlquiler(patenteVehiculo, fecha_desde, fecha_hasta, mailUsuario, precioAlquiler, tarjetaCredito);
+		
+		return nroAlquiler;
 	}
 	
 
