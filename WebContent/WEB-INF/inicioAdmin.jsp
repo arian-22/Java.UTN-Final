@@ -27,8 +27,8 @@
 						<div class="caption">
 							<h3>Gestión de Alquileres</h3>
 							<p>Ingrese aquí para registrar el Retiro de un vehículo o la Devolución de un vehículo.</p>
-							<form action="Alquiler" method="post">
-								<button type="submit" class="btn btn-primary">Ingresar</button>
+							<form action="URLs" method="post">
+								<button name="btnAlquilerAdmin" type="submit" class="btn btn-primary">Ingresar</button>
 							</form>
 						</div>
 					</div>

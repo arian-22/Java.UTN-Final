@@ -100,13 +100,13 @@ public class VehiculosDisponibles extends HttpServlet {
 			}else {
 				System.out.println("La fecha_hasta debe ser mayor a la fecha_desde");
 				request.getSession().setAttribute("msjErrorFecha", "La fecha hasta debe ser mayor a la fecha desde");
-				request.getRequestDispatcher("WEB-INF/inicioCliente.jsp").forward(request, response);
+				request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response);
 				}
 			
 		}else {
 			System.out.println("La fecha_desde debe ser mayor a la fecha del día hoy ");
 			request.getSession().setAttribute("msjErrorFecha", "La fecha desde debe ser mayor a la fecha del día hoy ");
-			request.getRequestDispatcher("WEB-INF/inicioCliente.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response);
 			}
 		
 		}

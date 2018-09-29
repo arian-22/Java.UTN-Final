@@ -1,13 +1,11 @@
 package negocio;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
 import database.DataAlquileres;
 import database.DataVehiculos;
 
 import entidades.Vehiculos;
+import entidades.Alquiler;
 import entidades.Cli_Veh_Alq;
 
 public class ControladorAlquiler {
@@ -38,9 +36,36 @@ public class ControladorAlquiler {
 		
 		alquiler = dbAlquileres.getByNroAlquiler(nro_alquiler);
 		
-		System.out.println("alquiler:" + alquiler.getAlquiler().getPrecioAlquiler());
+		return alquiler;
+	}
+	
+public Alquiler buscarAlquilerACancelar(int nro_alquiler) {
+		
+		DataAlquileres dbAlquileres = new DataAlquileres();		
+		
+		Alquiler alquiler= new Alquiler();		
+		
+		alquiler = dbAlquileres.getByNroAlquilerACancelar(nro_alquiler);
 		
 		return alquiler;
+	}
+	
+	public ArrayList<Cli_Veh_Alq> buscarAlquileresDelCliente(String mail) {
+		
+		DataAlquileres dbAlquileres = new DataAlquileres();
+		
+		ArrayList<Cli_Veh_Alq> alquileres = new ArrayList<Cli_Veh_Alq>();
+		
+		alquileres = dbAlquileres.getByMail(mail);		
+				
+		return alquileres;
+	}
+
+	public void actualizarAlquiler(Alquiler alq) {
+		DataAlquileres alquiler = new DataAlquileres();
+		
+		alquiler.actualizarAlquiler(alq);
+		
 	}
 	
 

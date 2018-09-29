@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.Cli_Veh_Alq;
+import entidades.Usuario;
 import entidades.Vehiculos;
 import negocio.Controlador;
+import negocio.ControladorAlquiler;
 
 /**
  * Servlet implementation class URLs
@@ -59,8 +62,32 @@ public class URLs extends HttpServlet {
 			vehiculos = ctrl.getVehiculosPorTipo("C");
 			request.getSession().setAttribute("vehiculos-stock", vehiculos);
 			request.getRequestDispatcher("WEB-INF/camionetas.jsp").forward(request, response);
+			
+		}else if (request.getParameter("btnNuevaReserva")!= null) {
+			
+			request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response); 
+			
+		}else if (request.getParameter("btnVerReservas")!= null) {
+			
+			Usuario cliente = new Usuario();
+			cliente = (Usuario)request.getSession().getAttribute("user");
+			
+			ControladorAlquiler ctrl = new ControladorAlquiler();
+			
+			ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
+		
+			cva = ctrl.buscarAlquileresDelCliente(cliente.getMail());
+			
+			request.getSession().setAttribute("alquileresCliente", cva);
+		
+			request.getRequestDispatcher("WEB-INF/cancelacionCliente.jsp").forward(request, response);
 		}
 		
+		else if (request.getParameter("btnAlquilerAdmin")!= null) {
+	
+			request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
+			}
 	}
 
-}
+} 
+
