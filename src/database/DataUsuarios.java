@@ -52,7 +52,6 @@ public class DataUsuarios {
 		
         rs = stmt.executeQuery();
 
-        System.out.println("antes de return");
         return rs.next();
     }
 	

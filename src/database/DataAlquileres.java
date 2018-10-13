@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-
 import entidades.Alquiler;
 import entidades.Cli_Veh_Alq;
 import entidades.Usuario;
@@ -250,9 +248,7 @@ public class DataAlquileres {
 			PreparedStatement stmt2 = null;
 			PreparedStatement stmt3 = null;
 			ResultSet rs = null;
-			
-			System.out.println("Entro");
-			
+						
 			FactoryConexion.getInstancia().getConn().setAutoCommit(false);
 			
 			String updateCreditCardUser = "UPDATE usuario SET nro_tarjeta = ? WHERE mail = ?";
