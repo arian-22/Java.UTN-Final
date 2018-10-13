@@ -21,6 +21,7 @@ public class ControladorAlquiler {
 	}
 	
 	public ArrayList<Vehiculos> getStockVehiculosDisponiblesParaAlquilar(String fechaDesde, String fechaHasta) {
+		
 		DataVehiculos dv = new DataVehiculos();
 		
 		vehiculos = dv.getVehiculosDisponiblesParaAlquilar(fechaDesde, fechaHasta);
@@ -39,7 +40,7 @@ public class ControladorAlquiler {
 		return alquiler;
 	}
 	
-public Alquiler buscarAlquilerACancelar(int nro_alquiler) {
+	public Alquiler buscarAlquilerACancelar(int nro_alquiler) {
 		
 		DataAlquileres dbAlquileres = new DataAlquileres();		
 		
@@ -66,6 +67,17 @@ public Alquiler buscarAlquilerACancelar(int nro_alquiler) {
 		
 		alquiler.actualizarAlquiler(alq);
 		
+	}
+	
+	public int registrarAlquiler(String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, int tarjetaCredito) {
+		
+		DataAlquileres dataAlquileres = new DataAlquileres();
+		
+		int nroAlquiler;
+		
+		nroAlquiler = dataAlquileres.registrarAlquiler(patenteVehiculo, fecha_desde, fecha_hasta, mailUsuario, precioAlquiler, tarjetaCredito);
+		
+		return nroAlquiler;
 	}
 	
 

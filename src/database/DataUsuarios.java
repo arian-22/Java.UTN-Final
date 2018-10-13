@@ -15,6 +15,7 @@ public class DataUsuarios {
 	
 	public void add(Usuario u){		
 		
+
 		PreparedStatement stmt = null;
 		
 		try {
@@ -33,7 +34,7 @@ public class DataUsuarios {
 			stmt.setString(10, u.getAdmin());
 			
 			stmt.execute();
-						
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -45,7 +46,6 @@ public class DataUsuarios {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		System.out.println("Antes del factory cocection");
 		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM usuario "
 				+ "WHERE mail = ? AND contraseña = ?");
 		stmt.setString(1, email);
@@ -53,7 +53,6 @@ public class DataUsuarios {
 		
         rs = stmt.executeQuery();
 
-        System.out.println("antes de return");
         return rs.next();
     }
 	
@@ -98,7 +97,7 @@ public class DataUsuarios {
 				
 				FactoryConexion.getInstancia().releaseConn();
 		}	
-				
+
 		return p;
 	}
 

@@ -43,13 +43,7 @@ public class Login extends HttpServlet {
 		if (existe){
 			usuario = new Usuario();
 			usuario = controlador.recuperarUsuario(mail);
-			
-			if(usuario != null){
-				System.out.println("Usuario: " + usuario.getNombre() + " " + usuario.getApellido());
-			}else{
-				System.out.println("El usuario esta vacio");
-			}
-						
+	
 			request.getSession().setAttribute("user", usuario);
 			
 			request.getSession().setAttribute("msjErrorFecha", null);
@@ -57,10 +51,8 @@ public class Login extends HttpServlet {
 			
 			if(usuario.getAdmin().equals("S")){
 				request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);	
-				System.out.println("es admin " + usuario.getAdmin());
 			}else{
 				request.getRequestDispatcher("WEB-INF/inicioCliente.jsp").forward(request, response);
-				System.out.println(" no es admin " + usuario.getAdmin());
 			}
 			
 		}else{

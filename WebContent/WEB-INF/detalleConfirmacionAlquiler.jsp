@@ -12,24 +12,27 @@
 		v = (Vehiculos) session.getAttribute("vehiculo");
 		String fecha_desde =  session.getAttribute("fecha-desde").toString();
 		String fecha_hasta = session.getAttribute("fecha-hasta").toString();
-		
-		//String fechaD = new SimpleDateFormat("EEEE dd 'de' MMMM 'del' YYYY").format();
-		
+	
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaD = format.parse(fecha_desde);
 		Date fechaH = format.parse(fecha_hasta);
-		
-		
-		int cantDias = (int) ((fechaH.getTime()-fechaD.getTime())/86400000);
-		
-		Float precioTotal = v.getPrecio() * cantDias;
 
+		SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/YYYY");
+
+		fecha_desde = format2.format(fechaD);
+		fecha_hasta = format2.format(fechaH);
+
+		int cantDias = (int) ((fechaH.getTime()-fechaD.getTime())/86400000);
+
+		float precioTotal = v.getPrecio() * cantDias;
+		
+		session.setAttribute("precioTotal", precioTotal);
 		
 %>
 
 <div style="width: 50%;  margin: auto 20%" class="panel panel-info">
 	<div class="panel-heading">
-		<h2 class="panel-title"><b><%=v.getModelo()%> | <%=v.getMarca()%></b></h2>
+		<h1 class="panel-title"><b><%=v.getModelo()%> | <%=v.getMarca()%></b></h1>
 	</div>
 
 	<div class="panel-body">
@@ -38,21 +41,30 @@
 		<p>Fecha desde: <%= fecha_desde %>
 		<p>Fecha hasta: <%= fecha_hasta %>
 		<p>Precio por dia: AR$<%= v.getPrecio() %>
-		<h3><b>Precio total de alquiler: AR$<%= precioTotal %> </b></h3>
-		
+		<h3><b>Precio total de alquiler: <span class="label label-default">AR$<%= precioTotal %></span></b></h3>
 	</div>
 
 	<div class="panel-footer">
-	<label> Tarjeta de Credito </label> <input type="number" class="form-control"	name="credit-card" />
-		<button style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-success" aria-label="Left Align">
-			<span class="glyphicon glyphicon-align-left" aria-hidden="true"><i>Confirmar Alquiler</i></span>
-		</button>
+	
+		<form action="RegistrarAlquiler" role="form" method="post">
+		
+			<label> Tarjeta de Credito </label> <input type="number" class="form-control" name="credit-card" required/>
+			
+			<div class="row">
+				<div class="col-md-6">
+						<button type="submit" style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-success" aria-label="Left Align">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Confirmar Alquiler
+						</button>
+				</div>
+				<div class="col-md-6" style="text-align: right;">
+					<button style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-danger" aria-label="Left Align">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Cancelar
+					</button>
+				</div>
+			</div>
+		</form>
 	</div>
-	
-	<a href="javascript:window.history.go(-1);" class="btn btn-link"
-		type="button">Atrás</a>
-	<hr>
-	
+
 </div>
 <%
 } else {

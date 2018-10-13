@@ -70,8 +70,6 @@ public class VehiculosDisponibles extends HttpServlet {
 		
 		Date fechaActual = new Date();
 		
-		System.out.println("fecha actual" + fechaActual);
-		
 		String fecha_desde = request.getParameter("fecha_desde");
 		
 		String fecha_hasta = request.getParameter("fecha_hasta");
@@ -80,16 +78,13 @@ public class VehiculosDisponibles extends HttpServlet {
 				
 		Date fecha_hastaFormat = ParseFecha(fecha_hasta);
 		
-		System.out.println("Fecha hasta PPP: " + fecha_hastaFormat);
-		System.out.println("Fecha desde PPP: " + fecha_desdeFormat);
 		
 		if ((fecha_desdeFormat != null) && (fecha_desdeFormat.compareTo(fechaActual) > 0)){
 			
 			if ((fecha_hastaFormat !=null) && (fecha_hastaFormat.compareTo(fecha_desdeFormat) > 0)){
-				System.out.println("Bieeennn");
-				
-				request.getSession().setAttribute("fecha-desde", fecha_desdeFormat);
-				request.getSession().setAttribute("fecha-hasta", fecha_hastaFormat);
+			
+				request.getSession().setAttribute("fecha-desde", fecha_desde);
+				request.getSession().setAttribute("fecha-hasta", fecha_hasta);
 				
 				ControladorAlquiler ctrl = new ControladorAlquiler();
 				ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
@@ -98,13 +93,11 @@ public class VehiculosDisponibles extends HttpServlet {
 				request.getRequestDispatcher("WEB-INF/vehiculosDisponibles.jsp").forward(request, response);
 				
 			}else {
-				System.out.println("La fecha_hasta debe ser mayor a la fecha_desde");
 				request.getSession().setAttribute("msjErrorFecha", "La fecha hasta debe ser mayor a la fecha desde");
 				request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response);
 				}
 			
 		}else {
-			System.out.println("La fecha_desde debe ser mayor a la fecha del día hoy ");
 			request.getSession().setAttribute("msjErrorFecha", "La fecha desde debe ser mayor a la fecha del día hoy ");
 			request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response);
 			}
