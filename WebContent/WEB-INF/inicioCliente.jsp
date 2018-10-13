@@ -1,63 +1,39 @@
 <%@ include file="cabecera.jsp"%>
 
-<br>
-<br>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="page-header">
-				<h3>Reserva</h3>
-			</div>
+		
 			<div class="row">
 				<div class="col-md-6">
-					<form class="form-horizontal AVAST_PAM_loginform" role="form"
-						action="VehiculosDisponibles" method="post">
-						
-						<div class="form-group">
-
-							<label for="inputFecha" class="col-sm-2 control-label">
-								Fecha de alquiler </label>
-							<div class="col-sm-4">
-								<input type="date" class="form-control" id="inputFecha" data-date-format= "dd-MM-yyyy"
-									name="fecha_desde" />
-							</div>
-
+					<div class="thumbnail">
+						<img alt="Bootstrap Thumbnail First"
+							src="http://lorempixel.com/output/people-q-c-600-200-1.jpg" />
+						<div class="caption">
+							<h3>Realizar nueva reserva</h3>
+							<p>
+							Ingrese aquí para realizar una nueva reserva.
+							</p>
+							<form action="URLs" method="post">
+								<button name="btnNuevaReserva" type="submit" class="btn btn-primary">Ingresar</button>
+							</form>
 						</div>
-						
-										
-						<div class="form-group">
-
-							<label for="inputFechaD" class="col-sm-2 control-label">
-								Fecha de devolución </label>
-							<div class="col-sm-4">
-								<input type="date" class="form-control" id="inputFechaD" data-date-format= "dd-MM-yyyy"
-									name="fecha_hasta" />
-							</div>
-
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="thumbnail">
+						<img alt="Bootstrap Thumbnail Second"
+							src="http://lorempixel.com/output/city-q-c-600-200-1.jpg" />
+						<div class="caption">
+							<h3>Ver mis reservas</h3>
+							<p>Ingrese aquí para ver su historial de reservas.</p>
+							<form action="URLs" method="post">
+								<button name="btnVerReservas" type="submit" class="btn btn-primary">Ingresar</button>
+							</form>
 						</div>
-
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-warning">Buscar Vehículos Disponibles</button>
-						</div>
-						
-						</form>
-					<% if (session.getAttribute("msjErrorFecha") != null) {
-							
-							String msj = (String)session.getAttribute("msjErrorFecha");
-							%>
-							<div class="alert alert-dismissable alert-danger col-sm-offset-1 col-sm-10"
-							style="padding-bottom: 5px; padding-top:5px; margin-top:19px; width: 387px">
-
-								<button type="button" class="close" data-dismiss="alert"
-									aria-hidden="true">×</button>
-								<h4>
-									<strong> Error! </strong>
-								</h4>
-								  <%= msj %>  <a href="#" class="alert-link"></a>
-							</div>
-							
-							<% } %> 
-				</div>				
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>

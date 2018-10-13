@@ -1,20 +1,21 @@
 <%@page import="java.util.ArrayList"%>
 <%@ include file="cabecera.jsp"%>
 
-<script type="text/javascript"> $(document).ready(function() {
-	  $(".nav-tabs a").click(function() {
-		    $(this).tab('show');
-		  });
-		  $('.nav-tabs a').on('shown.bs.tab', function(event) {
-		    var x = $(event.target).text(); // active tab
-		    var y = $(event.relatedTarget).text(); // previous tab
-		    console.log(x);
-		    console.log('y');
-
-		    $(".act span").text(x);
-		    $(".prev span").text(y);
-		  });
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".nav-tabs a").click(function() {
+			$(this).tab('show');
 		});
+		$('.nav-tabs a').on('shown.bs.tab', function(event) {
+			var x = $(event.target).text(); // active tab
+			var y = $(event.relatedTarget).text(); // previous tab
+			console.log(x);
+			console.log('y');
+
+			$(".act span").text(x);
+			$(".prev span").text(y);
+		});
+	});
 </script>
 
 <br>
@@ -47,42 +48,44 @@
 						</thead>
 						<tbody>
 
-							<% if(session.getAttribute("vehiculos-stock-disponibles")!=null){ 
-									  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-									  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock-disponibles");
-									  
-									  String fecha_desde = session.getAttribute("fecha-desde").toString();
-									  String fecha_hasta = session.getAttribute("fecha-hasta").toString();
-									  
-									  for(int i = 0 ; i < vehiculos.size() ; i++){
-										 
-										  %>
+							<%
+								if (session.getAttribute("vehiculos-stock-disponibles") != null) {
+									ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
+									vehiculos = (ArrayList<Vehiculos>) session.getAttribute("vehiculos-stock-disponibles");
+
+									String fecha_desde = session.getAttribute("fecha-desde").toString();
+									String fecha_hasta = session.getAttribute("fecha-hasta").toString();
+
+									for (int i = 0; i < vehiculos.size(); i++) {
+							%>
 							<tr>
 
-								<th scope="row"><%= vehiculos.get(i).getPatente() %></th>
-								<td><%= vehiculos.get(i).getMarca() %></td>
-								<td><%= vehiculos.get(i).getModelo()  %></td>
-								<td><%= vehiculos.get(i).getTipo()  %></td>
-								<td><%= vehiculos.get(i).getAnio()  %></td>
-								<td><%= vehiculos.get(i).getTransmision()%></td>
-								<td><%= vehiculos.get(i).getBaul()  %></td>
-								<td><%= vehiculos.get(i).getCantAsientos()  %></td>
-								<td><%= vehiculos.get(i).getKm()  %></td>
-								<td><%= vehiculos.get(i).getPrecio()  %></td>
-								<td><%= vehiculos.get(i).getImagen()  %></td>
+								<th scope="row"><%=vehiculos.get(i).getPatente()%></th>
+								<td><%=vehiculos.get(i).getMarca()%></td>
+								<td><%=vehiculos.get(i).getModelo()%></td>
+								<td><%=vehiculos.get(i).getTipo()%></td>
+								<td><%=vehiculos.get(i).getAnio()%></td>
+								<td><%=vehiculos.get(i).getTransmision()%></td>
+								<td><%=vehiculos.get(i).getBaul()%></td>
+								<td><%=vehiculos.get(i).getCantAsientos()%></td>
+								<td><%=vehiculos.get(i).getKm()%></td>
+								<td><%=vehiculos.get(i).getPrecio()%></td>
+								<td><%=vehiculos.get(i).getImagen()%></td>
 								<td>
 									<form role="form"
-										action="DetalleAlquiler?vehiculo-selected=<%=  vehiculos.get(i).getPatente() %>&fecha_desde=<%= fecha_desde %>&fecha_hasta=<%=fecha_hasta %>"
+										action="DetalleAlquiler?vehiculo-selected=<%=vehiculos.get(i).getPatente()%>&fecha_desde=<%=fecha_desde%>&fecha_hasta=<%=fecha_hasta%>"
 										method="post">
 										<button type="submit" class="btn btn-outline-dark"
-											name="btn<%= i %>">Seleccionar</button>
+											name="btn<%=i%>">Seleccionar</button>
 									</form>
 								</td>
 
 							</tr>
-							<%}  
-									
-									}%>
+							<%
+								}
+
+								}
+							%>
 
 
 						</tbody>

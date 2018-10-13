@@ -13,8 +13,9 @@ public class DataUsuarios {
 		
 	}
 	
-	public void add(Usuario u){
-	
+	public void add(Usuario u){		
+		
+
 		PreparedStatement stmt = null;
 		
 		try {
@@ -26,14 +27,14 @@ public class DataUsuarios {
 			stmt.setString(3, u.getMail());
 			stmt.setString(4, u.getPassword());
 			stmt.setInt(5, u.getDni());
-			stmt.setString(6, u.getFechaNacimientoString());
-			stmt.setString(7, u.getFechaVencimientoLicenciaString());
+			stmt.setString(6, u.getFechaNacimiento());
+			stmt.setString(7, u.getFechaVencimientoLicencia());
 			stmt.setString(8, u.getDireccion());
 			stmt.setString(9, u.getTelefono());
 			stmt.setString(10, u.getAdmin());
 			
 			stmt.execute();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -95,9 +96,9 @@ public class DataUsuarios {
 				}
 				
 				FactoryConexion.getInstancia().releaseConn();
-		}
-		
+		}	
+
 		return p;
 	}
-	
+
 }

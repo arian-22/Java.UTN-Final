@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,10 +34,8 @@ public class DataAlquileres {
 		    	u.setDni(rs.getInt("dni"));
 		    	u.setNombre(rs.getString("nombre"));
 		    	u.setApellido(rs.getString("apellido"));
-		    	u.setDireccion(rs.getString("direccion"));
-		    	//u.setFechaNacimiento(rs.getDate("fecha_nac"));
-		    	u.setTelefono(rs.getString("telefono"));
-		    	//u.setFechaVencimientoLicencia(rs.getDate("fecha_venc_licencia"));
+		    	u.setDireccion(rs.getString("direccion"));		    	
+		    	u.setTelefono(rs.getString("telefono"));		    	
 		    	u.setNro_tarjeta(rs.getString("nro_tarjeta"));
 		    	u.setAdmin(rs.getString("admin"));
 		    	
@@ -55,11 +54,10 @@ public class DataAlquileres {
 				v.setKm(rs.getFloat("km"));
 				
 		    	Alquiler a = new Alquiler();
-		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));
-		    	a.setHora(rs.getDate("hora"));
+		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));		    	
 		    	a.setFechaDesde(rs.getDate("fecha_desde"));
 		    	a.setFechaHasta(rs.getDate("fecha_hasta"));
-		    	a.setFechaCancelacion(rs.getDate("fecha_cancelacion"));
+		    	a.setFechaCancelacion(rs.getString("fecha_cancelacion"));
 		    	a.setImporteCancelacion(rs.getFloat("importe_cancelacion"));
 		    	
 		    	cva.setCliente(u);
@@ -111,9 +109,7 @@ public class DataAlquileres {
 		    	u.setNombre(rs.getString("nombre"));
 		    	u.setApellido(rs.getString("apellido"));
 		    	u.setDireccion(rs.getString("direccion"));
-		    	//u.setFechaNacimiento(rs.getDate("fecha_nac"));
-		    	u.setTelefono(rs.getString("telefono"));
-		    	//u.setFechaVencimientoLicencia(rs.getDate("fecha_venc_licencia"));
+		      	u.setTelefono(rs.getString("telefono"));		    
 		    	u.setNro_tarjeta(rs.getString("nro_tarjeta"));
 		    	u.setAdmin(rs.getString("admin"));
 		    	
@@ -132,11 +128,10 @@ public class DataAlquileres {
 				v.setKm(rs.getFloat("km"));
 				
 		    	Alquiler a = new Alquiler();
-		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));
-		    	a.setHora(rs.getDate("hora"));
+		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));		    	
 		    	a.setFechaDesde(rs.getDate("fecha_desde"));
 		    	a.setFechaHasta(rs.getDate("fecha_hasta"));
-		    	a.setFechaCancelacion(rs.getDate("fecha_cancelacion"));
+		    	a.setFechaCancelacion(rs.getString("fecha_cancelacion"));
 		    	a.setImporteCancelacion(rs.getFloat("importe_cancelacion"));
 		    	
 		    	cva.setCliente(u);
@@ -187,10 +182,8 @@ public class DataAlquileres {
 		    	u.setDni(rs.getInt("dni"));
 		    	u.setNombre(rs.getString("nombre"));
 		    	u.setApellido(rs.getString("apellido"));
-		    	u.setDireccion(rs.getString("direccion"));
-		    	//u.setFechaNacimiento(rs.getDate("fecha_nac"));
+		    	u.setDireccion(rs.getString("direccion"));		    	
 		    	u.setTelefono(rs.getString("telefono"));
-		    	//u.setFechaVencimientoLicencia(rs.getDate("fecha_venc_licencia"));
 		    	u.setNro_tarjeta(rs.getString("nro_tarjeta"));
 		    	u.setAdmin(rs.getString("admin"));
 		    	
@@ -209,11 +202,10 @@ public class DataAlquileres {
 				v.setPrecio(rs.getFloat("precio_base"));;
 				
 				Alquiler a = new Alquiler();
-		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));
-		    	a.setHora(rs.getDate("hora"));
+		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));		    	
 		    	a.setFechaDesde(rs.getDate("fecha_desde"));
 		    	a.setFechaHasta(rs.getDate("fecha_hasta"));
-		    	a.setFechaCancelacion(rs.getDate("fecha_cancelacion"));
+		    	a.setFechaCancelacion(rs.getString("fecha_cancelacion"));
 		    	a.setImporteCancelacion(rs.getFloat("importe_cancelacion"));
 		    	a.setPrecioAlquiler(rs.getFloat("precio_alquiler"));
 		    	
@@ -238,7 +230,132 @@ public class DataAlquileres {
 			FactoryConexion.getInstancia().releaseConn();
 		}
 		return cva;
-	}
+		}	
+	
+public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
+		
+		Alquiler a = new Alquiler();
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM `alquileres` a where a.nro_alquiler = ?");
+			
+			stmt.setInt(1, nro_alquiler);
+		    
+			rs = stmt.executeQuery();
+		    
+		    while(rs!=null && rs.next()){		
+				
+	
+		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));		    	
+		    	a.setFechaDesde(rs.getDate("fecha_desde"));
+		    	a.setFechaHasta(rs.getDate("fecha_hasta"));
+		    	a.setFechaCancelacion(rs.getString("fecha_cancelacion"));
+		    	a.setImporteCancelacion(rs.getFloat("importe_cancelacion"));
+		    	a.setPrecioAlquiler(rs.getFloat("precio_alquiler"));
+		    
+		    		    	
+		    };
+		    
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}
+		return a;
+		}
+			
+		public ArrayList<Cli_Veh_Alq> getByMail(String mail) {
+			
+			ArrayList<Cli_Veh_Alq> cvaList = new ArrayList<Cli_Veh_Alq>();
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("select a.nro_alquiler, fecha_desde, fecha_hasta, precio_alquiler, modelo, marca, km from `cli-veh-alq` cva inner join vehículos v on cva.nro_patente = v.nro_patente inner join alquileres a on cva.nro_alquiler = a.nro_alquiler where mail = ? order by fecha_desde asc");
+			
+			stmt.setString(1, mail);
+		    
+			rs = stmt.executeQuery();
+		    
+		    while(rs!=null && rs.next()){
+	
+		    	Cli_Veh_Alq cva = new Cli_Veh_Alq();
+		    	
+		    	Vehiculos v = new Vehiculos();
+				v.setModelo(rs.getString("modelo"));
+				v.setMarca(rs.getString("marca"));
+				v.setMarca(rs.getString("km"));
+			
+				Alquiler a = new Alquiler();
+		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));
+		    	a.setFechaDesde(rs.getDate("fecha_desde"));
+		    	a.setFechaHasta(rs.getDate("fecha_hasta"));
+		    	a.setPrecioAlquiler(rs.getFloat("precio_alquiler"));	  	
+		    	
+		    	cva.setVehiculo(v);
+		    	cva.setAlquiler(a);
+		    	
+		    	cvaList.add(cva);
+		    };
+		    
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}
+		return cvaList;}
+
+
+		public void actualizarAlquiler(Alquiler alq) {			
+			
+			PreparedStatement stmt = null;
+			
+			try {
+				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update alquileres set fecha_desde=?, fecha_hasta=?, importe_cancelacion=?, fecha_cancelacion=?, precio_alquiler=?"
+					+ "where nro_alquiler=?");
+			
+				stmt.setDate(1, alq.getFechaDesde());
+				stmt.setDate(2, alq.getFechaHasta());
+				stmt.setFloat(3, alq.getImporteCancelacion());
+				stmt.setString(4, alq.getFechaCancelacion());
+				stmt.setFloat(5, alq.getPrecioAlquiler());
+				
+				stmt.setInt(6, alq.getNro_alquiler());
+				
+				stmt.execute();
+				System.out.println("update");
+														
+			} catch (SQLException e) {
+				System.out.println(e);
+				
+			} finally {
+				FactoryConexion.getInstancia().releaseConn();
+			}
+			
+		}
+	
 		
 	public int registrarAlquiler (String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, int tarjetaCredito) {
 		int nroAlquiler = 0;

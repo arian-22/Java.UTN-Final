@@ -5,7 +5,8 @@ import java.sql.Date;
 public class Alquiler {
 	
 	private int nro_alquiler;
-	private Date hora, fechaDesde, fechaHasta, fechaCancelacion;
+	private Date fechaDesde, fechaHasta;
+	private String fechaCancelacion;
 	private float importeCancelacion, precioAlquiler;
 	public int getNro_alquiler() {
 		return nro_alquiler;
@@ -13,12 +14,7 @@ public class Alquiler {
 	public void setNro_alquiler(int nro_alquiler) {
 		this.nro_alquiler = nro_alquiler;
 	}
-	public Date getHora() {
-		return hora;
-	}
-	public void setHora(Date hora) {
-		this.hora = hora;
-	}
+	
 	public Date getFechaDesde() {
 		return fechaDesde;
 	}
@@ -31,11 +27,11 @@ public class Alquiler {
 	public void setFechaHasta(Date fechaHasta) {
 		this.fechaHasta = fechaHasta;
 	}
-	public Date getFechaCancelacion() {
+	public String getFechaCancelacion() {
 		return fechaCancelacion;
 	}
-	public void setFechaCancelacion(Date fechaCancelacion) {
-		this.fechaCancelacion = fechaCancelacion;
+	public void setFechaCancelacion(String fechaActual) {
+		this.fechaCancelacion = fechaActual;
 	}
 	public float getImporteCancelacion() {
 		return importeCancelacion;
