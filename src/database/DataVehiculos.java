@@ -178,19 +178,28 @@ public class DataVehiculos {
 					"INNER JOIN (\n" + 
 					"	SELECT aa.nro_patente, aa.precio_base, max(aa.fecha_desde) as 'fecha_max'\n" + 
 					"    FROM valores aa\n" + 
-					"    group by aa.nro_patente, aa.precio_base) pp on v.nro_patente=pp.nro_patente\n" + 
+					"    group by aa.nro_patente) pp on v.nro_patente=pp.nro_patente\n" + 
 					"WHERE v.nro_patente NOT IN (\n" + 
 					"	SELECT DISTINCT v.nro_patente \n" + 
 					"	FROM vehículos v \n" + 
 					"	INNER JOIN `cli-veh-alq` cva ON v.nro_patente = cva.nro_patente \n" + 
 					"	INNER JOIN usuario u ON cva.mail = u.mail \n" + 
 					"	INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler \n" + 
-					"	WHERE (? BETWEEN DATE_ADD(a.fecha_desde, INTERVAL 1 DAY) AND date_add(a.fecha_hasta, INTERVAL 1 DAY)) OR (date_add(a.fecha_desde, INTERVAL 1 DAY) BETWEEN ? AND ?)\n" + 
-					"	)\n" + 
-					"GROUP BY v.nro_patente, v.modelo, v.marca, v.cant_asientos, v.año, v.transmision, v.estado, v.baul, v.tipo, v.imagen, v.km, pp.precio_base, pp.fecha_max");
+					"	WHERE 	((DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) <= ? and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY) >= ?) or	\n" + 
+								"(DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) <= ? and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY) >= ?) or \n" + 
+								"((? between DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY)) and (? between DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY))) or \n" + 
+								"((DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) <= ?) and (DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY) >= ?))) \n" + 
+								"and a.fecha_cancelacion is null) \n" +
+					"ORDER BY v.nro_patente" );
+			
 			stmt.setString(1, fechaDesde);
 			stmt.setString(2, fechaDesde);
 			stmt.setString(3, fechaHasta);
+			stmt.setString(4, fechaHasta);
+			stmt.setString(5, fechaDesde);
+			stmt.setString(6, fechaHasta);
+			stmt.setString(7, fechaDesde);
+			stmt.setString(8, fechaHasta);
 			rs = stmt.executeQuery();
 		    
 		    while(rs!=null && rs.next()){

@@ -89,6 +89,7 @@ public class VehiculosDisponibles extends HttpServlet {
 				ControladorAlquiler ctrl = new ControladorAlquiler();
 				ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
 				vehiculos = ctrl.getStockVehiculosDisponiblesParaAlquilar(fecha_desde, fecha_hasta);
+				System.out.println("cantidad v:"+vehiculos.size());
 				request.getSession().setAttribute("vehiculos-stock-disponibles", vehiculos);
 				request.getRequestDispatcher("WEB-INF/vehiculosDisponibles.jsp").forward(request, response);
 				

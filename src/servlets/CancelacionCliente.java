@@ -61,7 +61,7 @@ public class CancelacionCliente extends HttpServlet {
 			 alq=ctrl.buscarAlquilerACancelar(nroAlquiler);				 	
 			
 			Date fechaActualDate= new Date();
-			 SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
 			String FechaActual= format.format(fechaActualDate);
 					
 				alq.setFechaCancelacion(FechaActual);
@@ -69,8 +69,9 @@ public class CancelacionCliente extends HttpServlet {
 			int dias;
 			
 			dias=(int) ((alq.getFechaDesde().getTime()-fechaActualDate.getTime())/86400000);
+			System.out.println("dias"+ dias);
 			
-			if(dias==1){
+			if(dias==1 || dias==0){
 				alq.setImporteCancelacion((alq.getPrecioAlquiler()*15)/100);
 				
 			}else if(dias==2){
@@ -80,7 +81,16 @@ public class CancelacionCliente extends HttpServlet {
 			
 			ctrl.actualizarAlquiler(alq);
 			
+			Usuario cliente = new Usuario();
+			cliente = (Usuario)request.getSession().getAttribute("user");
+			
+			ControladorAlquiler ctrl2 = new ControladorAlquiler();
+			
+			ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
 		
+			cva = ctrl2.buscarAlquileresDelCliente(cliente.getMail());
+			
+			request.getSession().setAttribute("alquileresCliente", cva);
 		
 		request.getRequestDispatcher("WEB-INF/cancelacionCliente.jsp").forward(request, response);
 	}

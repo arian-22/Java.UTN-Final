@@ -30,8 +30,8 @@ public class Alquiler {
 	public String getFechaCancelacion() {
 		return fechaCancelacion;
 	}
-	public void setFechaCancelacion(String fechaActual) {
-		this.fechaCancelacion = fechaActual;
+	public void setFechaCancelacion(String fechaCancelacion) {
+		this.fechaCancelacion = fechaCancelacion;
 	}
 	public float getImporteCancelacion() {
 		return importeCancelacion;
