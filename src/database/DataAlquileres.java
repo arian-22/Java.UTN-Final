@@ -376,8 +376,8 @@ public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
 						
 			String insertNewAlquiler = "INSERT INTO alquileres (fecha_desde, fecha_hasta, precio_alquiler) VALUES (?, ?, ?)"; 
 			stmt2 = FactoryConexion.getInstancia().getConn().prepareStatement(insertNewAlquiler, PreparedStatement.RETURN_GENERATED_KEYS);
-			stmt2.setString(1, fecha_hasta);
-			stmt2.setString(2, fecha_desde);
+			stmt2.setString(1, fecha_desde);
+			stmt2.setString(2, fecha_hasta);
 			stmt2.setFloat(3, precioAlquiler);
 			stmt2.execute();
 			
