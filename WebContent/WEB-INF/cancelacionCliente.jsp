@@ -77,7 +77,7 @@
 								<td><%=cva.get(i).getVehiculo().getKm()%></td>
 								<td>
 									
-										
+											
 										
 										
 								<%

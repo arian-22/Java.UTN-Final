@@ -60,17 +60,16 @@ public class CancelacionCliente extends HttpServlet {
 			
 			 alq=ctrl.buscarAlquilerACancelar(nroAlquiler);				 	
 			
-			Date fechaActualDate= new Date();
-			SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
-			String FechaActual= format.format(fechaActualDate);
+			Date fechaActualDate = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			String FechaActual = format.format(fechaActualDate);
 					
 				alq.setFechaCancelacion(FechaActual);
 			
 			int dias;
 			
 			dias=(int) ((alq.getFechaDesde().getTime()-fechaActualDate.getTime())/86400000);
-			System.out.println("dias"+ dias);
-			
+						
 			if(dias==1 || dias==0){
 				alq.setImporteCancelacion((alq.getPrecioAlquiler()*15)/100);
 				
@@ -79,20 +78,25 @@ public class CancelacionCliente extends HttpServlet {
 				
 			}else alq.setImporteCancelacion(0);
 			
-			ctrl.actualizarAlquiler(alq);
+			System.err.println("Nro alquiler: " + alq.getNro_alquiler());
+			System.out.println("Importe cancelacion: " + alq.getImporteCancelacion());
 			
-			Usuario cliente = new Usuario();
-			cliente = (Usuario)request.getSession().getAttribute("user");
+			request.getSession().setAttribute("alquilerPorCancelar", alq);
 			
-			ControladorAlquiler ctrl2 = new ControladorAlquiler();
+			//ctrl.actualizarAlquiler(alq);
 			
-			ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
+//			Usuario cliente = new Usuario();
+//			cliente = (Usuario)request.getSession().getAttribute("user");
+//			
+//			ControladorAlquiler ctrl2 = new ControladorAlquiler();
+//			
+//			ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
+//		
+//			cva = ctrl2.buscarAlquileresDelCliente(cliente.getMail());
+//			
+//			request.getSession().setAttribute("alquileresCliente", cva);
 		
-			cva = ctrl2.buscarAlquileresDelCliente(cliente.getMail());
-			
-			request.getSession().setAttribute("alquileresCliente", cva);
-		
-		request.getRequestDispatcher("WEB-INF/cancelacionCliente.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/confirmacionCancelacionAlquiler.jsp").forward(request, response);
 	}
 
 }
