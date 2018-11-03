@@ -116,7 +116,8 @@
 								<%= u.getNombre() %><strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Perfil</a></li>
-								<li><a href="#">Mis Reservas</a></li>
+								<li>
+								<a href="http://localhost:8080/AlquilerDeVehiculos/URLs?btnVerReservas=11">Mis Reservas</a></li>
 								<li><a href="#">Configuración</a></li>
 								<li><a href="#">Ayuda</a></li>
 								<li class="divider"></li>

@@ -116,9 +116,7 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
-			<a href="javascript:window.history.go(-1);" class="btn btn-link"
-				type="button">Atrás</a>
+			</div>			
 			<hr>
 		</div>
 	</div>
