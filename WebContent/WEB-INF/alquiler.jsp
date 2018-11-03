@@ -1,18 +1,17 @@
 <%@ include file="cabecera.jsp"%>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$(".nav-tabs a").click(function() {
-			$(this).tab('show');
-		});
-		$('.nav-tabs a').on('shown.bs.tab', function(event) {
-			var x = $(event.target).text(); // active tab
-			var y = $(event.relatedTarget).text(); // previous tab
-
-			$(".act span").text(x);
-			$(".prev span").text(y);
-		});
+$(document).ready(function() {
+	$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+	    localStorage.setItem('activeTab', $(e.target).attr('href'));
 	});
+
+	var activeTab = localStorage.getItem('activeTab');
+
+	if (activeTab) {
+	   $('a[href="' + activeTab + '"]').tab('show');
+	}
+});
 </script>
 
 <br>
@@ -24,8 +23,8 @@
 			<h2>Gestión de Alquileres</h2>
 
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="#retiro">Retirar vehiculo</a></li>
-				<li><a href="#devolucion">Devolucion</a></li>
+				<li class="active"><a data-toggle="tab" href="#retiro">Retirar vehículo</a></li>
+				<li><a data-toggle="tab" href="#devolucion">Devolución</a></li>
 			</ul>
 		</div>
 	</div>
@@ -57,9 +56,7 @@
 					</form>
 
 					<div class="container-fluid">
-						<div class="row">
-							<!--  <div class="col-md-12"> -->
-
+						<div class="row">				
 
 							<%
 								if (session.getAttribute("alquiler-reserva") != null) {
@@ -98,8 +95,7 @@
 								</div>
 							</div>
 							<%
-								} else {
-									if (session.getAttribute("msjErrorReserva") != null) {
+								} else if (session.getAttribute("msjErrorReserva") != null) {
 							%>
 							<div class="alert alert-dismissable alert-danger">
 
@@ -112,7 +108,6 @@
 							</div>
 							<%
 									}
-								}
 							%>
 						</div>
 					</div>
@@ -121,7 +116,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<div id="devolucion" class="tab-pane fade">
 			<h1>Devolución</h1>
@@ -151,7 +145,10 @@
 					<div class="container-fluid">
 						<div class="row">
 							
-							<%
+							
+								<div class="col-md-12">
+								
+								<%
 								if (session.getAttribute("alquiler-dev") != null) {
 									Cli_Veh_Alq a = new Cli_Veh_Alq();
 									a = (Cli_Veh_Alq) session.getAttribute("alquiler-dev");
@@ -159,9 +156,10 @@
 									 Integer dias = (Integer) session.getAttribute("dias");
 									 Float precioAlquiler = (Float) session.getAttribute("precioAlquiler");
 									 
+									 
+									 if (session.getAttribute("datosAlquier") != null) {
 							%>
-							<div class="row">
-								<div class="col-md-12">
+																
 									<div class="alert alert-dismissable alert-info">
 
 										<button type="button" class="close" data-dismiss="alert"
@@ -188,8 +186,11 @@
 										</form>
 									</div>
 
-								</div>
-							</div>
+
+								<%}
+															
+								if (session.getAttribute("datosDevolucion") != null) {
+								%>
 								<div class="col-md-12">
 									<div class="alert alert-dismissable alert-success">
 
@@ -213,8 +214,10 @@
 									</div>
 
 								</div>
-							<%
-								} else {
+								
+							<%}
+							%>
+								<%} else {
 									if (session.getAttribute("msjErrorDev") != null) {
 							%>
 							<div class="alert alert-dismissable alert-danger">
@@ -230,6 +233,15 @@
 									}
 								}
 							%>
+
+
+
+
+
+
+								</div>
+							
+							
 						</div>
 					</div>
 				</div>
