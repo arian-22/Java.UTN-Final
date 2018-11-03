@@ -30,14 +30,14 @@ if (session.getAttribute("nro-alquiler") != null) {
 	</div>
 
 	<div class="panel-footer">	
-	<div class="row" style="text-align: center">
-			<button style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-primary" aria-label="Center Align">
-				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Cerrar
-			</button>
+		<div class="row" style="text-align: center">
+			<form action="URLs" method="post">
+					<button style="padding: 10px ; margin-top: 10px" type="submit" name="btnCerrar" class="btn btn-primary" aria-label="Center Align">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Cerrar
+					</button>
+			</form>
+		</div>
 	</div>
-		
-	</div>
-
 </div>
 <%
 } else {
@@ -49,14 +49,10 @@ if (session.getAttribute("nro-alquiler") != null) {
 	<h4>
 		<strong> Error! </strong>
 	</h4>
-	Error interno. Vuelva a intentarlo mas tarde. <a href="#"
-		class="alert-link"></a>
+	Error interno. Vuelva a intentarlo mas tarde. <a href="#" class="alert-link"></a>
 </div>
 <%
 	}
 %>
-
-
-
 
 <%@ include file="footer.html"%>
