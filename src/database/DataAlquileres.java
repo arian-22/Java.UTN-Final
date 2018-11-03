@@ -284,7 +284,7 @@ public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
 		ResultSet rs = null;
 		
 		try {
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("select a.nro_alquiler, fecha_desde, fecha_hasta, precio_alquiler, modelo, marca, km from `cli-veh-alq` cva inner join vehículos v on cva.nro_patente = v.nro_patente inner join alquileres a on cva.nro_alquiler = a.nro_alquiler where mail = ? order by fecha_desde asc");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("select a.nro_alquiler, fecha_desde, fecha_hasta,fecha_cancelacion, precio_alquiler, modelo, marca, km from `cli-veh-alq` cva inner join vehículos v on cva.nro_patente = v.nro_patente inner join alquileres a on cva.nro_alquiler = a.nro_alquiler where mail = ? order by fecha_desde desc");
 			
 			stmt.setString(1, mail);
 		    
@@ -303,6 +303,7 @@ public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
 		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));
 		    	a.setFechaDesde(rs.getDate("fecha_desde"));
 		    	a.setFechaHasta(rs.getDate("fecha_hasta"));
+		    	a.setFechaCancelacion(rs.getString("fecha_cancelacion"));
 		    	a.setPrecioAlquiler(rs.getFloat("precio_alquiler"));	  	
 		    	
 		    	cva.setVehiculo(v);

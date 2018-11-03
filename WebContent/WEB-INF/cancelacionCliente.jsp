@@ -1,4 +1,5 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Date"%>
 <%@ include file="cabecera.jsp"%>
 
 <script type="text/javascript">
@@ -35,16 +36,19 @@
 								<th scope="col">Número de Alquiler</th>
 								<th scope="col">Fecha de Comienzo</th>
 								<th scope="col">Fecha de Fin</th>
+								<th scope="col">Fecha de Cancelación</th>
 								<th scope="col">Precio</th>
 								<th scope="col">Modelo</th>
 								<th scope="col">Marca</th>
 								<th scope="col">Km</th>
-								<th scope="col">Cancelar</th>
+								<th scope="col">Acción</th>
 							</tr>
 						</thead>
 						<tbody>
 
 							<%
+								Date hoy = new Date();
+								java.sql.Date hoy2 = new java.sql.Date(hoy.getTime()) ;
 								if (session.getAttribute("alquileresCliente") != null) {
 									ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
 									cva = (ArrayList<Cli_Veh_Alq>) session.getAttribute("alquileresCliente");																	
@@ -56,22 +60,57 @@
 								<th scope="row"><%=cva.get(i).getAlquiler().getNro_alquiler()%></th>
 								<td><%=cva.get(i).getAlquiler().getFechaDesde()%></td>
 								<td><%=cva.get(i).getAlquiler().getFechaHasta()%></td>
+								<td>
+								<% if (cva.get(i).getAlquiler().getFechaCancelacion() == null){
+								%>
+									<p>  -  </p>
+								<%}else {
+								%>
+									<%=cva.get(i).getAlquiler().getFechaCancelacion() %>
+								<%	
+									} 
+								%>
+								</td>
 								<td><%=cva.get(i).getAlquiler().getPrecioAlquiler()%></td>
 								<td><%=cva.get(i).getVehiculo().getMarca()%></td>
 								<td><%=cva.get(i).getVehiculo().getModelo()%></td>
 								<td><%=cva.get(i).getVehiculo().getKm()%></td>
 								<td>
-									<form role="form"
+									
+										
+										
+										
+								<%
+								if( cva.get(i).getAlquiler().getFechaDesde().after(hoy) ) {
+									if( cva.get(i).getAlquiler().getFechaCancelacion() == null ){
+										%>
+										<form role="form"
 										action="CancelacionCliente?alquiler-selected=<%=cva.get(i).getAlquiler().getNro_alquiler()%>"
 										method="post">
-										<button type="submit" class="btn btn-outline-dark"
-											name="btn<%=i%>">Seleccionar</button>
-									</form>
+											<button type="submit" class="btn btn-danger" name="btn<%=i%>">Cancelar</button>
+										</form>
+										<%
+										
+									}else{
+										%>
+										<button class="btn btn-danger disabled"
+											
+											name="btn<%=i%>">Cancelar</button>
+								<%	}
+								} else {
+									%>
+									<button class="btn btn-danger disabled"
+										
+										name="btn<%=i%>">Cancelar</button>
+									<%	
+								}
+								%>			
+							
+									
 								</td>
 							</tr>
 							<%
 								}
-
 								}
 							%>
 						</tbody>
