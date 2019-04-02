@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entidades.Cli_Veh_Alq;
 import negocio.Controlador;
+import negocio.ControladorAlquiler;
 
 /**
  * Servlet implementation class RetiroVehiculo
@@ -44,6 +46,8 @@ public class Alquileres extends HttpServlet {
 		
 			Controlador ctrl = new Controlador();
 			Cli_Veh_Alq cva = new Cli_Veh_Alq();
+			
+			ControladorAlquiler ctrlAlq = new ControladorAlquiler();
 		
 		if (request.getParameter("btn-reserva")!= null){
 			
@@ -55,58 +59,51 @@ public class Alquileres extends HttpServlet {
 			}
 		else if (request.getParameter("btn-devolucion")!= null){
 			
-			float totalAPagar=0;
-			
+			float totalAPagar = 0;			
 			
 			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-dev");
 			cva.getVehiculo().setEstado("Disponible");
-			ctrl.actualizarVehiculos(cva.getVehiculo());	
+			ctrl.actualizarVehiculos(cva.getVehiculo());				
+					
+			Date fechaActual = new Date();			
 			
-			System.out.println("precio Alquiler " + cva.getAlquiler().getPrecioAlquiler());
-			
-			Date fechaActual = new Date();
-			System.out.println(fechaActual);
-			
-			
-			int dias=0;
+			int dias = 0;
 			
 			int dif = cva.getAlquiler().getFechaHasta().compareTo(fechaActual);
 			
-			System.out.println("Compare to "+ dif);
-			
-			if (cva.getAlquiler().getFechaHasta().compareTo(fechaActual)<0){
+			if (cva.getAlquiler().getFechaHasta().compareTo(fechaActual) < 0){
 				//si la fechaHasta es anterior a la actual el compare da < 0
 				dias=(int) ((fechaActual.getTime()-cva.getAlquiler().getFechaHasta().getTime())/86400000);
 				
-				totalAPagar = cva.getAlquiler().getPrecioAlquiler()+ dias*cva.getVehiculo().getPrecio() +dias*((cva.getVehiculo().getPrecio()*25)/100);
-				System.out.println("Total a Pagar:"+totalAPagar);
-				request.getSession().setAttribute("total-pagar", totalAPagar);
-				request.getSession().setAttribute("dias", dias);
-				request.getSession().setAttribute("precioAlquiler", cva.getAlquiler().getPrecioAlquiler());
+				totalAPagar = cva.getAlquiler().getPrecioAlquiler()+ dias*cva.getVehiculo().getPrecio() +dias*((cva.getVehiculo().getPrecio()*25)/100);				
 			}			
-			else if(cva.getAlquiler().getFechaHasta().compareTo(fechaActual)>0){
+			else if(cva.getAlquiler().getFechaHasta().compareTo(fechaActual) > 0){
 				//si la fechaHasta es posterior a la actual el compare da > 0
-				dias=(int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaActual.getTime())/86400000);
+				dias = (int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaActual.getTime())/86400000);
 				
 				totalAPagar = cva.getAlquiler().getPrecioAlquiler()+dias*cva.getVehiculo().getPrecio() +dias*(cva.getVehiculo().getPrecio()*50)/100;
-				
-				System.out.println(totalAPagar);
-				request.getSession().setAttribute("total-pagar", totalAPagar);
-				request.getSession().setAttribute("dias", dias);
-				request.getSession().setAttribute("precioAlquiler", cva.getAlquiler().getPrecioAlquiler());
 			}
 			
-			else if(cva.getAlquiler().getFechaHasta().compareTo(fechaActual)==0){
+			else if(cva.getAlquiler().getFechaHasta().compareTo(fechaActual) == 0){
 				//si es devuelto el mismo día que termina el alquiler, el compare da 0
 				dias=(int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaActual.getTime())/86400000);
 				
-				System.out.println("Vehículo entregado en su fecha correspondiente");
 				totalAPagar = cva.getAlquiler().getPrecioAlquiler();
-				System.out.println(totalAPagar);
-				request.getSession().setAttribute("total-pagar", totalAPagar);
-				request.getSession().setAttribute("dias", dias);
-				request.getSession().setAttribute("precioAlquiler", cva.getAlquiler().getPrecioAlquiler());
 			}
+			
+			
+			Date fechaActualDate = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			String FechaActual = format.format(fechaActualDate);
+			
+			cva.getAlquiler().setFechaFinalizacion(FechaActual);
+			cva.getAlquiler().setPrecioFinalAlquiler(totalAPagar);
+			
+			ctrlAlq.actualizarAlquiler(cva.getAlquiler());
+			
+			request.getSession().setAttribute("total-pagar", totalAPagar);
+			request.getSession().setAttribute("dias", dias);
+			request.getSession().setAttribute("precioAlquiler", cva.getAlquiler().getPrecioAlquiler());
 			
 			}
 		request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);

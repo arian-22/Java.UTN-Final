@@ -6,8 +6,21 @@ public class Alquiler {
 	
 	private int nro_alquiler;
 	private Date fechaDesde, fechaHasta;
-	private String fechaCancelacion;
-	private float importeCancelacion, precioAlquiler;
+	private String fechaCancelacion, fechaFinalizacion;
+	private float importeCancelacion, precioAlquiler, precioFinalAlquiler;
+	
+	public String getFechaFinalizacion() {
+		return fechaFinalizacion;
+	}
+	public void setFechaFinalizacion(String fechaFinalizacion) {
+		this.fechaFinalizacion = fechaFinalizacion;
+	}
+	public float getPrecioFinalAlquiler() {
+		return precioFinalAlquiler;
+	}
+	public void setPrecioFinalAlquiler(float precioFinalAlquiler) {
+		this.precioFinalAlquiler = precioFinalAlquiler;
+	}
 	public int getNro_alquiler() {
 		return nro_alquiler;
 	}

@@ -39,7 +39,6 @@ public class URLs extends HttpServlet {
 		// TODO Auto-generated method stub
 		doPost(request,response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("get"+request.getParameter("btnVerReservas"));
 	}
 
 	/**
@@ -49,7 +48,6 @@ public class URLs extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//doGet(request, response);
-System.out.println("post"+request.getParameter("btnVerReservas"));
 		if (request.getParameter("btn-home-admin") != null) {
 			request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);
 

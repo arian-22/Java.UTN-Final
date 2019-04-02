@@ -7,18 +7,15 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".nav-tabs a").click(function() {
-			$(this).tab('show');
+		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+		    localStorage.setItem('activeTab', $(e.target).attr('href'));
 		});
-		$('.nav-tabs a').on('shown.bs.tab', function(event) {
-			var x = $(event.target).text(); // active tab
-			var y = $(event.relatedTarget).text(); // previous tab
-			//console.log(x);
-			//console.log('y');
 
-			$(".act span").text(x);
-			$(".prev span").text(y);
-		});
+		var activeTab = localStorage.getItem('activeTab');
+
+		if (activeTab) {
+		   $('a[href="' + activeTab + '"]').tab('show');
+		}
 	});
 </script>
 
@@ -29,9 +26,9 @@
 	<h2>Módulo ABM</h2>
 
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="#altas">Altas</a></li>
-		<li><a href="#bajas">Bajas</a></li>
-		<li><a href="#modificaciones">Modificaciones</a></li>
+		<li class="active"><a href="#altas" data-toggle="tab">Altas</a></li>
+		<li><a href="#bajas" data-toggle="tab">Bajas</a></li>
+		<li><a href="#modificaciones" data-toggle="tab">Modificaciones</a></li>
 	</ul>
 
 	<div class="tab-content">
