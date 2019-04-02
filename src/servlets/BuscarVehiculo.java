@@ -44,6 +44,9 @@ public class BuscarVehiculo extends HttpServlet {
 		Vehiculos v = new Vehiculos();
 		v = ctrl.recuperarVehiculo(request.getParameter("patente"));
 		
+		request.getSession().setAttribute("precioPersistido", v.getPrecio());		
+		
+		System.out.println("precio" + v.getPrecio());
 		
 		if (request.getParameter("btnbaja")!= null){
 			request.getSession().setAttribute("msjErrorBaja",1);

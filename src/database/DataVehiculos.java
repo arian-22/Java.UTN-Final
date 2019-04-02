@@ -241,7 +241,7 @@ public class DataVehiculos {
 	    return vehiculos;
 	}
 
-	public void update(Vehiculos v) {
+	public void update(Vehiculos v, boolean seModificoPrecio) {
 		PreparedStatement stmt = null;
 		
 		try {
@@ -262,15 +262,17 @@ public class DataVehiculos {
 			
 			stmt.execute();
 			
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into valores(nro_patente, fecha_desde, precio_base) values(?,?,?)");
-			stmt.setString(1, v.getPatente());
-					
-			java.util.Date d = new java.util.Date();
-			Date fechaActual = new java.sql.Date(d.getTime());
-			
-			stmt.setDate(2, (Date) fechaActual);
-			stmt.setFloat(3, v.getPrecio());
-			stmt.execute();
+			if(seModificoPrecio)
+			{	stmt = FactoryConexion.getInstancia().getConn().prepareStatement("insert into valores(nro_patente, fecha_desde, precio_base) values(?,?,?)");
+				stmt.setString(1, v.getPatente());
+						
+				java.util.Date d = new java.util.Date();
+				Date fechaActual = new java.sql.Date(d.getTime());
+				
+				stmt.setDate(2, (Date) fechaActual);
+				stmt.setFloat(3, v.getPrecio());
+				stmt.execute();
+			}	
 					
 		} catch (SQLException e) {
 			e.printStackTrace();

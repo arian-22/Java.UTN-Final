@@ -85,7 +85,7 @@ $(document).ready(function() {
 
 												<button type="submit" name="btn-reserva"
 													class="btn btn-danger btn-default">Registrar Retiro</button>
-												<button type="button" class="btn btn-default "
+												<button type="button" class="btn btn-default " name="btn-cancelar"
 													data-dismiss="alert" aria-hidden="true">Cancelar</button>
 
 											</div>
