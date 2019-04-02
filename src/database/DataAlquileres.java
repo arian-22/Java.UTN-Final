@@ -337,16 +337,15 @@ public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
 			PreparedStatement stmt = null;
 			
 			try {
-				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update alquileres set fecha_desde=?, fecha_hasta=?, importe_cancelacion=?, fecha_cancelacion=?, precio_alquiler=?, fecha_finalizacion=?, precio_final_alquiler=?"
-					+ "where nro_alquiler=?");
+				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update alquileres set fecha_desde=?, fecha_hasta=?, importe_cancelacion=?, fecha_cancelacion=?, precio_alquiler=?, fecha_finalizacion=?, precio_final_alquiler=? where nro_alquiler=?");
 			
 				stmt.setDate(1, alq.getFechaDesde());
 				stmt.setDate(2, alq.getFechaHasta());
 				stmt.setFloat(3, alq.getImporteCancelacion());
 				stmt.setString(4, alq.getFechaCancelacion());
 				stmt.setFloat(5, alq.getPrecioAlquiler());
-				stmt.setFloat(6, alq.getPrecioFinalAlquiler());
-				stmt.setString(7, alq.getFechaFinalizacion());
+				stmt.setString(6, alq.getFechaFinalizacion());
+				stmt.setFloat(7, alq.getPrecioFinalAlquiler());
 				
 				stmt.setInt(8, alq.getNro_alquiler());
 				
