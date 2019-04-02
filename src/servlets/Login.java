@@ -56,7 +56,6 @@ public class Login extends HttpServlet {
 			}
 			
 		}else{
-			System.out.println("Usuario inexistente");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 		

@@ -185,16 +185,8 @@
 								}
 								}
 							%>
-
-							<!--  </div> -->
 						</div>
 					</div>
-
-
-
-
-
-
 				</div>
 			</div>
 		</div>
@@ -224,8 +216,7 @@
 					</form>
 
 					<div class="container-fluid">
-						<div class="row">
-							<!--  <div class="col-md-12"> -->
+						<div class="row">					
 
 							<%
 								if (session.getAttribute("vehiculo-mod") != null) {

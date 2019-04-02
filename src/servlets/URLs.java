@@ -103,7 +103,9 @@ public class URLs extends HttpServlet {
 		}
 
 		else if (request.getParameter("btnAlquilerAdmin") != null) {
-
+			
+			request.setAttribute("msjErrorDev", null);
+			request.setAttribute("msjErrorReserva",null);
 			request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
 		}
 	}
