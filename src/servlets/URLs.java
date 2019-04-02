@@ -57,6 +57,7 @@ public class URLs extends HttpServlet {
 			ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
 			vehiculos = ctrl.getVehiculosPorTipo("A");
 			request.getSession().setAttribute("vehiculos-stock", vehiculos);
+			
 			request.getRequestDispatcher("WEB-INF/autos.jsp").forward(request, response);
 
 		} else if (request.getParameter("btn-stock-camionetas") != null) {
@@ -74,6 +75,7 @@ public class URLs extends HttpServlet {
 		} else if (request.getParameter("btnCerrar") != null) {
 
 			Usuario cliente = new Usuario();
+			
 			cliente = (Usuario) request.getSession().getAttribute("user");
 
 			ControladorAlquiler ctrl = new ControladorAlquiler();
@@ -89,6 +91,7 @@ public class URLs extends HttpServlet {
 		} else if (request.getParameter("btnVerReservas") != null) {
 
 			Usuario cliente = new Usuario();
+			
 			cliente = (Usuario) request.getSession().getAttribute("user");
 
 			ControladorAlquiler ctrl = new ControladorAlquiler();
@@ -105,7 +108,9 @@ public class URLs extends HttpServlet {
 		else if (request.getParameter("btnAlquilerAdmin") != null) {
 			
 			request.setAttribute("msjErrorDev", null);
+			
 			request.setAttribute("msjErrorReserva",null);
+			
 			request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
 		}
 	}

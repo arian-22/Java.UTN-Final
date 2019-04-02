@@ -163,10 +163,9 @@ $(document).ready(function() {
 									<div class="alert alert-dismissable alert-info">
 
 										<button type="button" class="close" data-dismiss="alert"
-											aria-hidden="true">×</button>
+											aria-hidden="true">x</button>
 										<h4>
-											<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%>
-											</strong>
+											<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%></strong>
 										</h4>
 
 										<strong> Patente: <%=a.getVehiculo().getPatente()%>

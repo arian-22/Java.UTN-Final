@@ -63,7 +63,8 @@ public class ModificarVehiculo extends HttpServlet {
 		
 		vehiculos.setKm(Float.parseFloat(request.getParameter("km")));
 		
-		vehiculos.setPrecio(Integer.parseInt(request.getParameter("precio_base")));
+		System.out.println("Precio base: " + request.getParameter("precio_base"));
+		vehiculos.setPrecio(Float.parseFloat(request.getParameter("precio_base")));
 		
 		controlador.actualizarVehiculos(vehiculos);
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	

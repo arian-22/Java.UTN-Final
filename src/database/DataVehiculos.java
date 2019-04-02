@@ -11,16 +11,18 @@ import entidades.Vehiculos;
 public class DataVehiculos { 
 	
 	
-	public Vehiculos getByPatente(String nroPatente){
-	
+	public Vehiculos getByPatente(String nroPatente){	
+		
 	Vehiculos v = null;
 	
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
 	
 	try{
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT v.nro_patente, v.modelo, v.marca, v.cant_asientos, v.año, v.transmision, v.estado, v.baul, v.tipo, v.imagen, v.km, va.precio_base FROM vehículos v INNER JOIN valores va  on v.nro_patente = va.nro_patente where va.fecha_desde = (SELECT Max(vv.fecha_desde) from valores vv where nro_patente = ?) ");
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT v.nro_patente, v.modelo, v.marca, v.cant_asientos, v.año, v.transmision, v.estado, v.baul, v.tipo, v.imagen, v.km, va.precio_base FROM vehículos v INNER JOIN valores va  on v.nro_patente = va.nro_patente where v.nro_patente = ? and va.fecha_desde = (SELECT Max(vv.fecha_desde) from valores vv where nro_patente = ?) ");
 		stmt.setString(1, nroPatente);
+		stmt.setString(2, nroPatente);
+		
 		rs = stmt.executeQuery();
 					
 		if(rs!=null && rs.next()){
@@ -243,8 +245,7 @@ public class DataVehiculos {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update vehículos set modelo=?, marca=?, cant_asientos=?, año=?, baul=?, transmision=?, km=?, tipo=?, estado=?,imagen=? "
-				+ "where nro_patente=?");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update vehículos set modelo=?, marca=?, cant_asientos=?, año=?, baul=?, transmision=?, km=?, tipo=?, estado=?,imagen=? where nro_patente=?");
 		
 			stmt.setString(1, v.getModelo());
 			stmt.setString(2, v.getMarca());
