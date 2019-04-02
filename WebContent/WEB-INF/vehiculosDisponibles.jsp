@@ -65,10 +65,10 @@
 								<td><%=vehiculos.get(i).getModelo()%></td>
 								<td><%=vehiculos.get(i).getTipo()%></td>
 								<td><%=vehiculos.get(i).getAnio()%></td>
+								<td><%=vehiculos.get(i).getKm()%></td>
 								<td><%=vehiculos.get(i).getTransmision()%></td>
 								<td><%=vehiculos.get(i).getBaul()%></td>
-								<td><%=vehiculos.get(i).getCantAsientos()%></td>
-								<td><%=vehiculos.get(i).getKm()%></td>
+								<td><%=vehiculos.get(i).getCantAsientos()%></td>								
 								<td><%=vehiculos.get(i).getPrecio()%></td>
 								<td><%=vehiculos.get(i).getImagen()%></td>
 								<td>

@@ -55,11 +55,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<a href="javascript:window.history.go(-1);" class="btn btn-link"
-		type="button">Atrás</a>
-	<hr>
-
+	</div>	
 </div>
 
 <%@ include file="footer.html"%>
