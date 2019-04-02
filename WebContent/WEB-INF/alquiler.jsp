@@ -67,12 +67,7 @@ $(document).ready(function() {
 								<div class="col-md-12">
 									<div class="alert alert-dismissable alert-info">
 
-										<button type="button" class="close" data-dismiss="alert"
-											aria-hidden="true">×</button>
-										<h4>
-											<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%>
-											</strong>
-										</h4>
+										<h4><strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%></strong></h4>
 
 										<strong> Patente: <%=a.getVehiculo().getPatente()%>
 										</strong> <br> <strong> Fecha Desde: <%=a.getAlquiler().getFechaDesde()%>
@@ -82,12 +77,8 @@ $(document).ready(function() {
 
 										<form role="form" action="Alquileres" method="post">
 											<div>
-
-												<button type="submit" name="btn-reserva"
-													class="btn btn-danger btn-default">Registrar Retiro</button>
-												<button type="button" class="btn btn-default "
-													data-dismiss="alert" aria-hidden="true">Cancelar</button>
-
+												<button type="submit" name="btn-reserva" class="btn btn-danger btn-default">Registrar Retiro</button>
+												<button type="button" class="btn btn-default" data-dismiss="alert" aria-hidden="true">Cancelar</button>
 											</div>
 										</form>
 									</div>
@@ -161,26 +152,23 @@ $(document).ready(function() {
 							%>
 																
 									<div class="alert alert-dismissable alert-info">
-
-										<button type="button" class="close" data-dismiss="alert"
-											aria-hidden="true">x</button>
 										<h4>
 											<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%></strong>
 										</h4>
 
-										<strong> Patente: <%=a.getVehiculo().getPatente()%>
-										</strong> <br> <strong> Fecha Desde: <%=a.getAlquiler().getFechaDesde()%>
-										</strong> <br> <strong> Fecha Hasta: <%=a.getAlquiler().getFechaHasta()%>
-										</strong> <br> <strong> Cliente: <%=a.getCliente().getNombre() + ' ' + a.getCliente().getApellido()%>
-										</strong> <br>
+										<strong> Patente: <%=a.getVehiculo().getPatente()%></strong> 
+										<br> 
+										<strong> Fecha Desde: <%=a.getAlquiler().getFechaDesde()%></strong>
+										<br> 
+										<strong> Fecha Hasta: <%=a.getAlquiler().getFechaHasta()%></strong> 
+										<br> 
+										<strong> Cliente: <%=a.getCliente().getNombre() + ' ' + a.getCliente().getApellido()%></strong>
+										<br>
+										
 										<form role="form" action="Alquileres" method="post">
 											<div>
-
-												<button type="submit" name="btn-devolucion"
-													class="btn btn-danger btn-default">Registrar Devolución</button>
-												<button type="button" class="btn btn-default "
-													data-dismiss="alert" aria-hidden="true">Cancelar</button>
-
+												<button type="submit" name="btn-devolucion" class="btn btn-danger btn-default">Registrar Devolución</button>
+												<button type="button" class="btn btn-default" data-dismiss="alert" aria-hidden="true">Cancelar</button>
 											</div>
 										</form>
 									</div>
@@ -192,12 +180,7 @@ $(document).ready(function() {
 								%>
 								<div class="col-md-12">
 									<div class="alert alert-dismissable alert-success">
-
-										<button type="button" class="close" data-dismiss="alert"
-											aria-hidden="true">×</button>
-										<h4>
-											<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%> </strong>
-										</h4>
+										<h4><strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%></strong></h4>
 
 										<strong> Patente: <%=a.getVehiculo().getPatente()%>
 										</strong> <br> <strong> Cliente: <%=a.getCliente().getNombre() + ' ' + a.getCliente().getApellido()%>

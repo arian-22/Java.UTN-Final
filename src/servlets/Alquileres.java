@@ -104,6 +104,7 @@ public class Alquileres extends HttpServlet {
 			request.getSession().setAttribute("total-pagar", totalAPagar);
 			request.getSession().setAttribute("dias", dias);
 			request.getSession().setAttribute("precioAlquiler", cva.getAlquiler().getPrecioAlquiler());
+			request.getSession().setAttribute("datosDevolucion", 1);
 			
 			}
 		request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
