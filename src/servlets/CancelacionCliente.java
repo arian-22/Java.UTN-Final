@@ -78,7 +78,7 @@ public class CancelacionCliente extends HttpServlet {
 				
 			}else alq.setImporteCancelacion(0);
 			
-			System.err.println("Nro alquiler: " + alq.getNro_alquiler());
+			System.out.println("Nro alquiler: " + alq.getNro_alquiler());
 			System.out.println("Importe cancelacion: " + alq.getImporteCancelacion());
 			
 			request.getSession().setAttribute("alquilerPorCancelar", alq);

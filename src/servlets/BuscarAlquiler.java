@@ -53,29 +53,24 @@ public class BuscarAlquiler extends HttpServlet {
 		
 		if (request.getParameter("btnReserva")!= null){
 			
-			if(alq.getAlquiler() == null)
-			{	System.out.println("nulo");
+			if(alq.getAlquiler() == null){	
 				request.getSession().setAttribute("msjErrorReserva",1);		
-			}
-			
-			else
-				{
-				System.out.println("no nulo");
+			}else {
 				request.getSession().setAttribute("alquiler-reserva", alq);
-				}
+			}
 		}
 		else if(request.getParameter("btnDevolucion")!= null){
-			if(alq==null)
+			
+			if(alq.getAlquiler() == null) {		
 				request.getSession().setAttribute("msjErrorDev",1);
-			else
-			{
+			} else {
 				request.getSession().removeAttribute("msjErrorDev");
 				request.getSession().setAttribute("alquiler-dev", alq);
 				request.getSession().removeAttribute("datosDevolucion");
 				request.getSession().setAttribute("datosAlquier", 1);
 			}
 		}
-			
+		
 		request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
 		
 	}

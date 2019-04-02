@@ -171,7 +171,7 @@ public class DataAlquileres {
 			//Anda para Windows
 			//stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM `cli-veh-alq` cva INNER JOIN usuario u ON cva.mail = u.mail INNER JOIN vehículos v ON cva.nro_patente = v.nro_patente INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler INNER JOIN (SELECT va.nro_patente, max(va.fecha_desde) as 'fecha_max' FROM valores va group by va.nro_patente) pp on v.nro_patente = pp.nro_patente INNER JOIN valores val ON pp.nro_patente = val.nro_patente where cva.nro_alquiler = ? and fecha_max = val.fecha_desde group by cva.nro_alquiler");
 			//Anda para Linux
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM `cli-veh-alq` cva INNER JOIN usuario u ON cva.mail = u.mail INNER JOIN vehículos v ON cva.nro_patente = v.nro_patente INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler INNER JOIN (SELECT va.nro_patente, max(va.fecha_desde) as 'fecha_max' FROM valores va group by va.nro_patente) pp on v.nro_patente = pp.nro_patente INNER JOIN valores val ON pp.nro_patente = val.nro_patente where cva.nro_alquiler = ? and fecha_max = val.fecha_desde group by cva.nro_alquiler");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM `cli-veh-alq` cva INNER JOIN usuario u ON cva.mail = u.mail INNER JOIN vehículos v ON cva.nro_patente = v.nro_patente INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler INNER JOIN (SELECT va.nro_patente, max(va.fecha_desde) as 'fecha_max' FROM valores va group by va.nro_patente) pp on v.nro_patente = pp.nro_patente INNER JOIN valores val ON pp.nro_patente = val.nro_patente where cva.nro_alquiler = ? and fecha_max = val.fecha_desde");
 			
 			stmt.setInt(1, nro_alquiler);
 		    
@@ -337,16 +337,15 @@ public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
 			PreparedStatement stmt = null;
 			
 			try {
-				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update alquileres set fecha_desde=?, fecha_hasta=?, importe_cancelacion=?, fecha_cancelacion=?, precio_alquiler=?, fecha_finalizacion=?, precio_final_alquiler=?"
-					+ "where nro_alquiler=?");
+				stmt = FactoryConexion.getInstancia().getConn().prepareStatement("update alquileres set fecha_desde=?, fecha_hasta=?, importe_cancelacion=?, fecha_cancelacion=?, precio_alquiler=?, fecha_finalizacion=?, precio_final_alquiler=? where nro_alquiler=?");
 			
 				stmt.setDate(1, alq.getFechaDesde());
 				stmt.setDate(2, alq.getFechaHasta());
 				stmt.setFloat(3, alq.getImporteCancelacion());
 				stmt.setString(4, alq.getFechaCancelacion());
 				stmt.setFloat(5, alq.getPrecioAlquiler());
-				stmt.setFloat(6, alq.getPrecioFinalAlquiler());
-				stmt.setString(7, alq.getFechaFinalizacion());
+				stmt.setString(6, alq.getFechaFinalizacion());
+				stmt.setFloat(7, alq.getPrecioFinalAlquiler());
 				
 				stmt.setInt(8, alq.getNro_alquiler());
 				

@@ -48,7 +48,7 @@
 	
 		<form action="RegistrarAlquiler" role="form" method="post">
 		
-			<label> Tarjeta de Credito </label> <input type="number" class="form-control" name="credit-card" required/>
+			<label> Tarjeta de Credito </label> <input type="number" max="99999999999999999999" class="form-control" name="credit-card" required/>
 			
 			<div class="row">
 				<div class="col-md-6">

@@ -180,7 +180,7 @@ public class DataVehiculos {
 					"INNER JOIN (\n" + 
 					"	SELECT aa.nro_patente, aa.precio_base, max(aa.fecha_desde) as 'fecha_max'\n" + 
 					"    FROM valores aa\n" + 
-					"    group by aa.nro_patente, aa.precio_base, 'fecha_max') pp on v.nro_patente=pp.nro_patente\n" + 
+					"    group by aa.nro_patente) pp on v.nro_patente=pp.nro_patente\n" + 
 					"WHERE v.nro_patente NOT IN (\n" + 
 					"	SELECT DISTINCT v.nro_patente \n" + 
 					"	FROM vehículos v \n" + 

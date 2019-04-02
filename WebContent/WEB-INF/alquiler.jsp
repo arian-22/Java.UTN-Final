@@ -42,7 +42,7 @@ $(document).ready(function() {
 
 							<label class="col-sm-2 control-label"> N° de Alquiler </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="num_alquiler" />
+								<input type="text" class="form-control" name="num_alquiler" required/>
 							</div>
 						</div>
 
@@ -129,7 +129,7 @@ $(document).ready(function() {
 
 							<label class="col-sm-2 control-label"> N° de Alquiler </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="num_alquiler" />
+								<input type="text" class="form-control" name="num_alquiler" required/>
 							</div>
 						</div>
 
