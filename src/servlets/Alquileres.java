@@ -54,7 +54,7 @@ public class Alquileres extends HttpServlet {
 			
 			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-reserva");
 			cva.getVehiculo().setEstado("En uso");
-			ctrl.actualizarVehiculos(cva.getVehiculo());
+			ctrl.actualizarVehiculos(cva.getVehiculo(),false);
 			
 			}
 		else if (request.getParameter("btn-devolucion")!= null){
@@ -63,13 +63,11 @@ public class Alquileres extends HttpServlet {
 			
 			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-dev");
 			cva.getVehiculo().setEstado("Disponible");
-			ctrl.actualizarVehiculos(cva.getVehiculo());				
+			ctrl.actualizarVehiculos(cva.getVehiculo(), false);				
 					
 			Date fechaActual = new Date();			
 			
 			int dias = 0;
-			
-			int dif = cva.getAlquiler().getFechaHasta().compareTo(fechaActual);
 			
 			if (cva.getAlquiler().getFechaHasta().compareTo(fechaActual) < 0){
 				//si la fechaHasta es anterior a la actual el compare da < 0
@@ -90,7 +88,6 @@ public class Alquileres extends HttpServlet {
 				
 				totalAPagar = cva.getAlquiler().getPrecioAlquiler();
 			}
-			
 			
 			Date fechaActualDate = new Date();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

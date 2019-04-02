@@ -39,6 +39,9 @@ public class ModificarVehiculo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		boolean seModificoPrecio;
+		
 		Controlador controlador = new Controlador();
 		Vehiculos vehiculos = new Vehiculos();
 		
@@ -64,9 +67,17 @@ public class ModificarVehiculo extends HttpServlet {
 		vehiculos.setKm(Float.parseFloat(request.getParameter("km")));
 		
 		System.out.println("Precio base: " + request.getParameter("precio_base"));
+		
 		vehiculos.setPrecio(Float.parseFloat(request.getParameter("precio_base")));
 		
-		controlador.actualizarVehiculos(vehiculos);
+		if(Float.parseFloat(request.getParameter("precio_base"))!= Float.parseFloat(request.getParameter("precioPersistido")))
+		{
+			seModificoPrecio = true;
+		}
+		else seModificoPrecio = false;
+		
+			controlador.actualizarVehiculos(vehiculos, seModificoPrecio);
+			
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
 	}
 

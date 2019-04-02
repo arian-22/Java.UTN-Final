@@ -51,10 +51,10 @@ public class Controlador {
 		
 		dbVehiculos.add(v);
 	}
-	public void actualizarVehiculos(Vehiculos v){
+	public void actualizarVehiculos(Vehiculos v, boolean seModificoPrecio){
 		DataVehiculos dbVehiculos = new DataVehiculos();
 		
-		dbVehiculos.update(v);
+		dbVehiculos.update(v, seModificoPrecio);
 	}
 	
 	public Vehiculos recuperarVehiculo(String nroPatente) {
