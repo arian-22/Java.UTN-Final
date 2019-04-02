@@ -66,13 +66,9 @@ public class ModificarVehiculo extends HttpServlet {
 		
 		vehiculos.setKm(Float.parseFloat(request.getParameter("km")));
 		
-		System.out.println("Precio base: " + request.getParameter("precio_base"));
-		
-		vehiculos.setPrecio(Float.parseFloat(request.getParameter("precio_base")));
-		
-		if(Float.parseFloat(request.getParameter("precio_base"))!= Float.parseFloat(request.getParameter("precioPersistido")))
-		{
+		if(Float.parseFloat(request.getParameter("precio_base")) != (Float) request.getSession().getAttribute("precioPersistido")){
 			seModificoPrecio = true;
+			vehiculos.setPrecio(Float.parseFloat(request.getParameter("precio_base")));
 		}
 		else seModificoPrecio = false;
 		

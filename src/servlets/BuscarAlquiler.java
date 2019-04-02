@@ -47,16 +47,20 @@ public class BuscarAlquiler extends HttpServlet {
 		
 		Cli_Veh_Alq alq = new Cli_Veh_Alq();
 		
-		System.out.println(Integer.parseInt(request.getParameter("num_alquiler")));
-		
 		alq = ctrl.buscarAlquiler(Integer.parseInt(request.getParameter("num_alquiler")));	
 		
 		if (request.getParameter("btnReserva")!= null){
 			
 			if(alq.getAlquiler() == null){	
-				request.getSession().setAttribute("msjErrorReserva",1);		
+				request.getSession().setAttribute("msjErrorReserva", "El Alquiler no fue encontrado.");		
 			}else {
-				request.getSession().setAttribute("alquiler-reserva", alq);
+				if(alq.getVehiculo().getEstado() == "En uso") {
+					request.getSession().setAttribute("alquiler-reserva", alq);
+				}
+				else {
+					request.getSession().setAttribute("msjErrorReserva", "El vehículo ya ha sido retirado");		
+				}
+				
 			}
 		}
 		else if(request.getParameter("btnDevolucion")!= null){

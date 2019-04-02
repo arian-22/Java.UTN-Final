@@ -51,10 +51,9 @@ public class Alquileres extends HttpServlet {
 		
 		if (request.getParameter("btn-reserva")!= null){
 			
-			
 			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-reserva");
 			cva.getVehiculo().setEstado("En uso");
-			ctrl.actualizarVehiculos(cva.getVehiculo(),false);
+			ctrl.actualizarVehiculos(cva.getVehiculo(), false);
 			
 			}
 		else if (request.getParameter("btn-devolucion")!= null){

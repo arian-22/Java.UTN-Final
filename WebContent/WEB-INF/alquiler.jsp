@@ -89,13 +89,10 @@ $(document).ready(function() {
 								} else if (session.getAttribute("msjErrorReserva") != null) {
 							%>
 							<div class="alert alert-dismissable alert-danger">
-
-								<button type="button" class="close" data-dismiss="alert"
-									aria-hidden="true">×</button>
 								<h4>
-									<strong> Error! </strong>
+									<strong> Error </strong>
 								</h4>
-								El Alquiler no fue encontrado <a href="#" class="alert-link"></a>
+								<p><%= session.getAttribute("msjErrorReserva") %></p>
 							</div>
 							<%
 									}
