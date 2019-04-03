@@ -81,7 +81,7 @@
 						<li><a href="#">Nosotros</a></li>
 					</ul>
 
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
 						<% if(session.getAttribute("user")==null){ %>
 						<li><a href="login.jsp">Login</a></li>
 
@@ -90,39 +90,34 @@
 										u = (Usuario)session.getAttribute("user");
 										
 										 if(u.getAdmin().equals("S")){ %>
-						<div>
-							<form role="form" action="URLs" method="post">
-								<button type="submit" class="btn btn-primary btn-block"
-									name="btn-home-admin">
-									<i class="material-icons">home</i>
-								</button>
+							<form role="form" action="URLs" method="post" style="float: left;">
+								<button type="submit" class="btn btn-primary btn-block"	name="btn-home-admin"><i class="material-icons">home</i></button>
 							</form>
 
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"><%= u.getApellido() %>, <%= u.getNombre() %><strong
-									class="caret"></strong></a>
-
+							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>, <%= u.getNombre() %><strong	class="caret"></strong></a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Perfil</a></li>
+									<!-- <li><a href="#">Perfil</a></li>
 									<li><a href="#">Configuración</a></li>
-									<li><a href="#">Ayuda</a></li>
+									<li><a href="#">Ayuda</a></li> -->
 									<li class="divider"></li>
 									<li><a href="CerrarSesion">Cerrar sesión</a></li>
-								</ul></li>
-						</div>
+								</ul>
+							</li>
 						<%} else { %>
-						<li class="dropdown"><a href="inicioCliente.jsp"
-							class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>,
-								<%= u.getNombre() %><strong class="caret"></strong></a>
+						<form role="form" action="URLs" method="post"  style="float: left;">
+							<button type="submit" class="btn btn-primary btn-block"	name="btn-home-user"><i class="material-icons">home</i></button>
+						</form>
+						
+						<li class="dropdown"><a href="inicioCliente.jsp" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>,	<%= u.getNombre() %><strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Perfil</a></li>
-								<li>
-								<a href="http://localhost:8080/AlquilerDeVehiculos/URLs?btnVerReservas=11">Mis Reservas</a></li>
-								<li><a href="#">Configuración</a></li>
-								<li><a href="#">Ayuda</a></li>
+								<!-- <li><a href="#">Perfil</a></li> -->
+								<li><a href="http://localhost:8080/AlquilerDeVehiculos/URLs?btnVerReservas=11">Mis Reservas</a></li>
+								<!-- <li><a href="#">Configuración</a></li>
+								<li><a href="#">Ayuda</a></li> -->
 								<li class="divider"></li>
 								<li><a href="CerrarSesion">Cerrar sesión</a></li>
-							</ul></li>
+							</ul>
+						</li>
 						<%} } %>
 					</ul>
 				</div>

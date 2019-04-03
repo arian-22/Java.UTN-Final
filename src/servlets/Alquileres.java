@@ -63,27 +63,30 @@ public class Alquileres extends HttpServlet {
 			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-dev");
 			cva.getVehiculo().setEstado("Disponible");
 			ctrl.actualizarVehiculos(cva.getVehiculo(), false);				
-					
-			Date fechaActual = new Date();			
+			
+			Date fechaInicioCalculo = new Date();		
+			if( cva.getAlquiler().getFechaDesde().compareTo(fechaInicioCalculo) > 0) {
+				fechaInicioCalculo = cva.getAlquiler().getFechaDesde();
+			}
 			
 			int dias = 0;
 			
-			if (cva.getAlquiler().getFechaHasta().compareTo(fechaActual) < 0){
+			if (cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) < 0){
 				//si la fechaHasta es anterior a la actual el compare da < 0
-				dias=(int) ((fechaActual.getTime()-cva.getAlquiler().getFechaHasta().getTime())/86400000);
+				dias=(int) ((fechaInicioCalculo.getTime()-cva.getAlquiler().getFechaHasta().getTime())/86400000);
 				
-				totalAPagar = cva.getAlquiler().getPrecioAlquiler()+ dias*cva.getVehiculo().getPrecio() +dias*((cva.getVehiculo().getPrecio()*25)/100);				
+				totalAPagar = cva.getAlquiler().getPrecioAlquiler()+ dias*cva.getVehiculo().getPrecio() + dias * ((cva.getVehiculo().getPrecio()*25)/100);				
 			}			
-			else if(cva.getAlquiler().getFechaHasta().compareTo(fechaActual) > 0){
+			else if(cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) > 0){
 				//si la fechaHasta es posterior a la actual el compare da > 0
-				dias = (int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaActual.getTime())/86400000);
+				dias = (int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaInicioCalculo.getTime())/86400000);
 				
 				totalAPagar = cva.getAlquiler().getPrecioAlquiler()+dias*cva.getVehiculo().getPrecio() +dias*(cva.getVehiculo().getPrecio()*50)/100;
 			}
 			
-			else if(cva.getAlquiler().getFechaHasta().compareTo(fechaActual) == 0){
+			else if(cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) == 0){
 				//si es devuelto el mismo día que termina el alquiler, el compare da 0
-				dias=(int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaActual.getTime())/86400000);
+				dias=(int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaInicioCalculo.getTime())/86400000);
 				
 				totalAPagar = cva.getAlquiler().getPrecioAlquiler();
 			}

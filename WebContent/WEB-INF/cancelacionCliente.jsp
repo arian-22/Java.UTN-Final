@@ -82,7 +82,11 @@
 										
 								<%
 								if( cva.get(i).getAlquiler().getFechaDesde().after(hoy) ) {
-									if( cva.get(i).getAlquiler().getFechaCancelacion() == null ){
+									out.println("dfdsfsdfsd");
+									out.println(cva.get(i).getAlquiler().getFechaCancelacion());
+									out.println(cva.get(i).getAlquiler().getFechaFinalizacion());
+									
+									if( cva.get(i).getAlquiler().getFechaCancelacion() == null &&  cva.get(i).getAlquiler().getFechaFinalizacion() == null){
 										%>
 										<form role="form"
 										action="CancelacionCliente?alquiler-selected=<%=cva.get(i).getAlquiler().getNro_alquiler()%>"

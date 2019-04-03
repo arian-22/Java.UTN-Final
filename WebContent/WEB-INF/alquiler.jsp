@@ -196,21 +196,17 @@ $(document).ready(function() {
 								
 							<%}
 							%>
-								<%} else {
-									if (session.getAttribute("msjErrorDev") != null) {
+								<%} else if (session.getAttribute("msjErrorDev") != null) {
 							%>
 							<div class="alert alert-dismissable alert-danger">
-
-								<button type="button" class="close" data-dismiss="alert"
-									aria-hidden="true">×</button>
 								<h4>
-									<strong> Error! </strong>
+									<strong> Error </strong>
 								</h4>
-								El Alquiler no fue encontrado <a href="#" class="alert-link"></a>
+								<p><%= session.getAttribute("msjErrorDev") %></p>
 							</div>
 							<%
-									}
 								}
+							
 							%>
 								</div>							
 						</div>

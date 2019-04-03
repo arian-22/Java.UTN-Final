@@ -51,7 +51,11 @@ public class URLs extends HttpServlet {
 		if (request.getParameter("btn-home-admin") != null) {
 			request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);
 
-		} else if (request.getParameter("btn-stock-autos") != null) {
+		} else if (request.getParameter("btn-home-user") != null) {
+			request.getRequestDispatcher("WEB-INF/inicioCliente.jsp").forward(request, response);
+
+		} 
+		else if (request.getParameter("btn-stock-autos") != null) {
 
 			Controlador ctrl = new Controlador();
 			ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
