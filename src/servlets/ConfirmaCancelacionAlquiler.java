@@ -45,22 +45,14 @@ public class ConfirmaCancelacionAlquiler extends HttpServlet {
 		doGet(request, response);
 		
 		ControladorAlquiler ctrl= new ControladorAlquiler();
+		Usuario cliente = new Usuario();
+		ControladorAlquiler ctrl2 = new ControladorAlquiler();
+		ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
 		
 		Alquiler alq = (Alquiler) request.getSession().getAttribute("alquilerPorCancelar");
 		
-		System.out.println(alq.getNro_alquiler());
-		System.out.println("precio: " + alq.getImporteCancelacion());
-		
-		ctrl.actualizarAlquiler(alq);
-		
-		Usuario cliente = new Usuario();
-		
 		cliente = (Usuario)request.getSession().getAttribute("user");
-		
-		ControladorAlquiler ctrl2 = new ControladorAlquiler();
-		
-		ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
-	
+		ctrl.actualizarAlquiler(alq);
 		cva = ctrl2.buscarAlquileresDelCliente(cliente.getMail());
 		
 		request.getSession().setAttribute("alquileresCliente", cva);

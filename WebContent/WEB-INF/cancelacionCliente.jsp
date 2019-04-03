@@ -82,10 +82,6 @@
 										
 								<%
 								if( cva.get(i).getAlquiler().getFechaDesde().after(hoy) ) {
-									out.println("dfdsfsdfsd");
-									out.println(cva.get(i).getAlquiler().getFechaCancelacion());
-									out.println(cva.get(i).getAlquiler().getFechaFinalizacion());
-									
 									if( cva.get(i).getAlquiler().getFechaCancelacion() == null &&  cva.get(i).getAlquiler().getFechaFinalizacion() == null){
 										%>
 										<form role="form"

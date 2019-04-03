@@ -50,15 +50,6 @@ public class Informes extends HttpServlet {
 		ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
 		cva = ci.getVehiculosAlquiladosActualmente();
 		request.getSession().setAttribute("alquileres actuales", cva);
-		
-		/*for(int i=0; i < cva.size() ; i++) {
-			System.out.println(cva.get(i).getAlquiler().getNro_alquiler());
-			System.out.println(cva.get(i).getCliente().getMail());
-			System.out.println(cva.get(i).getVehiculo().getPatente());
-			System.out.println("Cantidad de cva: " + (i+1));
-			System.out.println();
-		}*/
-		
 				
 		request.getRequestDispatcher("WEB-INF/informes.jsp").forward(request, response);
 	}

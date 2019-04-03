@@ -40,12 +40,11 @@ public class DetalleAlquiler extends HttpServlet {
 		doGet(request, response);
 		
 		String patente = request.getParameter("vehiculo-selected");
-		
 		String fecha_desde = request.getParameter("fecha_desde");
 		String fecha_hasta = request.getParameter("fecha_hasta");
-		
 		Controlador ctrl = new Controlador();
 		Vehiculos v = new Vehiculos();
+		
 		v = ctrl.recuperarVehiculo(patente);
 		
 		request.getSession().setAttribute("fecha-desde", fecha_desde);

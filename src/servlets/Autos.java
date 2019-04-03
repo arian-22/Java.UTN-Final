@@ -48,14 +48,6 @@ public class Autos extends HttpServlet {
 		vehiculos = ci.getStockVehiculos();
 		request.getSession().setAttribute("vehiculos-stock", vehiculos);
 		
-		/*
-		Controlador c = new Controlador();
-		
-		ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-		vehiculos = c.getVehiculosPorTipo(tipo);
-		request.getSession().setAttribute("vehiculos-por-tipo", vehiculos);
-			*/
-		
 		request.getRequestDispatcher("WEB-INF/autos.jsp").forward(request, response);
 	}
 

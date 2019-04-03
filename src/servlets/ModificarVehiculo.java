@@ -41,37 +41,25 @@ public class ModificarVehiculo extends HttpServlet {
 		doGet(request, response);
 		
 		boolean seModificoPrecio;
-		
 		Controlador controlador = new Controlador();
 		Vehiculos vehiculos = new Vehiculos();
 		
 		vehiculos.setPatente(request.getParameter("nro_patente"));
-		System.out.println("PATENTE " + vehiculos.getPatente());
-		
 		vehiculos.setMarca(request.getParameter("marca"));
-		System.out.println("MARCA " + vehiculos.getMarca());
 		vehiculos.setModelo(request.getParameter("modelo"));
-		System.out.println("MODELO " + vehiculos.getModelo());
 		vehiculos.setCantAsientos(Integer.parseInt(request.getParameter("cant_asientos")));
-		
 		vehiculos.setTransmision(request.getParameter("transmision"));
-		
 		vehiculos.setBaul(request.getParameter("baul"));
-		
 		vehiculos.setTipo(request.getParameter("tipo"));
-		
 		vehiculos.setEstado(request.getParameter("estado"));
-		
 		vehiculos.setAnio(Integer.parseInt(request.getParameter("anio")));
-		
 		vehiculos.setKm(Float.parseFloat(request.getParameter("km")));
 		
-		if(Float.parseFloat(request.getParameter("precio_base")) != (Float) request.getSession().getAttribute("precioPersistido")){
+		if( Float.parseFloat(request.getParameter("precio_base")) != (Float) request.getSession().getAttribute("precioPersistido")){
 			seModificoPrecio = true;
 			vehiculos.setPrecio(Float.parseFloat(request.getParameter("precio_base")));
 		}
 		else seModificoPrecio = false;
-		
 			controlador.actualizarVehiculos(vehiculos, seModificoPrecio);
 			
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	

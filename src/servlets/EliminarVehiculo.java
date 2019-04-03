@@ -42,15 +42,12 @@ public class EliminarVehiculo extends HttpServlet {
 		
 		Controlador ctrl = new Controlador();
 		Vehiculos vehiculo = new Vehiculos();
-		vehiculo=(Vehiculos)request.getSession().getAttribute("vehiculo-baja");
-		System.out.println("patente "+vehiculo.getPatente());
-	
+		
+		vehiculo = (Vehiculos)request.getSession().getAttribute("vehiculo-baja");
+
 		ctrl.eliminarVehiculo(vehiculo.getPatente());
 		
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
-		
-		
-		
 		
 	}
 

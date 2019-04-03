@@ -43,38 +43,16 @@ public class AltaVehiculo extends HttpServlet {
 		Vehiculos vehiculos = new Vehiculos();
 		
 		vehiculos.setPatente(request.getParameter("nro_patente"));
-		System.out.println("PATENTE " + vehiculos.getPatente());
-		
 		vehiculos.setMarca(request.getParameter("marca"));
-		System.out.println("MARCA " + vehiculos.getMarca());
-		
 		vehiculos.setModelo(request.getParameter("modelo"));
-		System.out.println("MODELO " + vehiculos.getModelo());
-		
 		vehiculos.setCantAsientos(Integer.parseInt(request.getParameter("cant_asientos")));
-		System.out.println("CANTASIENTOS " + vehiculos.getPatente());
-		
 		vehiculos.setTransmision(request.getParameter("transmision"));
-		System.out.println("TRANSMISION " + vehiculos.getTransmision());
-		
 		vehiculos.setBaul(request.getParameter("baul"));
-		System.out.println("BAUL " + vehiculos.getBaul());
-		
 		vehiculos.setTipo(request.getParameter("tipo"));
-		System.out.println("TIPO " + vehiculos.getTipo());
-		
 		vehiculos.setEstado(request.getParameter("estado"));
-		System.out.println("ESTADO " + vehiculos.getEstado());
-		
 		vehiculos.setAnio(Integer.parseInt(request.getParameter("anio")));
-		System.out.println("ANIO " + vehiculos.getAnio());
-		
 		vehiculos.setKm(Integer.parseInt(request.getParameter("km")));
-		System.out.println("KM " + vehiculos.getKm());
-		
 		vehiculos.setPrecio(Integer.parseInt(request.getParameter("precio_base")));
-		System.out.println("PRECIO " + vehiculos.getPrecio());
-		
 				
 		controlador.registrarVehiculos(vehiculos);
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	

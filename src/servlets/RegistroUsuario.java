@@ -45,23 +45,14 @@ public class RegistroUsuario extends HttpServlet {
 		usuario = new Usuario();
 		
 		usuario.setNombre(request.getParameter("nombre"));
-
 		usuario.setApellido(request.getParameter("apellido"));
-		
 		usuario.setMail(request.getParameter("mail"));
-		
 		usuario.setPassword(request.getParameter("contrasena"));
-		
 		usuario.setFechaNacimiento(request.getParameter("fechaNacimiento"));	
-		
 		usuario.setFechaVencimientoLicencia(request.getParameter("fechaVencimientoLicencia"));		
-		
 		usuario.setDni(Integer.parseInt(request.getParameter("dni")));		
-		
 		usuario.setDireccion(request.getParameter("direccion"));
-		
 		usuario.setTelefono(request.getParameter("telefono"));
-		
 		usuario.setAdmin("N");
 		
 		controlador.registrarUsuario(usuario);

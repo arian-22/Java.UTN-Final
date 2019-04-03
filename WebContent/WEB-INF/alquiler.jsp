@@ -132,8 +132,6 @@ $(document).ready(function() {
 
 					<div class="container-fluid">
 						<div class="row">
-							
-							
 								<div class="col-md-12">
 								
 								<%
@@ -208,7 +206,7 @@ $(document).ready(function() {
 								}
 							
 							%>
-								</div>							
+							</div>							
 						</div>
 					</div>
 				</div>

@@ -46,22 +46,16 @@ public class BuscarVehiculo extends HttpServlet {
 		
 		request.getSession().setAttribute("precioPersistido", v.getPrecio());		
 		
-		System.out.println("precio" + v.getPrecio());
-		
-		if (request.getParameter("btnbaja")!= null){
-			request.getSession().setAttribute("msjErrorBaja",1);
-			request.getSession().setAttribute("vehiculo-baja", v);
-			}
+		if (request.getParameter("btnbaja")!= null){ 
+				request.getSession().setAttribute("msjErrorBaja", 1);
+				request.getSession().setAttribute("vehiculo-baja", v);
+		}
 		else if(request.getParameter("btnmod")!= null){
 			request.getSession().setAttribute("msjErrorMod",1);
 			request.getSession().setAttribute("vehiculo-mod", v);
 			}
 			
-		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
-		
-		
-		
-		
+		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
 	}
 
 }

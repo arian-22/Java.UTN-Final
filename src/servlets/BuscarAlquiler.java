@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.omg.Messaging.SyncScopeHelper;
-
 import negocio.ControladorAlquiler;
 import entidades.Cli_Veh_Alq;
 
@@ -43,14 +41,11 @@ public class BuscarAlquiler extends HttpServlet {
 		doGet(request, response);
 		
 		ControladorAlquiler ctrl = new ControladorAlquiler();
-		
-		
 		Cli_Veh_Alq alq = new Cli_Veh_Alq();
 		
 		alq = ctrl.buscarAlquiler(Integer.parseInt(request.getParameter("num_alquiler")));	
 		
-		if (request.getParameter("btnReserva")!= null){
-			
+		if (request.getParameter("btnReserva")!= null){	
 			if(alq.getAlquiler() == null){	
 				request.getSession().setAttribute("msjErrorReserva", "El Alquiler no fue encontrado.");		
 			}else {
@@ -61,11 +56,9 @@ public class BuscarAlquiler extends HttpServlet {
 					request.getSession().removeAttribute("msjErrorReserva");
 					request.getSession().setAttribute("alquiler-reserva", alq);
 				}
-				
 			}
 		}
 		else if(request.getParameter("btnDevolucion")!= null){
-			
 			if(alq.getAlquiler() == null) {		
 				request.getSession().removeAttribute("alquiler-dev");
 				request.getSession().setAttribute("msjErrorDev", "El Alquiler no fue encontrado.");	
@@ -81,9 +74,7 @@ public class BuscarAlquiler extends HttpServlet {
 				}
 				
 			}
-		}
-		
-		request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
-		
+		}	
+		request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);	
 	}
 }

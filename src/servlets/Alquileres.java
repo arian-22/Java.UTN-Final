@@ -58,7 +58,8 @@ public class Alquileres extends HttpServlet {
 			}
 		else if (request.getParameter("btn-devolucion")!= null){
 			
-			float totalAPagar = 0;			
+			float totalAPagar = 0;		
+			int dias = 0;
 			
 			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-dev");
 			cva.getVehiculo().setEstado("Disponible");
@@ -68,8 +69,6 @@ public class Alquileres extends HttpServlet {
 			if( cva.getAlquiler().getFechaDesde().compareTo(fechaInicioCalculo) > 0) {
 				fechaInicioCalculo = cva.getAlquiler().getFechaDesde();
 			}
-			
-			int dias = 0;
 			
 			if (cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) < 0){
 				//si la fechaHasta es anterior a la actual el compare da < 0
@@ -83,7 +82,6 @@ public class Alquileres extends HttpServlet {
 				
 				totalAPagar = cva.getAlquiler().getPrecioAlquiler()+dias*cva.getVehiculo().getPrecio() +dias*(cva.getVehiculo().getPrecio()*50)/100;
 			}
-			
 			else if(cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) == 0){
 				//si es devuelto el mismo día que termina el alquiler, el compare da 0
 				dias=(int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaInicioCalculo.getTime())/86400000);

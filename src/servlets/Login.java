@@ -18,7 +18,6 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Controlador controlador;
 	private Usuario usuario;
-
 	
     public Login() {
         //super();
@@ -33,7 +32,6 @@ public class Login extends HttpServlet {
 		doGet(request, response);
 		
 		controlador = new Controlador();
-		
 		String mail = request.getParameter("mail");
 		String pass = request.getParameter("pass");
 				
@@ -44,17 +42,14 @@ public class Login extends HttpServlet {
 			usuario = new Usuario();
 			usuario = controlador.recuperarUsuario(mail);
 	
-			request.getSession().setAttribute("user", usuario);
-			
-			request.getSession().setAttribute("msjErrorFecha", null);
-			
+			request.getSession().setAttribute("user", usuario);	
+			request.getSession().setAttribute("msjErrorFecha", null);	
 			
 			if(usuario.getAdmin().equals("S")){
 				request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);	
 			}else{
 				request.getRequestDispatcher("WEB-INF/inicioCliente.jsp").forward(request, response);
 			}
-			
 		}else{
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
