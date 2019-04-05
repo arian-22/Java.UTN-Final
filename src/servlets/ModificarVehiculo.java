@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,8 +62,17 @@ public class ModificarVehiculo extends HttpServlet {
 			vehiculos.setPrecio(Float.parseFloat(request.getParameter("precio_base")));
 		}
 		else seModificoPrecio = false;
-			controlador.actualizarVehiculos(vehiculos, seModificoPrecio);
-			
+		
+		try {
+			 controlador.actualizarVehiculos(vehiculos, seModificoPrecio);
+			 request.getSession().removeAttribute("errorModal");
+			 request.getSession().setAttribute("okModal", "Se ha modificaco el vehículo correctamente.");
+			 
+		 } catch (SQLException e) {
+			request.getSession().setAttribute("errorModal", e.getMessage());
+			request.getSession().removeAttribute("okModal");
+		 }
+
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
 	}
 

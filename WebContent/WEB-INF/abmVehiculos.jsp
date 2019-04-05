@@ -102,6 +102,9 @@ $(document).ready(function(){
 								<label> Marca </label> 
 								<select class="form-control" name="marca" required>
 									<option>BMW</option>
+									<option>Peugeot</option>
+									<option>Jeep</option>
+									<option>Kia</option>
 									<option>Chevrolet</option>
 								  	<option>Fiat</option>
 								  	<option>Ford</option>

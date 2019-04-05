@@ -66,12 +66,12 @@
 
 								<li>
 									<form action="URLs" method="post">
-										<button type="submit" name="btn-stock-autos">Autos</button>
+										<button type="submit" name="btn-stock-autos" style="width:100%; height:100%">Autos</button>
 									</form>
 								</li>
 								<li>
 									<form action="URLs" method="post">
-										<button type="submit" name="btn-stock-camionetas">Camionetas</button>
+										<button type="submit" name="btn-stock-camionetas" style="width:100%; height:100%">Camionetas</button>
 									</form>
 								</li>
 
@@ -90,7 +90,7 @@
 										u = (Usuario)session.getAttribute("user");
 										
 										 if(u.getAdmin().equals("S")){ %>
-							<form role="form" action="URLs" method="post" style="float: left;">
+							<form role="form" action="URLs" method="post" style="float: left; padding-top:5px">
 								<button type="submit" class="btn btn-primary btn-block colorFondoBase"	name="btn-home-admin"><i class="material-icons">home</i></button>
 							</form>
 
@@ -104,7 +104,7 @@
 								</ul>
 							</li>
 						<%} else { %>
-						<form role="form" action="URLs" method="post"  style="float: left;">
+						<form role="form" action="URLs" method="post"  style="float: left; padding-top:5px">
 							<button type="submit" class="btn btn-primary btn-block colorFondoBase"	name="btn-home-user"><i class="material-icons">home</i></button>
 						</form>
 						

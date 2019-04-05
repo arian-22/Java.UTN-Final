@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,8 +46,17 @@ public class EliminarVehiculo extends HttpServlet {
 		Vehiculos vehiculo = new Vehiculos();
 		
 		vehiculo = (Vehiculos)request.getSession().getAttribute("vehiculo-baja");
+		
+		try {
+			ctrl.eliminarVehiculo(vehiculo.getPatente());
+			request.getSession().removeAttribute("errorModal");
+			request.getSession().setAttribute("okModal", "Se ha eliminado el vehículo correctamente.");
 
-		ctrl.eliminarVehiculo(vehiculo.getPatente());
+		} catch (SQLException e) {
+			request.getSession().setAttribute("errorModal", e.getMessage());
+			request.getSession().removeAttribute("okModal");
+
+		}
 		
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
 		

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entidades.Vehiculos;
-import utils.ApplicationExceptions;
 
 public class DataVehiculos { 
 	

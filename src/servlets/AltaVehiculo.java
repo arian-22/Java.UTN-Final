@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import entidades.Vehiculos;
 import negocio.Controlador;
-import utils.ApplicationExceptions;
 
 /**
  * Servlet implementation class AltaVehiculo

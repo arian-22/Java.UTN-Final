@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import database.DataUsuarios;
 import entidades.Usuario;
 import entidades.Vehiculos;
-import utils.ApplicationExceptions;
 import database.DataVehiculos;
 public class Controlador {
 	
@@ -53,7 +52,7 @@ public class Controlador {
 		
 		dbVehiculos.add(v);
 	}
-	public void actualizarVehiculos(Vehiculos v, boolean seModificoPrecio){
+	public void actualizarVehiculos(Vehiculos v, boolean seModificoPrecio) throws SQLException {
 		DataVehiculos dbVehiculos = new DataVehiculos();
 		
 		dbVehiculos.update(v, seModificoPrecio);
@@ -66,7 +65,7 @@ public class Controlador {
 		vehiculo = dbVehiculos.getByPatente(nroPatente);
 		return vehiculo;
 	}
-	public void eliminarVehiculo(String nroPatente) {
+	public void eliminarVehiculo(String nroPatente) throws SQLException {
 		DataVehiculos dbVehiculos = new DataVehiculos();
 		
 		dbVehiculos.delete(nroPatente);

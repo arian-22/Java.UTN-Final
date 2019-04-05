@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,18 +43,19 @@ public class BuscarVehiculo extends HttpServlet {
 		doGet(request, response);
 		Controlador ctrl = new Controlador();
 		Vehiculos v = new Vehiculos();
+		
 		v = ctrl.recuperarVehiculo(request.getParameter("patente"));
 		
-		request.getSession().setAttribute("precioPersistido", v.getPrecio());		
+		request.getSession().setAttribute("precioPersistido", v.getPrecio());
 		
 		if (request.getParameter("btnbaja")!= null){ 
-				request.getSession().setAttribute("msjErrorBaja", 1);
-				request.getSession().setAttribute("vehiculo-baja", v);
-		}
-		else if(request.getParameter("btnmod")!= null){
-			request.getSession().setAttribute("msjErrorMod",1);
+			request.getSession().setAttribute("msjErrorBaja", 1);
+			request.getSession().setAttribute("vehiculo-baja", v);
+		
+		} else if(request.getParameter("btnmod")!= null){
+			request.getSession().setAttribute("msjErrorMod", 1);
 			request.getSession().setAttribute("vehiculo-mod", v);
-			}
+		}
 			
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
 	}

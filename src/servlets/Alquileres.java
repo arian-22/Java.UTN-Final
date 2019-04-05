@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -53,7 +54,12 @@ public class Alquileres extends HttpServlet {
 			
 			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-reserva");
 			cva.getVehiculo().setEstado("En uso");
-			ctrl.actualizarVehiculos(cva.getVehiculo(), false);
+			try {
+				ctrl.actualizarVehiculos(cva.getVehiculo(), false);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			}
 		else if (request.getParameter("btn-devolucion")!= null){
@@ -63,7 +69,12 @@ public class Alquileres extends HttpServlet {
 			
 			cva = (Cli_Veh_Alq)request.getSession().getAttribute("alquiler-dev");
 			cva.getVehiculo().setEstado("Disponible");
-			ctrl.actualizarVehiculos(cva.getVehiculo(), false);				
+			try {
+				ctrl.actualizarVehiculos(cva.getVehiculo(), false);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}				
 			
 			Date fechaInicioCalculo = new Date();		
 			if( cva.getAlquiler().getFechaDesde().compareTo(fechaInicioCalculo) > 0) {
