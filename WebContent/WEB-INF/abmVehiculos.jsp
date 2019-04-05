@@ -2,6 +2,9 @@
 
 <%
 	Controlador ctrl = ((Controlador) session.getAttribute("Ctrl"));
+	String titleModal = "";
+	String typeBtn = "";
+	String textModal = "";
 %>
 
 
@@ -19,8 +22,59 @@
 	});
 </script>
 
+
+
 <br>
 <br>
+
+<!-- Modal para errores  -->
+<% if(session.getAttribute("errorModal") != null){ 
+	titleModal = "Error";
+	typeBtn = "btn-danger";
+	textModal = (String) session.getAttribute("errorModal");
+	session.removeAttribute("errorModal");
+%>
+<script>
+$(document).ready(function(){
+	$('#myModal').modal({
+	  keyboard: false
+	})
+});
+</script>
+
+
+<%} else if(session.getAttribute("okModal") != null){
+	titleModal = "Gracias";
+	typeBtn = "btn-success";
+	textModal = (String) session.getAttribute("okModal");
+	session.removeAttribute("okModal");
+%>
+<script>
+$(document).ready(function(){
+	$('#myModal').modal({
+	  keyboard: false
+	})
+});
+</script>
+
+<%}%>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%=titleModal%></h4>
+      </div>
+      <div class="modal-body">
+        <p><%=textModal%></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn <%=typeBtn%>" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <div class="container">
 	<h2>Módulo ABM</h2>
@@ -33,71 +87,100 @@
 
 	<div class="tab-content">
 		<div id="altas" class="tab-pane fade in active">
-			<h3>Ingrese todos los datos del vehículo que desea agregar al
-				catálogo</h3>
+			<h3>Ingrese todos los datos del vehículo que desea agregar al catálogo</h3>
 			<div class="container-fluid">
-				<div class="row centrado">
-					<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12 formulario-ABM">
 						<h3 class="text-center">Nuevo Registro</h3>
 
 						<form role="form" action="AltaVehiculo" method="post">
 							<div class="form-group">
-								<label> Patente </label> <input type="text" class="form-control"
-									name="nro_patente" />
+								<label> Patente </label> 
+								<input type="text" class="form-control" name="nro_patente" required/>
 							</div>
 							<div class="form-group">
-								<label> Marca </label> <input type="text" class="form-control"
-									name="marca" />
+								<label> Marca </label> 
+								<select class="form-control" name="marca" required>
+									<option>BMW</option>
+									<option>Chevrolet</option>
+								  	<option>Fiat</option>
+								  	<option>Ford</option>
+								  	<option>Renault</option>
+								  	<option>Volkswagen</option>
+								</select>
 							</div>
 							<div class="form-group">
-								<label> Modelo </label> <input type="text" class="form-control"
-									name="modelo" />
+								<label> Modelo </label> 								
+								<input type="text" class="form-control" name="modelo" required />
 							</div>
 							<div class="form-group">
-								<label> Cantidad Asientos </label> <input type="text"
-									class="form-control" name="cant_asientos" />
+								<label> Cantidad Asientos </label>
+								<br>
+								<label class="radio-inline">
+								  <input type="radio" name="cant_asientos" value="1" required> 1
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="cant_asientos" value="2"> 2
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="cant_asientos" value="3"> 3
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="cant_asientos" value="4"> 4
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="cant_asientos" value="5"> 5
+								</label>
 							</div>
 							<div class="form-group">
-
-								<label> Año </label> <input type="text" class="form-control"
-									name="anio" />
+								<label> Año </label> 
+								<input type="number" min="1990" max="2040" class="form-control" name="anio" required/>
 							</div>
 							<div class="form-group">
-								<label> Transmisión </label> <input type="text"
-									class="form-control" name="transmision" />
+								<label> Transmisión </label> 
+								<select class="form-control" name="transmision" required>
+									<option>Automática</option>
+									<option>Manual</option>
+								</select>
 							</div>
 							<div class="form-group">
-
-								<label> Estado </label> <input type="text" class="form-control"
-									name="estado" />
-							</div>
-
-							<div class="form-group">
-
-								<label> Baúl </label> <input type="text" class="form-control"
-									name="baul" />
+								<label> Baúl </label> 
+								<div class="checkbox">
+							        <label>
+							          <input type="checkbox" name="baul"> Sí posee 
+							        </label>
+							    </div>
 							</div>
 							<div class="form-group">
-								<label> Tipo </label> <input type="text" class="form-control"
-									name="tipo" />
+								<label> Tipo </label> 
+								<select class="form-control" name="tipo" required>
+									<option value="A">Auto</option>
+									<option value="C">Camioneta</option>
+								</select>
 							</div>
 							<div class="form-group">
-								<label> Km </label> <input type="text" class="form-control"
-									name="km" />
+								<label>Kilometraje</label> 
+								<div class="input-group">
+							      	<input type="number" class="form-control" name="km" placeholder="Kilometros" required>
+							      	<div class="input-group-addon">Km.</div>
+						      	</div>
 							</div>
 							<div class="form-group">
 								<label> Precio por día </label>
-								<input type="text" class="form-control" name="precio_base" />
+								<div class="input-group">
+									<div class="input-group-addon">$</div>
+							      	<input type="number" class="form-control" name="precio_base" placeholder="Precio" required>
+						      	</div>								
 							</div>
 							<div class="form-group">
-
-								<label for="exampleInputFile"> Imagen del vehículo </label> <input
-									type="file" id="exampleInputFile" />
-
+								<label for="exampleInputFile"> Imagen del vehículo </label> 
+								<input type="file" id="exampleInputFile" />
 							</div>
-
-							<button type="submit" class="btn btn-primary btn-block">
-								Guardar</button>
+							
+							<div style="padding: 0% 10%">					
+								<button type="submit" class="btn btn-primary btn-block">Guardar</button>
+							</div>
+							
 						</form>
 					</div>
 				</div>
@@ -108,25 +191,14 @@
 			<h3>Ingrese patente del vehículo a dar de baja</h3>
 			<div class="row">
 				<div class="col-md-12">
-					<form class="form-horizontal" role="form" action="BuscarVehiculo"
-						method="post">
-
-						<div class="form-group">
-
-							<label class="col-sm-2 control-label"> Patente </label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="patente" required/>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-
-								<button type="submit" name="btnbaja" class="btn btn-default">
-									Buscar</button>
-							</div>
+					<form class="form-horizontal" role="form" action="BuscarVehiculo" method="post">
+						<div class="form-group" style=" padding-left: 15px; display: flex;">
+							<label class="control-label" style="padding-right: 10px; float: left;"> Patente </label>
+							<input type="text" class="form-control" name="patente" required="" style="width: 200px; float: left;">
+							<button type="submit" name="btnbaja" class="btn btn-default" style="margin-left: 15px;">Buscar</button>
 						</div>
 					</form>
+					<hr>
 
 					<div class="container-fluid">
 						<div class="row">
@@ -189,29 +261,19 @@
 			<h3>Ingrese patente del vehículo a modificar</h3>
 			<div class="row">
 				<div class="col-md-12">
-					<form class="form-horizontal" role="form" action="BuscarVehiculo"
-						method="post">
-
-						<div id="imputBusqueda" class="form-group">
-
-							<label for="inputPassword3" class="col-sm-2 control-label">
-								Patente </label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="patente" required/>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-
-								<button type="submit" name="btnmod" class="btn btn-default">
-									Buscar</button>
-							</div>
+					<form class="form-horizontal" role="form" action="BuscarVehiculo" method="post">
+						<div class="form-group" style=" padding-left: 15px; display: flex;">
+							<label class="control-label" style="padding-right: 10px; float: left;"> Patente </label>
+							<input type="text" class="form-control" name="patente" required="" style="width: 200px; float: left;">
+							<button type="submit" name="btnmod" class="btn btn-default" style="margin-left: 15px;">Buscar</button>
 						</div>
 					</form>
+					<hr>
 
 					<div class="container-fluid">
-						<div class="row">					
+						<div class="row">
+						  <div class="col-md-12 formulario-ABM">
+										
 
 							<%
 								if (session.getAttribute("vehiculo-mod") != null) {
@@ -281,6 +343,7 @@
 										Guardar modificaciones</button>
 								</div>
 							</form>
+						  </div>
 
 							<%
 								} else if (session.getAttribute("msjErrorMod") != null) {
@@ -309,8 +372,6 @@
 	</div>
 
 </div>
-<a href="javascript:window.history.go(-1);" class="btn btn-link"
-	type="button">Atrás</a>
 <hr>
 
 

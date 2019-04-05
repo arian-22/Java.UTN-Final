@@ -21,7 +21,7 @@
 <br>
 <br>
 
-<div class="container-fluid">
+<div class="container-fluid seleccionDeVehiculo">
 	<div class="row">
 		<div class="col-md-12">
 
@@ -29,9 +29,9 @@
 			<div id="stock" class="tab-pane fade in active">
 
 				<div class="container-fluid">
-					<table class="table table-striped">
+					<table class="table table-striped table-hover">
 						<thead>
-							<tr class="bg-primary">
+							<tr class="bg-primary colorFondoBase">
 								<th scope="col">Patente</th>
 								<th scope="col">Marca</th>
 								<th scope="col">Modelo</th>
@@ -43,7 +43,7 @@
 								<th scope="col">Asientos</th>
 								<th scope="col">Precio por día</th>
 								<th scope="col">Imagen</th>
-								<th scope="col">Acción</th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -75,7 +75,7 @@
 									<form role="form"
 										action="DetalleAlquiler?vehiculo-selected=<%=vehiculos.get(i).getPatente()%>&fecha_desde=<%=fecha_desde%>&fecha_hasta=<%=fecha_hasta%>"
 										method="post">
-										<button type="submit" class="btn btn-outline-dark"
+										<button type="submit" class="btn btn-outline-dark "
 											name="btn<%=i%>">Seleccionar</button>
 									</form>
 								</td>

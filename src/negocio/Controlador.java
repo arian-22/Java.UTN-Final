@@ -1,10 +1,12 @@
 package negocio;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import database.DataUsuarios;
 import entidades.Usuario;
 import entidades.Vehiculos;
+import utils.ApplicationExceptions;
 import database.DataVehiculos;
 public class Controlador {
 	
@@ -46,7 +48,7 @@ public class Controlador {
 		return user;
 	}
 
-	public void registrarVehiculos(Vehiculos v){
+	public void registrarVehiculos(Vehiculos v) throws SQLException {
 		DataVehiculos dbVehiculos = new DataVehiculos();
 		
 		dbVehiculos.add(v);

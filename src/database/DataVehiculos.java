@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entidades.Vehiculos;
+import utils.ApplicationExceptions;
 
 public class DataVehiculos { 
 	
@@ -59,7 +60,7 @@ public class DataVehiculos {
 		return v;
 	}
 
-	public void add(Vehiculos v){
+	public void add(Vehiculos v) throws SQLException {
 			
 			PreparedStatement stmt = null;
 			
@@ -93,8 +94,11 @@ public class DataVehiculos {
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
+				System.out.println("Hubo un problema. --DataVehiculos");
 				
+				throw e;
+				
+			} finally {
 				
 				FactoryConexion.getInstancia().releaseConn();
 			}

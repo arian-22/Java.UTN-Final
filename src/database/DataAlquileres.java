@@ -299,7 +299,7 @@ public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
 		    	Vehiculos v = new Vehiculos();
 				v.setModelo(rs.getString("modelo"));
 				v.setMarca(rs.getString("marca"));
-				v.setMarca(rs.getString("km"));
+				v.setKm(rs.getFloat("km"));
 			
 				Alquiler a = new Alquiler();
 		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));

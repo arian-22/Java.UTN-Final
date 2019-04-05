@@ -91,7 +91,7 @@
 										
 										 if(u.getAdmin().equals("S")){ %>
 							<form role="form" action="URLs" method="post" style="float: left;">
-								<button type="submit" class="btn btn-primary btn-block"	name="btn-home-admin"><i class="material-icons">home</i></button>
+								<button type="submit" class="btn btn-primary btn-block colorFondoBase"	name="btn-home-admin"><i class="material-icons">home</i></button>
 							</form>
 
 							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>, <%= u.getNombre() %><strong	class="caret"></strong></a>
@@ -105,7 +105,7 @@
 							</li>
 						<%} else { %>
 						<form role="form" action="URLs" method="post"  style="float: left;">
-							<button type="submit" class="btn btn-primary btn-block"	name="btn-home-user"><i class="material-icons">home</i></button>
+							<button type="submit" class="btn btn-primary btn-block colorFondoBase"	name="btn-home-user"><i class="material-icons">home</i></button>
 						</form>
 						
 						<li class="dropdown"><a href="inicioCliente.jsp" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>,	<%= u.getNombre() %><strong class="caret"></strong></a>

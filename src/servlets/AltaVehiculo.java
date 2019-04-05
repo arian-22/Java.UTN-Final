@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entidades.Vehiculos;
 import negocio.Controlador;
+import utils.ApplicationExceptions;
 
 /**
  * Servlet implementation class AltaVehiculo
@@ -47,14 +50,28 @@ public class AltaVehiculo extends HttpServlet {
 		vehiculos.setModelo(request.getParameter("modelo"));
 		vehiculos.setCantAsientos(Integer.parseInt(request.getParameter("cant_asientos")));
 		vehiculos.setTransmision(request.getParameter("transmision"));
-		vehiculos.setBaul(request.getParameter("baul"));
+		if(Boolean.parseBoolean(request.getParameter("baul"))){
+			vehiculos.setBaul("No");
+		} else {
+			vehiculos.setBaul("Si");
+		}
 		vehiculos.setTipo(request.getParameter("tipo"));
-		vehiculos.setEstado(request.getParameter("estado"));
+		vehiculos.setEstado("Disponible");
 		vehiculos.setAnio(Integer.parseInt(request.getParameter("anio")));
-		vehiculos.setKm(Integer.parseInt(request.getParameter("km")));
-		vehiculos.setPrecio(Integer.parseInt(request.getParameter("precio_base")));
+		vehiculos.setKm(Float.parseFloat(request.getParameter("km")));
+		vehiculos.setPrecio(Float.parseFloat(request.getParameter("precio_base")));
 				
-		controlador.registrarVehiculos(vehiculos);
+		try {
+			controlador.registrarVehiculos(vehiculos);
+			request.getSession().removeAttribute("errorModal");
+			request.getSession().setAttribute("okModal", "Se ha registrado el nuevo vehículo correctamente.");
+
+		} catch (SQLException e) {
+			request.getSession().setAttribute("errorModal", e.getMessage());
+			request.getSession().removeAttribute("okModal");
+
+		}
+		
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
 	}
 

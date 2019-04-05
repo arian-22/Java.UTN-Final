@@ -13,7 +13,7 @@
 							<h3>Realizar nueva reserva</h3>
 							<p>Ingrese aquí para realizar una nueva reserva.</p>
 							<form action="URLs" method="post">
-								<button name="btnNuevaReserva" type="submit" class="btn btn-primary">Ingresar</button>
+								<button name="btnNuevaReserva" type="submit" class="btn btn-primary colorFondoBase">Ingresar</button>
 							</form>
 						</div>
 					</div>
@@ -27,7 +27,7 @@
 							<h3>Ver mis reservas</h3>
 							<p>Ingrese aquí para ver su historial de reservas.</p>
 							<form action="URLs" method="post">
-								<button name="btnVerReservas" type="submit" class="btn btn-primary">Ingresar</button>
+								<button name="btnVerReservas" type="submit" class="btn btn-primary colorFondoBase">Ingresar</button>
 							</form>
 						</div>
 					</div>

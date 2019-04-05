@@ -1,11 +1,35 @@
 @CHARSET "UTF-8";
 
+/*General*/
+.colorFondoBase{
+	background-color: #3881a0;
+}
+
+/* Login */
 .centrado {
-	margin-top: 40px;
-	margin-right: 300px;
-	margin-left: 300px;
+	margin-top: 7%;
+	/* margin-right: 35%;
+	margin-left: 35%; */
 }
 
 .baja-botones {
 	margin-top: 15px;
+}
+
+.centrado .input-box {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+/*ABM vehiculos */
+.formulario-ABM {
+	padding:  0% 20%;
+	font-size: 16px;
+	
+}
+
+/*Seleccion de vehículos para alquilar*/
+.seleccionDeVehiculo .btn-outline-dark:hover {
+    color: #fff;
+    background-color: #3fc7c7;
 }

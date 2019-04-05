@@ -30,7 +30,7 @@
 					<div class="container-fluid">
 						<table class="table table-striped">
 							<thead>
-								<tr class="bg-primary">
+								<tr class="bg-primary colorFondoBase">
 									<th scope="col">Patente</th>
 									<th scope="col">Modelo</th>
 									<th scope="col">Marca</th>
@@ -83,7 +83,7 @@
 					<div class="container-fluid">
 						<table class="table table-striped">
 							<thead>
-								<tr class="bg-primary">
+								<tr class="bg-primary colorFondoBase">
 									<th scope="col">Nro. Alquiler</th>
 									<th scope="col">Patente</th>
 									<th scope="col">Marca</th>
