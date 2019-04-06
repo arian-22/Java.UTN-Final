@@ -1,8 +1,17 @@
 <%@ include file="WEB-INF/cabecera.jsp"%>
 
 <div class="row">
-	<div class="col-md-12" style="background-image: url('https://cdn.cienradios.com/wp-content/uploads/sites/3/2019/03/Tesla-auto.jpg')">
-		<div class="col-md-9" style="width:50%; height:100%; margin-top:5%; margin-bottom:23%; margin-left:25%">
+	<div class="col-md-12" style="height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+    overflow: -webkit-paged-x;
+    background-size: cover;
+    background-image: url('https://cdn.cienradios.com/wp-content/uploads/sites/3/2019/03/Tesla-auto.jpg')">
+    
+		<div class="col-md-9" style="width:50%; height:100%; margin-top:5%; margin-bottom:23%; margin-left:25%; padding-left: 150px; padding-right: 150px;">
 			<h1 class="text-center">Iniciar Sesión</h1>
 			<form role="form" action="Login" method="post">
 				<div class="form-group">

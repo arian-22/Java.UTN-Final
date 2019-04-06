@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,20 +45,27 @@ public class BuscarVehiculo extends HttpServlet {
 		Controlador ctrl = new Controlador();
 		Vehiculos v = new Vehiculos();
 		
-		v = ctrl.recuperarVehiculo(request.getParameter("patente"));
-		
-		request.getSession().setAttribute("precioPersistido", v.getPrecio());
-		
-		if (request.getParameter("btnbaja")!= null){ 
-			request.getSession().setAttribute("msjErrorBaja", 1);
-			request.getSession().setAttribute("vehiculo-baja", v);
-		
-		} else if(request.getParameter("btnmod")!= null){
-			request.getSession().setAttribute("msjErrorMod", 1);
-			request.getSession().setAttribute("vehiculo-mod", v);
+		try {
+			v = ctrl.recuperarVehiculo(request.getParameter("patente"));
+			
+			request.getSession().setAttribute("precioPersistido", v.getPrecio());
+			
+			if (request.getParameter("btnbaja")!= null){				
+				request.getSession().setAttribute("vehiculo-baja", v);
+			
+			} else if(request.getParameter("btnmod")!= null){
+				request.getSession().setAttribute("vehiculo-mod", v);
+			}
+		} catch (SQLException e) {
+			
+			request.getSession().setAttribute("errorModal", e.getMessage());
+			
+		}
+		finally {
+			request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
 		}
 			
-		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
+		
 	}
 
 }

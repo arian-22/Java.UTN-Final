@@ -17,7 +17,7 @@
 		Date fechaD = format.parse(fecha_desde);
 		Date fechaH = format.parse(fecha_hasta);
 
-		SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/YYYY");
+		SimpleDateFormat format2 = new SimpleDateFormat("dd MMM YYYY");
 
 		fecha_desde = format2.format(fechaD);
 		fecha_hasta = format2.format(fechaH);
@@ -29,60 +29,98 @@
 		session.setAttribute("precioTotal", precioTotal);
 		
 %>
-
-<div style="width: 50%;  margin: auto 20%" class="panel panel-info">
-	<div class="panel-heading">
-		<h1 class="panel-title"><b><%=v.getModelo()%> | <%=v.getMarca()%></b></h1>
-	</div>
-
-	<div class="panel-body">
-		<p>Patente: <%=v.getPatente()%></p>
-		<p>Kilometros: <%=v.getKm()%></p>
-		<p>Fecha desde: <%= fecha_desde %>
-		<p>Fecha hasta: <%= fecha_hasta %>
-		<p>Precio por dia: AR$<%= v.getPrecio() %>
-		<h3><b>Precio total de alquiler: <span class="label label-default">AR$<%= precioTotal %></span></b></h3>
-	</div>
-
-	<div class="panel-footer">
+<div style="height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+    overflow: -webkit-paged-x;
+    background-image: url(https://www.ford.mx/content/ford/mx/es_mx/home/autos/mustang/_jcr_content/par/billboard/imageComponent/image.imgs.full.high.jpg);">
 	
-		<form action="RegistrarAlquiler" role="form" method="post">
+	<div style="margin: 6% 30%; box-shadow: 0px 0px 20px 4px;" class="panel panel-info">
+		<div class="panel-heading" style="text-align: center;">
+			<h1 class="panel-title" style="font-size: 26px; font-weight: bold;">Datos del Alquiler</h1>
+		</div>
+	
+		<div class="panel-body" style="text-align: center; font-size: 18px;">
 		
-			<label> Tarjeta de Credito </label> <input type="number" max="99999999999999999999" class="form-control" name="credit-card" required/>
-			
 			<div class="row">
 				<div class="col-md-6">
-						<button type="submit" style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-success" aria-label="Left Align">
-							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Confirmar Alquiler
-						</button>
+					<h3><b><%=v.getModelo()%> | <%=v.getMarca()%></b></h3>
+					<hr>
+					
+					<p><b>Patente</b> 
+					<p><%=v.getPatente()%></p>
+					
+					<p><b>Kilometros</b></p>
+					<p><%=v.getKm()%></p>
+					
+					<p><b>Transmisión</b></p>
+					<p><%=v.getTransmision()%></p>
 				</div>
-				<div class="col-md-6" style="text-align: right;">
-					<button style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-danger" aria-label="Left Align">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Cancelar
-					</button>
+				
+				<div class="col-md-6">
+					<h3><b>Resumen</b></h3>
+					<hr>
+					
+					<p><b>Desde</b></p>
+					<p><%= fecha_desde %></p>
+				
+					<p><b>Hasta</b></p>
+					<p><%= fecha_hasta %></p>
+				
+					<p><b>Precio por dia</b></p>
+					<p>AR$ <%= v.getPrecio() %></p>
 				</div>
 			</div>
-		</form>
+			<hr>
+			<div>
+				<h3><b>Precio total de alquiler</b></h3>
+				<p><span class="label label-default colorFondoBase" style="font-size: 28px;">AR$ <%= precioTotal %></span></p>
+			</div>
+		</div>
+	
+		<div class="panel-footer">
+		
+			<form action="RegistrarAlquiler" role="form" method="post">
+				
+				<label> Tarjeta de Credito </label> 
+				<input style="width: 300px;" type="text" maxlength="20" minlength="18" title="Ingrese un número válido de Tarjeta de Crédito" pattern="[0-9]{18,20}" class="form-control" name="credit-card" required/>
+				<hr>
+				<div class="row">	
+					<div class="col-md-6">
+						<button type="submit" style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-success" aria-label="Left Align">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 10px;"></span>Confirmar Alquiler
+						</button>
+					</div>
+					<div class="col-md-6" style="text-align: right;">
+						<button style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-danger" aria-label="Left Align">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true" style="padding-right: 10px;"></span>Cancelar
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	
 	</div>
-
+	<%
+	} else {
+	%>
+	<div class="alert alert-dismissable alert-danger">
+	
+		<button type="button" class="close" data-dismiss="alert"
+			aria-hidden="true">x</button>
+		<h4>
+			<strong> Error! </strong>
+		</h4>
+		Error interno. Vuelva a intentarlo mas tarde. <a href="#"
+			class="alert-link"></a>
+	</div>
+	<%
+		}
+	%>
 </div>
-<%
-} else {
-%>
-<div class="alert alert-dismissable alert-danger">
-
-	<button type="button" class="close" data-dismiss="alert"
-		aria-hidden="true">x</button>
-	<h4>
-		<strong> Error! </strong>
-	</h4>
-	Error interno. Vuelva a intentarlo mas tarde. <a href="#"
-		class="alert-link"></a>
-</div>
-<%
-	}
-%>
-
 
 
 

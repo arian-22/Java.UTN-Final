@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-/*General*/
+/* General */
 .colorFondoBase{
 	background-color: #3881a0;
 }
@@ -21,15 +21,35 @@
 	margin-bottom: 10px;
 }
 
-/*ABM vehiculos */
+/* ABM vehiculos */
 .formulario-ABM {
-	padding:  0% 20%;
+	/*padding:  0% 20%;*/
 	font-size: 16px;
+	/*padding: 25px 50px;*/
+    border-radius: 15px;
+	/*background: linear-gradient(45deg, #3881a0, #3881a078);*/
+    box-shadow: 0px 0px 20px 5px black;
 	
 }
 
-/*Seleccion de vehículos para alquilar*/
+/* Seleccion de vehículos para alquilar */
 .seleccionDeVehiculo .btn-outline-dark:hover {
     color: #fff;
     background-color: #3fc7c7;
+}
+
+/* Inicio Admin */
+.sectionAction {
+	height: 550px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.sectionAction .imgContainer {
+	height: 350px;
+}
+
+.sectionAction .imgContainer .img {
+	height: 100%;
+    width: 100%;
 }

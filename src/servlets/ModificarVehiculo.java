@@ -45,7 +45,7 @@ public class ModificarVehiculo extends HttpServlet {
 		boolean seModificoPrecio;
 		Controlador controlador = new Controlador();
 		Vehiculos vehiculos = new Vehiculos();
-		
+				
 		vehiculos.setPatente(request.getParameter("nro_patente"));
 		vehiculos.setMarca(request.getParameter("marca"));
 		vehiculos.setModelo(request.getParameter("modelo"));
@@ -61,17 +61,25 @@ public class ModificarVehiculo extends HttpServlet {
 			seModificoPrecio = true;
 			vehiculos.setPrecio(Float.parseFloat(request.getParameter("precio_base")));
 		}
-		else seModificoPrecio = false;
+		else {
+			seModificoPrecio = false;
+		}
 		
 		try {
-			 controlador.actualizarVehiculos(vehiculos, seModificoPrecio);
-			 request.getSession().removeAttribute("errorModal");
-			 request.getSession().setAttribute("okModal", "Se ha modificaco el vehículo correctamente.");
+			controlador.actualizarVehiculos(vehiculos, seModificoPrecio);
+			
+			request.getSession().removeAttribute("errorModal");
+			request.getSession().setAttribute("okModal", "Se ha modificaco el vehículo correctamente.");
 			 
 		 } catch (SQLException e) {
 			request.getSession().setAttribute("errorModal", e.getMessage());
 			request.getSession().removeAttribute("okModal");
 		 }
+		
+		request.getSession().removeAttribute("vehiculo-baja");
+		request.getSession().removeAttribute("msjErrorBaja");
+		request.getSession().removeAttribute("vehiculo-mod");
+
 
 		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
 	}

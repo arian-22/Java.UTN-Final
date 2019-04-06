@@ -11,7 +11,7 @@ import entidades.Vehiculos;
 public class DataVehiculos { 
 	
 	
-	public Vehiculos getByPatente(String nroPatente){	
+	public Vehiculos getByPatente(String nroPatente) throws SQLException{	
 		
 	Vehiculos v = null;
 	
@@ -41,10 +41,11 @@ public class DataVehiculos {
 			v.setPrecio(rs.getFloat("precio_base"));
 			
 			}else{
-				System.out.println("La consulta no devuelve nada.");
+				throw new SQLException("El vehículo que intenta buscar no existe. Por favor, vuelva a intentar.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw e;
 		}finally{
 			if(rs!=null) {
 				try {
@@ -242,7 +243,7 @@ public class DataVehiculos {
 	    return vehiculos;
 	}
 
-	public void update(Vehiculos v, boolean seModificoPrecio) {
+	public void update(Vehiculos v, boolean seModificoPrecio) throws SQLException {
 		PreparedStatement stmt = null;
 		
 		try {
@@ -277,6 +278,8 @@ public class DataVehiculos {
 					
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw e;
+			
 		} finally {
 			FactoryConexion.getInstancia().releaseConn();
 		}

@@ -69,7 +69,7 @@ $(document).ready(function(){
         <p><%=textModal%></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn <%=typeBtn%>" data-dismiss="modal">Close</button>
+        <button type="button" class="btn <%=typeBtn%>" data-dismiss="modal">Cerrar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -89,15 +89,27 @@ $(document).ready(function(){
 		<div id="altas" class="tab-pane fade in active">
 			<h3>Ingrese todos los datos del vehículo que desea agregar al catálogo</h3>
 			<div class="container-fluid">
-				<div class="row">
+				<div class="row" style="padding: 2% 20%;">
 					<div class="col-md-12 formulario-ABM">
-						<h3 class="text-center">Nuevo Registro</h3>
-
-						<form role="form" action="AltaVehiculo" method="post">
+						<h2 class="text-center">Nuevo Vehiculo</h2>
+						<hr>
+						<form role="form" action="AltaVehiculo" method="post">		
+											
 							<div class="form-group">
 								<label> Patente </label> 
-								<input type="text" class="form-control" name="nro_patente" required/>
+								<div class="row">
+								  <div class="col-xs-2">
+								    <input type="text" maxlength="2" minlength="2" class="form-control" pattern="[a-zA-Z]{2,2}" title="Deben ser 2 letras." name="nro_patenteA" required>
+								  </div>
+								  <div class="col-xs-2">
+								    <input type="text" maxlength="3" minlength="3" 	class="form-control" pattern="[0-9]{3,3}" title="Deben ser 3 numeros." name="nro_patenteB" required>
+								  </div>
+								  <div class="col-xs-2">
+								    <input type="text" maxlength="2" minlength="2" class="form-control" pattern="[a-zA-Z]{2,2}" title="Deben ser 2 letras." name="nro_patenteC" required>
+								  </div>
+								</div>								
 							</div>
+							
 							<div class="form-group">
 								<label> Marca </label> 
 								<select class="form-control" name="marca" required>
@@ -112,10 +124,12 @@ $(document).ready(function(){
 								  	<option>Volkswagen</option>
 								</select>
 							</div>
+							
 							<div class="form-group">
 								<label> Modelo </label> 								
 								<input type="text" class="form-control" name="modelo" required />
 							</div>
+							
 							<div class="form-group">
 								<label> Cantidad Asientos </label>
 								<br>
@@ -135,10 +149,12 @@ $(document).ready(function(){
 								  <input type="radio" name="cant_asientos" value="5"> 5
 								</label>
 							</div>
+							
 							<div class="form-group">
 								<label> Año </label> 
 								<input type="number" min="1990" max="2040" class="form-control" name="anio" required/>
 							</div>
+							
 							<div class="form-group">
 								<label> Transmisión </label> 
 								<select class="form-control" name="transmision" required>
@@ -146,6 +162,7 @@ $(document).ready(function(){
 									<option>Manual</option>
 								</select>
 							</div>
+							
 							<div class="form-group">
 								<label> Baúl </label> 
 								<div class="checkbox">
@@ -154,6 +171,7 @@ $(document).ready(function(){
 							        </label>
 							    </div>
 							</div>
+							
 							<div class="form-group">
 								<label> Tipo </label> 
 								<select class="form-control" name="tipo" required>
@@ -161,6 +179,7 @@ $(document).ready(function(){
 									<option value="C">Camioneta</option>
 								</select>
 							</div>
+							
 							<div class="form-group">
 								<label>Kilometraje</label> 
 								<div class="input-group">
@@ -168,6 +187,7 @@ $(document).ready(function(){
 							      	<div class="input-group-addon">Km.</div>
 						      	</div>
 							</div>
+							
 							<div class="form-group">
 								<label> Precio por día </label>
 								<div class="input-group">
@@ -175,13 +195,16 @@ $(document).ready(function(){
 							      	<input type="number" class="form-control" name="precio_base" placeholder="Precio" required>
 						      	</div>								
 							</div>
+							
 							<div class="form-group">
 								<label for="exampleInputFile"> Imagen del vehículo </label> 
 								<input type="file" id="exampleInputFile" />
 							</div>
 							
-							<div style="padding: 0% 10%">					
-								<button type="submit" class="btn btn-primary btn-block">Guardar</button>
+							<hr>
+							
+							<div style="padding: 3% 25%">					
+								<button type="submit" class="btn btn-primary btn-block colorFondoBase">Guardar</button>
 							</div>
 							
 						</form>
@@ -211,50 +234,43 @@ $(document).ready(function(){
 									Vehiculos v = new Vehiculos();
 									v = (Vehiculos) session.getAttribute("vehiculo-baja");
 							%>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="alert alert-dismissable alert-info">
-
-										<button type="button" class="close" data-dismiss="alert"
-											aria-hidden="true">×</button>
-										<h4>
-											<strong> Vehículo: <%=v.getPatente()%>
-											</strong>
-										</h4>
-
-										<strong> Marca: <%=v.getMarca()%>
-										</strong> <br> <strong> Modelo: <%=v.getModelo()%>
-										</strong> <br> <strong> Estado: <%=v.getEstado()%>
-										</strong> <br>
-										<form role="form" action="EliminarVehiculo" method="post">
-											<div>
-												<button type="submit" class="btn btn-danger btn-default">
-													Eliminar</button>
-												<button type="button" class="btn btn-default "
-													data-dismiss="alert" aria-hidden="true">Cancelar</button>
-											</div>
-										</form>
-									</div>
-
+							<div class="row" style="padding: 0% 20%; text-align: center;">
+							
+								<div class="col-md-12 formulario-ABM">
+									<form role="form" action="EliminarVehiculo" method="post">
+										
+										<div class="form-group" style="text-align: center;">
+											<h2><strong>Vehículo</strong></h2>
+											<span class="label label-info" style="font-size: 20px;"><%=v.getPatente()%></span>
+										</div>
+										
+										<hr>
+										
+										<div style="font-size: 18px;">
+											<p><strong> Marca </strong></p>
+											<p><%=v.getMarca()%>  </p>
+											<br> 
+											<p><strong> Modelo </strong></p> 
+											<p><%=v.getModelo()%> </p> 
+											<br> 
+											<p><strong> Estado: </strong></p>
+											<p><%=v.getEstado()%> </p>
+											<br>
+										</div>
+										
+										<hr>
+										
+										<div  style="padding: 3% 25%">
+											<button type="submit" class="btn btn-danger btn-default"> Eliminar</button>
+											<button type="button" class="btn btn-default" data-dismiss="alert" aria-hidden="true">Cancelar</button>
+										</div>										
+									</form>
 								</div>
+							
 							</div>
 							
-							<% 
-								} else if (session.getAttribute("msjErrorBaja") != null) {
-								
-							%>
-								<div class="alert alert-dismissable alert-danger">
-	
-									<button type="button" class="close" data-dismiss="alert"
-										aria-hidden="true">×</button>
-									<h4>
-										<strong> Error! </strong>
-									</h4>
-									El vehículo no fue encontrado <a href="#" class="alert-link"></a>
-								</div>
-							<%
-								}
-							%>
+							<% } %>
+							
 						</div>
 					</div>
 				</div>
@@ -274,96 +290,140 @@ $(document).ready(function(){
 					<hr>
 
 					<div class="container-fluid">
-						<div class="row">
-						  <div class="col-md-12 formulario-ABM">
-										
-
+						<div class="row" style="padding: 0% 20%;">
 							<%
 								if (session.getAttribute("vehiculo-mod") != null) {
 									Vehiculos v = new Vehiculos();
 									v = (Vehiculos) session.getAttribute("vehiculo-mod");
 							%>
+							
+						  <div class="col-md-12 formulario-ABM">
 							<form role="form" action="ModificarVehiculo" method="post">
-								<div class="form-group">
-									<h2>
-										<strong>Patente:</strong>
-										<%=v.getPatente()%></h2>
-									<input type="text" class="form-control" name="nro_patente"
-										style="display: none" value="<%=v.getPatente()%>" />
+								
+								<div class="form-group" style="text-align: center;">
+									<h2><strong>Vehículo</strong></h2>
+									<span class="label label-info" style="font-size: 20px;"><%=v.getPatente()%></span>
+									<input style="display: none;" name="nro_patente" value="<%=v.getPatente()%>">
 								</div>
+								
+								<hr>
+								
 								<div class="form-group">
-									<label> Marca </label> <input type="text" class="form-control"
-										name="marca" value="<%=v.getMarca()%>" />
+									<label> Marca </label> 
+									<select class="form-control" name="marca" required>
+									  	<option value="<%=v.getMarca()%>" selected disabled hidden ><%=v.getMarca()%></option>
+										<option>BMW</option>
+										<option>Peugeot</option>
+										<option>Jeep</option>
+										<option>Kia</option>
+										<option>Chevrolet</option>
+									  	<option>Fiat</option>
+									  	<option>Ford</option>
+									  	<option>Renault</option>
+									  	<option>Volkswagen</option>
+									</select>
 								</div>
+								
 								<div class="form-group">
-									<label> Modelo </label> <input type="text" class="form-control"
-										name="modelo" value="<%=v.getModelo()%>" />
+									<label> Modelo </label> 								
+									<input type="text" class="form-control" value="<%=v.getModelo()%>" name="modelo" required />
 								</div>
+																
 								<div class="form-group">
-									<label> Cantidad Asientos </label> <input type="number"
-										class="form-control" name="cant_asientos"
-										value="<%=v.getCantAsientos()%>" />
+									<label> Cantidad Asientos </label>
+									<br>
+									<label class="radio-inline">
+									  <input type="radio" name="cant_asientos" value="1" <% if(v.getCantAsientos() == 1){%> <%= "checked" %> <%} %> required> 1
+									</label>
+									<label class="radio-inline">
+									  <input type="radio" name="cant_asientos" value="2" <% if(v.getCantAsientos() == 2){%> <%= "checked" %> <%} %> > 2
+									</label>
+									<label class="radio-inline">
+									  <input type="radio" name="cant_asientos" value="3" <% if(v.getCantAsientos() == 3){%> <%= "checked" %> <%} %> > 3
+									</label>
+									<label class="radio-inline">
+									  <input type="radio" name="cant_asientos" value="4" <% if(v.getCantAsientos() == 4){%> <%= "checked" %> <%} %> > 4
+									</label>
+									<label class="radio-inline">
+									  <input type="radio" name="cant_asientos" value="5" <% if(v.getCantAsientos() == 5){%> <%= "checked" %> <%} %> > 5
+									</label>
 								</div>
+								
 								<div class="form-group">
+									<label> Año </label> 
+									<input type="number" min="1990" max="2040" class="form-control" name="anio"  value="<%=v.getAnio()%>" required/>
+								</div>
 
-									<label> Año </label> <input type="number" class="form-control"
-										name="anio" value="<%=v.getAnio()%>" />
-								</div>
 								<div class="form-group">
-									<label> Transmisión </label> <input type="text"
-										class="form-control" name="transmision"
-										value="<%=v.getTransmision()%>" />
+									<label> Transmisión </label> 
+									<select class="form-control" name="transmision" required>
+										<option value="<%=v.getTransmision()%>" selected hidden><%=v.getTransmision()%></option>
+										<option>Automática</option>
+										<option>Manual</option>
+									</select>
 								</div>
+								
 								<div class="form-group">
-
-									<label> Estado </label> <input type="text" class="form-control"
-										name="estado" value="<%=v.getEstado()%>" />
+									<label> Estado </label> 
+									<select class="form-control" name="estado" required>
+										<option value="<%=v.getEstado()%>" selected hidden><%=v.getEstado()%></option>
+										<option>Disponible</option>
+										<option>En uso</option>
+										<option>En reparación</option>
+									</select>
 								</div>
-
+							
+							
 								<div class="form-group">
-
-									<label> Baul </label> <input type="text" class="form-control"
-										name="baul" value="<%=v.getBaul()%>" />
+									<label> Baúl </label> 
+									<div class="checkbox">
+								        <label>
+								          <input type="checkbox" name="baul" <% if( v.getBaul().equals("Si") ){%> <%= "checked" %> <%}%> > Sí posee 
+								        </label>
+								    </div>
 								</div>
+								
 								<div class="form-group">
-									<label> Tipo </label> <input type="text" class="form-control"
-										name="tipo" value="<%=v.getTipo()%>" />
+									<label> Tipo </label> 
+									<select class="form-control" name="tipo" required>
+										<option value="<%=v.getTipo()%>" selected  hidden><% if( v.getTipo().equals("A") ){%> <%= "Auto" %> <%} else { %><%= "Camioneta" %> <%}%></option>									
+										<option value="A">Auto</option>
+										<option value="C">Camioneta</option>
+									</select>
 								</div>
+								
 								<div class="form-group">
-									<label> Km </label> <input type="text" class="form-control"
-										name="km" value="<%=v.getKm()%>" />
+									<label>Kilometraje</label> 
+									<div class="input-group">
+								      	<input type="number" class="form-control" name="km" value="<%=v.getKm()%>" placeholder="Kilometros" required>
+								      	<div class="input-group-addon">Km.</div>
+							      	</div>
 								</div>
+								
 								<div class="form-group">
 									<label> Precio por día </label>
-									<input type="text" class="form-control" name="precio_base"
-										value="<%=v.getPrecio()%>" />
+									<div class="input-group">
+										<div class="input-group-addon">$</div>
+								      	<input type="number" class="form-control" name="precio_base" value="<%=v.getPrecio()%>" placeholder="Precio" required>
+							      	</div>								
 								</div>
+				
+	
 								<div class="form-group">
-
-									<label for="exampleInputFile"> Imagen del vehículo </label> <input
-										type="file" id="exampleInputFile" />
-									<button type="submit" class="btn btn-primary btn-block">
-										Guardar modificaciones</button>
+									<label> Imagen del vehículo </label> 
+									<input type="file"/>
 								</div>
+							
+								<hr>
+								
+								<div style="padding: 3% 25%">					
+									<button type="submit" class="btn btn-primary btn-block colorFondoBase">Guardar modificaciones</button>
+								</div>
+								
 							</form>
 						  </div>
 
-							<%
-								} else if (session.getAttribute("msjErrorMod") != null) {
-							%>
-							<div class="alert alert-dismissable alert-danger">
-
-								<button type="button" class="close" data-dismiss="alert"
-									aria-hidden="true">×</button>
-								<h4>
-									<strong> Error! </strong>
-								</h4>
-								El vehículo no fue encontrado <a href="#" class="alert-link"></a>
-							</div>
-							<%
-								}
-							%>
-
+							<% } %>
 						</div>
 
 					</div>
@@ -375,8 +435,6 @@ $(document).ready(function(){
 	</div>
 
 </div>
-<hr>
-
 
 <%@ include file="footer.html"%>
 

@@ -56,9 +56,10 @@ public class Controlador {
 		DataVehiculos dbVehiculos = new DataVehiculos();
 		
 		dbVehiculos.update(v, seModificoPrecio);
+		
 	}
 	
-	public Vehiculos recuperarVehiculo(String nroPatente) {
+	public Vehiculos recuperarVehiculo(String nroPatente) throws SQLException {
 		DataVehiculos dbVehiculos = new DataVehiculos();
 		Vehiculos vehiculo = new Vehiculos();
 		

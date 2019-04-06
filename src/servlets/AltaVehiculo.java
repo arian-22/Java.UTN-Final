@@ -44,7 +44,7 @@ public class AltaVehiculo extends HttpServlet {
 		Controlador controlador = new Controlador();
 		Vehiculos vehiculos = new Vehiculos();
 		
-		vehiculos.setPatente(request.getParameter("nro_patente"));
+		vehiculos.setPatente(request.getParameter("nro_patenteA").toUpperCase() + " " + request.getParameter("nro_patenteB") + " " + request.getParameter("nro_patenteC").toUpperCase() );
 		vehiculos.setMarca(request.getParameter("marca"));
 		vehiculos.setModelo(request.getParameter("modelo"));
 		vehiculos.setCantAsientos(Integer.parseInt(request.getParameter("cant_asientos")));

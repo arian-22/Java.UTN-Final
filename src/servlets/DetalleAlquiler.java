@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,13 +47,21 @@ public class DetalleAlquiler extends HttpServlet {
 		Controlador ctrl = new Controlador();
 		Vehiculos v = new Vehiculos();
 		
-		v = ctrl.recuperarVehiculo(patente);
+		try {
+			v = ctrl.recuperarVehiculo(patente);
+
+			request.getSession().setAttribute("fecha-desde", fecha_desde);
+			request.getSession().setAttribute("fecha-hasta", fecha_hasta);
+			request.getSession().setAttribute("vehiculo", v);
+			
+			request.getRequestDispatcher("WEB-INF/detalleConfirmacionAlquiler.jsp").forward(request, response);			
+			
+		} catch (SQLException e) {
+			request.getSession().setAttribute("errorModal", e.getMessage());
+			
+			request.getRequestDispatcher("WEB-INF/vehiculosDisponibles.jsp").forward(request, response);			
+		}
 		
-		request.getSession().setAttribute("fecha-desde", fecha_desde);
-		request.getSession().setAttribute("fecha-hasta", fecha_hasta);
-		request.getSession().setAttribute("vehiculo", v);
-		
-		request.getRequestDispatcher("WEB-INF/detalleConfirmacionAlquiler.jsp").forward(request, response);
 	}
 
 }
