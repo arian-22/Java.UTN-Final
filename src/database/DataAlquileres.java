@@ -362,7 +362,7 @@ public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
 		}
 	
 		
-	public int registrarAlquiler (String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, int tarjetaCredito) {
+	public int registrarAlquiler (String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, String tarjetaCredito) {
 		int nroAlquiler = 0;
 		
 		try{
@@ -375,7 +375,7 @@ public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
 			
 			String updateCreditCardUser = "UPDATE usuario SET nro_tarjeta = ? WHERE mail = ?";
 			stmt1 = FactoryConexion.getInstancia().getConn().prepareStatement(updateCreditCardUser);
-			stmt1.setInt(1, tarjetaCredito);
+			stmt1.setString(1, tarjetaCredito);
 			stmt1.setString(2, mailUsuario);
 			stmt1.execute();
 						

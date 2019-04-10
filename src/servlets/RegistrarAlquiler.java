@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.math.BigInteger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,8 +49,9 @@ public class RegistrarAlquiler extends HttpServlet {
 		vehiculo = (Vehiculos) request.getSession().getAttribute("vehiculo");
 		String patenteVehiculo = vehiculo.getPatente();
 		
-		int tarjetaCredito = Integer.parseInt(request.getParameter("credit-card"));
-
+		System.out.println(request.getParameter("credit-card"));
+		String tarjetaCredito = request.getParameter("credit-card");
+		
 		String fecha_desde = (String) request.getSession().getAttribute("fecha-desde");
 		String fecha_hasta = (String) request.getSession().getAttribute("fecha-hasta");
 			

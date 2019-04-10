@@ -84,9 +84,11 @@
 		<div class="panel-footer">
 		
 			<form action="RegistrarAlquiler" role="form" method="post">
+				<div style="text-align: -webkit-center;">
+					<label> Tarjeta de Credito </label> 
+					<input style="width: 300px;" type="text" maxlength="20" minlength="18" title="Ingrese un número válido de Tarjeta de Crédito" pattern="[0-9]{18,20}" class="form-control" name="credit-card" required/>
+				</div>
 				
-				<label> Tarjeta de Credito </label> 
-				<input style="width: 300px;" type="text" maxlength="20" minlength="18" title="Ingrese un número válido de Tarjeta de Crédito" pattern="[0-9]{18,20}" class="form-control" name="credit-card" required/>
 				<hr>
 				<div class="row">	
 					<div class="col-md-6">

@@ -69,7 +69,7 @@ public class ControladorAlquiler {
 		
 	}
 	
-	public int registrarAlquiler(String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, int tarjetaCredito) {
+	public int registrarAlquiler(String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, String tarjetaCredito) {
 		
 		DataAlquileres dataAlquileres = new DataAlquileres();
 		
