@@ -93,9 +93,7 @@ public class DataVehiculos {
 
 				
 			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("Hubo un problema. --DataVehiculos");
-				
+				e.printStackTrace();	
 				throw e;
 				
 			} finally {
@@ -169,7 +167,7 @@ public class DataVehiculos {
 	    return vehiculos;
 	}
 
-	public ArrayList<Vehiculos> getVehiculosDisponiblesParaAlquilar(String fechaDesde, String fechaHasta) {
+	public ArrayList<Vehiculos> getVehiculosDisponiblesParaAlquilar(String fechaDesde, String fechaHasta) throws SQLException {
 		ArrayList<Vehiculos> vehiculos = new ArrayList<>();
 		
 		PreparedStatement stmt = null;
@@ -226,8 +224,8 @@ public class DataVehiculos {
 		    };
 		    
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
+			throw e;
 		}finally {
 			if(rs!=null) {
 				try {

@@ -1,5 +1,6 @@
 package negocio;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import database.DataAlquileres;
 import database.DataVehiculos;
@@ -20,7 +21,7 @@ public class ControladorAlquiler {
 		this.vehiculos = vehiculos;
 	}
 	
-	public ArrayList<Vehiculos> getStockVehiculosDisponiblesParaAlquilar(String fechaDesde, String fechaHasta) {
+	public ArrayList<Vehiculos> getStockVehiculosDisponiblesParaAlquilar(String fechaDesde, String fechaHasta) throws SQLException {
 		
 		DataVehiculos dv = new DataVehiculos();
 		

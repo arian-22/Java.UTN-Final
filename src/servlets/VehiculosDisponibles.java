@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -88,18 +89,31 @@ public class VehiculosDisponibles extends HttpServlet {
 				
 				ControladorAlquiler ctrl = new ControladorAlquiler();
 				ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-				vehiculos = ctrl.getStockVehiculosDisponiblesParaAlquilar(fecha_desde, fecha_hasta);
-				System.out.println("cantidad v:"+vehiculos.size());
-				request.getSession().setAttribute("vehiculos-stock-disponibles", vehiculos);
-				request.getRequestDispatcher("WEB-INF/vehiculosDisponibles.jsp").forward(request, response);
+				
+				try {
+					vehiculos = ctrl.getStockVehiculosDisponiblesParaAlquilar(fecha_desde, fecha_hasta);
+					
+					request.getSession().setAttribute("vehiculos-stock-disponibles", vehiculos);
+					request.getSession().removeAttribute("errorModal");
+					request.getRequestDispatcher("WEB-INF/vehiculosDisponibles.jsp").forward(request, response);
+				} catch (SQLException e) {
+					request.getSession().setAttribute("errorModal", e.getMessage());
+					request.getSession().removeAttribute("okModal");
+					request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response);
+
+				}
+				
+				
 				
 			}else {
-				request.getSession().setAttribute("msjErrorFecha", "La fecha hasta debe ser mayor a la fecha desde");
+				request.getSession().setAttribute("errorModal", "La fecha hasta debe ser mayor a la fecha desde.");
+				request.getSession().removeAttribute("okModal");
 				request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response);
 				}
 			
 		}else {
-			request.getSession().setAttribute("msjErrorFecha", "La fecha desde debe ser mayor a la fecha del día hoy ");
+			request.getSession().setAttribute("errorModal", "La fecha desde debe ser mayor a la fecha del día hoy.");
+			request.getSession().removeAttribute("okModal");
 			request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response);
 			}
 		

@@ -1,5 +1,27 @@
 <%@ include file="WEB-INF/cabecera.jsp"%>
+<%@page import="java.util.ArrayList"%>
 
+<%
+	String titleModal = "";
+	String typeBtn = "";
+	String textModal = "";
+%>
+<!-- Modal para errores  -->
+<% if(session.getAttribute("errorModal") != null){ 
+	titleModal = "Error";
+	typeBtn = "btn-danger";
+	textModal = (String) session.getAttribute("errorModal");
+	session.removeAttribute("errorModal");
+%>
+<script>
+$(document).ready(function(){
+	$('#myModal').modal({
+	  keyboard: false
+	})
+});
+</script>
+
+<%}%>
 <div class="row">
 	<div class="col-md-12" style="height: 100%;
     width: 100%;

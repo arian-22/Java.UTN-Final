@@ -1,5 +1,64 @@
 <%@ include file="cabecera.jsp"%>
 
+
+<%
+	Controlador ctrl = ((Controlador) session.getAttribute("Ctrl"));
+	String titleModal = "";
+	String typeBtn = "";
+	String textModal = "";
+%>
+
+
+
+<!-- Modal para errores  -->
+<% if(session.getAttribute("errorModal") != null){ 
+	titleModal = "Error";
+	typeBtn = "btn-danger";
+	textModal = (String) session.getAttribute("errorModal");
+	session.removeAttribute("errorModal");
+%>
+<script>
+$(document).ready(function(){
+	$('#myModal').modal({
+	  keyboard: false
+	})
+});
+</script>
+
+
+<%} else if(session.getAttribute("okModal") != null){
+	titleModal = "Gracias";
+	typeBtn = "btn-success";
+	textModal = (String) session.getAttribute("okModal");
+	session.removeAttribute("okModal");
+%>
+<script>
+$(document).ready(function(){
+	$('#myModal').modal({
+	  keyboard: false
+	})
+});
+</script>
+
+<%}%>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%=titleModal%></h4>
+      </div>
+      <div class="modal-body">
+        <p><%=textModal%></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn <%=typeBtn%>" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <br>
 <br>
 <div class="container-fluid">
@@ -44,16 +103,7 @@
 								</div>
 								
 								</form>
-							<% if (session.getAttribute("msjErrorFecha") != null) {
-									
-									String msj = (String)session.getAttribute("msjErrorFecha");
-									%>
-									<div class="alert alert-dismissable alert-danger col-sm-offset-1 col-sm-10"	style="padding-bottom: 5px; padding-top:5px; margin-top:19px; width: 387px">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-										<h4><strong> Error </strong></h4>
-										<p><%= msj %></p>
-									</div>
-									<% } %> 
+
 						</div>
 					</div>
 				</div>

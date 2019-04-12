@@ -50,7 +50,8 @@ public class Login extends HttpServlet {
 			}else{
 				request.getRequestDispatcher("WEB-INF/inicioCliente.jsp").forward(request, response);
 			}
-		}else{
+		}else{			
+			request.getSession().setAttribute("errorModal", "El usuario no existe");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 		
