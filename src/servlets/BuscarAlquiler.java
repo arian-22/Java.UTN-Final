@@ -47,27 +47,30 @@ public class BuscarAlquiler extends HttpServlet {
 		
 		if (request.getParameter("btnReserva")!= null){	
 			if(alq.getAlquiler() == null){	
-				request.getSession().setAttribute("msjErrorReserva", "El Alquiler no fue encontrado.");		
+				request.getSession().removeAttribute("okModal");
+				request.getSession().setAttribute("errorModal", "El Alquiler no fue encontrado.");
 			}else {
 				if(alq.getVehiculo().getEstado().equals("En uso")) {
-					request.getSession().setAttribute("msjErrorReserva", "El vehículo ya ha sido retirado");
+					request.getSession().removeAttribute("okModal");
+					request.getSession().setAttribute("errorModal", "El vehículo ya ha sido retirado");
 				}
 				else {
-					request.getSession().removeAttribute("msjErrorReserva");
+					request.getSession().removeAttribute("errorModal");
 					request.getSession().setAttribute("alquiler-reserva", alq);
 				}
 			}
 		}
 		else if(request.getParameter("btnDevolucion")!= null){
 			if(alq.getAlquiler() == null) {		
-				request.getSession().removeAttribute("alquiler-dev");
-				request.getSession().setAttribute("msjErrorDev", "El Alquiler no fue encontrado.");	
+				request.getSession().removeAttribute("okModal");
+				request.getSession().setAttribute("errorModal", "El Alquiler no fue encontrado.");
 			} else {
 				if(alq.getVehiculo().getEstado().equals("Disponible")) {
-					request.getSession().setAttribute("msjErrorDev", "El vehículo ya ha sido devuelto o aún no ha sido retirado.");
+					request.getSession().removeAttribute("okModal");
+					request.getSession().setAttribute("errorModal", "El vehículo ya ha sido devuelto o aún no ha sido retirado.");
 				}
 				else {
-					request.getSession().removeAttribute("msjErrorDev");
+					request.getSession().removeAttribute("errorModal");
 					request.getSession().setAttribute("alquiler-dev", alq);
 					request.getSession().removeAttribute("datosDevolucion");
 					request.getSession().setAttribute("datosAlquier", 1);
