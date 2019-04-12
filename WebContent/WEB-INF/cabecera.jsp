@@ -23,7 +23,8 @@
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <script src="js/ie-emulation-modes-warning.js"></script>
 
-<link href="css/personalizado.css" rel="stylesheet">
+<link href="./css/personalizado.css" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.2.1.js"

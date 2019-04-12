@@ -56,12 +56,15 @@ public class Alquileres extends HttpServlet {
 			cva.getVehiculo().setEstado("En uso");
 			try {
 				ctrl.actualizarVehiculos(cva.getVehiculo(), false);
+				request.getSession().removeAttribute("errorModal");
+				request.getSession().removeAttribute("alquiler-reserva");
+				request.getSession().setAttribute("okModal", "Se ha registrado el retiro del vehículo correctamente.");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				request.getSession().setAttribute("errorModal", e.getMessage());
+				request.getSession().removeAttribute("okModal");
 			}
-			
-			}
+		}
 		else if (request.getParameter("btn-devolucion")!= null){
 			
 			float totalAPagar = 0;		
@@ -71,10 +74,13 @@ public class Alquileres extends HttpServlet {
 			cva.getVehiculo().setEstado("Disponible");
 			try {
 				ctrl.actualizarVehiculos(cva.getVehiculo(), false);
+				request.getSession().removeAttribute("errorModal");
+				request.getSession().setAttribute("okModal", "Se ha registrado la devolución del vehículo correctamente.");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}				
+				request.getSession().setAttribute("errorModal", e.getMessage());
+				request.getSession().removeAttribute("okModal");
+			}		
 			
 			Date fechaInicioCalculo = new Date();		
 			if( cva.getAlquiler().getFechaDesde().compareTo(fechaInicioCalculo) > 0) {
@@ -109,6 +115,7 @@ public class Alquileres extends HttpServlet {
 			
 			ctrlAlq.actualizarAlquiler(cva.getAlquiler());
 			
+			request.getSession().removeAttribute("datosAlquier");
 			request.getSession().setAttribute("total-pagar", totalAPagar);
 			request.getSession().setAttribute("dias", dias);
 			request.getSession().setAttribute("precioAlquiler", cva.getAlquiler().getPrecioAlquiler());

@@ -1,5 +1,13 @@
 <%@ include file="cabecera.jsp"%>
 
+<%
+	Cli_Veh_Alq a = new Cli_Veh_Alq();
+	Cli_Veh_Alq a2 = new Cli_Veh_Alq();
+	String titleModal = "";
+	String typeBtn = "";
+	String textModal = "";
+%>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
@@ -16,6 +24,54 @@ $(document).ready(function() {
 
 <br>
 <br>
+<!-- Modal para errores  -->
+<% if(session.getAttribute("errorModal") != null){ 
+	titleModal = "Error";
+	typeBtn = "btn-danger";
+	textModal = (String) session.getAttribute("errorModal");
+	session.removeAttribute("errorModal");
+%>
+<script>
+$(document).ready(function(){
+	$('#myModal').modal({
+	  keyboard: false
+	})
+});
+</script>
+
+
+<%} else if(session.getAttribute("okModal") != null){
+	titleModal = "Gracias";
+	typeBtn = "btn-success";
+	textModal = (String) session.getAttribute("okModal");
+	session.removeAttribute("okModal");
+%>
+<script>
+$(document).ready(function(){
+	$('#myModal').modal({
+	  keyboard: false
+	})
+});
+</script>
+
+<%}%>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%=titleModal%></h4>
+      </div>
+      <div class="modal-body">
+        <p><%=textModal%></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn <%=typeBtn%>" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <div class="container-fluid">
 	<div class="row">
@@ -44,50 +100,64 @@ $(document).ready(function() {
 					</form>
 					<hr>
 
-					<div class="container-fluid">
-						<div class="row">				
 
-							<%
-								if (session.getAttribute("alquiler-reserva") != null) {
-									Cli_Veh_Alq a = new Cli_Veh_Alq();
-									a = (Cli_Veh_Alq) session.getAttribute("alquiler-reserva");
-							%>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="alert alert-dismissable alert-info">
+					<!-- Modal para confirmar el retiro del vehiculo -->
+					
+					
+					<% if (session.getAttribute("alquiler-reserva") != null) {
+			
+						a2 = (Cli_Veh_Alq) session.getAttribute("alquiler-reserva");
+						
+						
+						titleModal = "Confirmar Retiro";
+						
+						//typeBtn = "btn-danger";
+						//textModal = (String) session.getAttribute("errorModal");
+						session.removeAttribute("errorModal");
+					%>
+					<script>
+					$(document).ready(function(){
+						$('#modalConfirmacionReserva').modal({
+						  keyboard: false
+						})
+					});
+					</script>
+					
+	
+					<div class="modal fade" id="modalConfirmacionReserva" tabindex="-1" role="dialog">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h4 class="modal-title"><%=titleModal%></h4>
+					      </div>
+					      <div class="modal-body">
+					      
+					      
+					        <h4><strong> Nro de Alquiler: <%=a2.getAlquiler().getNro_alquiler()%></strong></h4>
 
-										<h4><strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%></strong></h4>
-
-										<strong> Patente: <%=a.getVehiculo().getPatente()%>
-										</strong> <br> <strong> Fecha Desde: <%=a.getAlquiler().getFechaDesde()%>
-										</strong> <br> <strong> Fecha Hasta: <%=a.getAlquiler().getFechaHasta()%>
-										</strong> <br> <strong> Cliente: <%=a.getCliente().getNombre() + ' ' + a.getCliente().getApellido()%>
-										</strong> <br>
-
-										<form role="form" action="Alquileres" method="post">
-											<div>
-												<button type="submit" name="btn-reserva" class="btn btn-danger btn-default">Registrar Retiro</button>
-												<button type="button" class="btn btn-default" data-dismiss="alert" aria-hidden="true">Cancelar</button>
-											</div>
-										</form>
-									</div>
-
+							<strong> Patente: <%=a2.getVehiculo().getPatente()%>
+							</strong> <br> <strong> Fecha Desde: <%=a2.getAlquiler().getFechaDesde()%>
+							</strong> <br> <strong> Fecha Hasta: <%=a2.getAlquiler().getFechaHasta()%>
+							</strong> <br> <strong> Cliente: <%=a2.getCliente().getNombre() + ' ' + a2.getCliente().getApellido()%>
+							</strong> 
+							
+							<br>
+					        
+					        
+					      </div>
+					      <div class="modal-footer">
+					        <form role="form" action="Alquileres" method="post">
+								<div>
+									<button type="submit" name="btn-reserva" class="btn btn-success btn-default">Registrar Retiro</button>
+									<button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 								</div>
-							</div>
-							<%
-								} else if (session.getAttribute("msjErrorReserva") != null) {
-							%>
-							<div class="alert alert-dismissable alert-danger">
-								<h4>
-									<strong> Error </strong>
-								</h4>
-								<p><%= session.getAttribute("msjErrorReserva") %></p>
-							</div>
-							<%
-									}
-							%>
-						</div>
-					</div>
+							</form>
+					      </div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+					
+					<%} %>
 
 
 				</div>
@@ -108,9 +178,80 @@ $(document).ready(function() {
 					</form>
 					<hr>
 
+
+
+
+					<!-- Modal para confirmar devolucion del vehiculo -->
+					
+					
+					<%
+					if (session.getAttribute("alquiler-dev") != null) {
+						a = (Cli_Veh_Alq) session.getAttribute("alquiler-dev");
+						 Float totalApagar = (Float) session.getAttribute("total-pagar");
+						 Integer dias = (Integer) session.getAttribute("dias");
+						 Float precioAlquiler = (Float) session.getAttribute("precioAlquiler");
+						
+						
+						titleModal = "Confirmar Devolución";
+						session.removeAttribute("errorModal");
+						
+						if (session.getAttribute("datosAlquier") != null) {
+					%>
+					<script>
+					$(document).ready(function(){
+						$('#modalConfirmacionDevolucion').modal({
+						  keyboard: false
+						})
+					});
+					</script>
+					
+	
+					<div class="modal fade" id="modalConfirmacionDevolucion" tabindex="-1" role="dialog">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h4 class="modal-title"><%=titleModal%></h4>
+					      </div>
+					      <div class="modal-body">
+					      
+					      
+					        <h4>
+								<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%></strong>
+							</h4>
+
+							<strong> Patente: <%=a.getVehiculo().getPatente()%></strong> 
+							<br> 
+							<strong> Fecha Desde: <%=a.getAlquiler().getFechaDesde()%></strong>
+							<br> 
+							<strong> Fecha Hasta: <%=a.getAlquiler().getFechaHasta()%></strong> 
+							<br> 
+							<strong> Cliente: <%=a.getCliente().getNombre() + ' ' + a.getCliente().getApellido()%></strong>
+							
+							<br>
+					        
+					        
+					      </div>
+					      <div class="modal-footer">
+					        <form role="form" action="Alquileres" method="post">
+								<div>
+									<button type="submit" name="btn-devolucion" class="btn btn-success btn-default">Registrar Devolución</button>
+									<button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+								</div>
+							</form>
+					      </div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+					
+					<%} %>
+					
+					
+					
+					
+					
 					<div class="container-fluid">
 						<div class="row">
-								<div class="col-md-12">
+								<%-- <div class="col-md-12">
 								
 								<%
 								if (session.getAttribute("alquiler-dev") != null) {
@@ -145,9 +286,9 @@ $(document).ready(function() {
 											</div>
 										</form>
 									</div>
+ --%>
 
-
-								<%}
+								<%
 															
 								if (session.getAttribute("datosDevolucion") != null) {
 								%>
@@ -170,19 +311,9 @@ $(document).ready(function() {
 
 								</div>
 								
-							<%}
-							%>
-								<%} else if (session.getAttribute("msjErrorDev") != null) {
-							%>
-							<div class="alert alert-dismissable alert-danger">
-								<h4>
-									<strong> Error </strong>
-								</h4>
-								<p><%= session.getAttribute("msjErrorDev") %></p>
-							</div>
-							<%
+							<%} 
+								
 								}
-							
 							%>
 							</div>							
 						</div>
