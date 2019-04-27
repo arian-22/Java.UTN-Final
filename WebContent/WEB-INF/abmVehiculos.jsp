@@ -309,7 +309,7 @@ $(document).ready(function(){
 								<div class="form-group">
 									<label> Marca </label> 
 									<select class="form-control" name="marca" required>
-									  	<option value="<%=v.getMarca()%>" selected disabled hidden ><%=v.getMarca()%></option>
+									  	<option value="<%=v.getMarca()%>" selected hidden ><%=v.getMarca()%></option>
 										<option>BMW</option>
 										<option>Peugeot</option>
 										<option>Jeep</option>
