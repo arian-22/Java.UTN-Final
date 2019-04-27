@@ -91,14 +91,15 @@
 				
 				<hr>
 				<div class="row">	
-					<div class="col-md-6">
-						<button type="submit" style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-success" aria-label="Left Align">
-							<span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 10px;"></span>Confirmar Alquiler
-						</button>
+					<div class="col-md-6" style="text-align: left;">
+						<a href="javascript:window.history.go(-1);" class="btn btn-danger" style="padding: 10px ; margin-top: 10px"type="button">
+							<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true" style="padding-right: 10px;"></span>Volver
+						</a>						
 					</div>
 					<div class="col-md-6" style="text-align: right;">
-						<button style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-danger" aria-label="Left Align">
-							<span class="glyphicon glyphicon-remove" aria-hidden="true" style="padding-right: 10px;"></span>Cancelar
+						<button type="submit" style="padding: 10px ; margin-top: 10px" type="button" class="btn btn-success" aria-label="Right Align">
+							Confirmar Alquiler
+							<span class="glyphicon glyphicon-menu-right" aria-hidden="true" style="padding-left: 10px;"></span>
 						</button>
 					</div>
 				</div>

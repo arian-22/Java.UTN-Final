@@ -67,12 +67,12 @@
 
 								<li>
 									<form action="URLs" method="post">
-										<button type="submit" name="btn-stock-autos" style="width:100%; height:100%">Autos</button>
+										<button type="submit" name="btn-stock-autos" style="width:100%; height:100%; display: content;">Autos</button>
 									</form>
 								</li>
 								<li>
 									<form action="URLs" method="post">
-										<button type="submit" name="btn-stock-camionetas" style="width:100%; height:100%">Camionetas</button>
+										<button type="submit" name="btn-stock-camionetas" style="width:100%; height:100%; display: content;">Camionetas</button>
 									</form>
 								</li>
 
