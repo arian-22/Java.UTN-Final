@@ -42,16 +42,6 @@
 					      <li><b>Kilometraje:</b> <%=vehiculos.get(i).getKm()%></li>
 					    </ul>
 					    
-					    <%-- <div>
-					    	<form role="form"
-								action="DetalleAlquiler?vehiculo-selected=<%=vehiculos.get(i).getPatente()%>&fecha_desde=<%=fecha_desde%>&fecha_hasta=<%=fecha_hasta%>"
-								method="post">
-								<button type="submit" style="border: 1px solid; background: transparent;" class="btn btn-outline-dark btn-lg btn-block buy-now"
-									name="btn<%=i%>">Reservar</button>
-							</form>
-					    </div>
-					     --%>
-					    
 					  </div>
 					</div>
 			    </div>

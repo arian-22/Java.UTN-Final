@@ -58,7 +58,7 @@
 						color="orange">EasyCar</font></a>
 				</div>
 
-				<div class="collapse navbar-collapse"
+				<!-- <div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="dropdown"><a class="dropdown-toggle"
@@ -80,7 +80,7 @@
 						<li><a href="#">Promociones</a></li>
 
 						<li><a href="#">Nosotros</a></li>
-					</ul>
+					</ul> -->
 
 					<ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
 						<% if(session.getAttribute("user")==null){ %>
