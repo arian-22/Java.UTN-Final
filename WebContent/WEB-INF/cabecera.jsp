@@ -84,7 +84,7 @@
 
 					<ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
 						<% if(session.getAttribute("user")==null){ %>
-						<li><a href="login.jsp">Login</a></li>
+						<li><a href="login.jsp">Inicir Sesión</a></li>
 
 						<%}else{
 										Usuario u = new Usuario();

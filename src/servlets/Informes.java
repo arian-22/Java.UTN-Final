@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entidades.Cli_Veh_Alq;
+import entidades.Usuario;
 import entidades.Vehiculos;
 import negocio.ControladorInforme;
 
@@ -41,17 +42,32 @@ public class Informes extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 		
-		ControladorInforme ci = new ControladorInforme();
-		
-		ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-		vehiculos = ci.getStockVehiculos();
-		request.getSession().setAttribute("vehiculos-stock", vehiculos);
-		
-		ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
-		cva = ci.getVehiculosAlquiladosActualmente();
-		request.getSession().setAttribute("alquileres actuales", cva);
+		if(request.getSession().getAttribute("user") != null ) {
+			
+			Usuario user = new Usuario();
+			user = (Usuario) request.getSession().getAttribute("user");
+			
+			if(user.getAdmin().equals("S")) { 
+
+			
+				ControladorInforme ci = new ControladorInforme();
 				
-		request.getRequestDispatcher("WEB-INF/informes.jsp").forward(request, response);
+				ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
+				vehiculos = ci.getStockVehiculos();
+				request.getSession().setAttribute("vehiculos-stock", vehiculos);
+				
+				ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
+				cva = ci.getVehiculosAlquiladosActualmente();
+				request.getSession().setAttribute("alquileres actuales", cva);
+						
+				request.getRequestDispatcher("WEB-INF/informes.jsp").forward(request, response);
+			
+			}else {
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
+		}else {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 	}
 
 }

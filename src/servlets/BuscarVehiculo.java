@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.Usuario;
 import entidades.Vehiculos;
 import negocio.Controlador;
 
@@ -42,27 +43,43 @@ public class BuscarVehiculo extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		doGet(request, response);
-		Controlador ctrl = new Controlador();
-		Vehiculos v = new Vehiculos();
 		
-		try {
-			v = ctrl.recuperarVehiculo(request.getParameter("patente"));
+		if(request.getSession().getAttribute("user") != null ) {
 			
-			request.getSession().setAttribute("precioPersistido", v.getPrecio());
+			Usuario user = new Usuario();
+			user = (Usuario) request.getSession().getAttribute("user");
 			
-			if (request.getParameter("btnbaja")!= null){				
-				request.getSession().setAttribute("vehiculo-baja", v);
+			if(user.getAdmin().equals("S")) {
+				
 			
-			} else if(request.getParameter("btnmod")!= null){
-				request.getSession().setAttribute("vehiculo-mod", v);
+				Controlador ctrl = new Controlador();
+				Vehiculos v = new Vehiculos();
+				
+				try {
+					v = ctrl.recuperarVehiculo(request.getParameter("patente"));
+					
+					request.getSession().setAttribute("precioPersistido", v.getPrecio());
+					
+					if (request.getParameter("btnbaja")!= null){				
+						request.getSession().setAttribute("vehiculo-baja", v);
+					
+					} else if(request.getParameter("btnmod")!= null){
+						request.getSession().setAttribute("vehiculo-mod", v);
+					}
+				} catch (SQLException e) {
+					
+					request.getSession().setAttribute("errorModal", e.getMessage());
+					
+				}
+				finally {
+					request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
+				}
+				
+			}else {
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
-		} catch (SQLException e) {
-			
-			request.getSession().setAttribute("errorModal", e.getMessage());
-			
-		}
-		finally {
-			request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);	
+		}else {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 			
 		

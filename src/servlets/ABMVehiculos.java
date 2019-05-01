@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.Usuario;
+
 /**
  * Servlet implementation class ABMVehiculos
  */
@@ -34,8 +36,21 @@ public class ABMVehiculos extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	
+		if(request.getSession().getAttribute("user") != null ) {
+			
+			Usuario user = new Usuario();
+			user = (Usuario) request.getSession().getAttribute("user");
+			
+			if(user.getAdmin().equals("S")) {
+				request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
+		}else {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 		
-		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
 	}
 
 }

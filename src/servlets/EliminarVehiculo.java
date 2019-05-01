@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.Usuario;
 import entidades.Vehiculos;
 import negocio.Controlador;
 
@@ -42,23 +43,38 @@ public class EliminarVehiculo extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		Controlador ctrl = new Controlador();
-		Vehiculos vehiculo = new Vehiculos();
+		if(request.getSession().getAttribute("user") != null ) {
+			
+			Usuario user = new Usuario();
+			user = (Usuario) request.getSession().getAttribute("user");
+			
+			if(user.getAdmin().equals("S")) {
+				
+			
+				Controlador ctrl = new Controlador();
+				Vehiculos vehiculo = new Vehiculos();
+				
+				vehiculo = (Vehiculos)request.getSession().getAttribute("vehiculo-baja");
+				
+				try {
+					ctrl.eliminarVehiculo(vehiculo.getPatente());
+					request.getSession().removeAttribute("errorModal");
+					request.getSession().setAttribute("okModal", "Se ha eliminado el vehículo correctamente.");
 		
-		vehiculo = (Vehiculos)request.getSession().getAttribute("vehiculo-baja");
+				} catch (SQLException e) {
+					request.getSession().setAttribute("errorModal", e.getMessage());
+					request.getSession().removeAttribute("okModal");
 		
-		try {
-			ctrl.eliminarVehiculo(vehiculo.getPatente());
-			request.getSession().removeAttribute("errorModal");
-			request.getSession().setAttribute("okModal", "Se ha eliminado el vehículo correctamente.");
-
-		} catch (SQLException e) {
-			request.getSession().setAttribute("errorModal", e.getMessage());
-			request.getSession().removeAttribute("okModal");
-
+				}
+				
+				request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
+				
+			}else {
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
+		}else {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-		
-		request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
 		
 	}
 
