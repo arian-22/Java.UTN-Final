@@ -85,14 +85,14 @@ $(document).ready(function(){
 				        <div>
 							<form class="form-horizontal" role="form" action="VehiculosDisponibles" method="post">
 								<div class="form-group">
-									<label for="inputFecha" class="col-sm-2 control-label">Fecha de alquiler </label>
+									<label for="inputFecha" class="col-sm-2 control-label">Fecha de inicio </label>
 									<div class="col-sm-4">
 										<input type="date" class="form-control" id="inputFecha" data-date-format= "dd-MM-yyyy" name="fecha_desde" />
 									</div>
 								</div>
 											
 								<div class="form-group">
-									<label for="inputFechaD" class="col-sm-2 control-label">Fecha de devolución </label>
+									<label for="inputFechaD" class="col-sm-2 control-label">Fecha de fin </label>
 									<div class="col-sm-4">
 										<input type="date" class="form-control" id="inputFechaD" data-date-format= "dd-MM-yyyy"	name="fecha_hasta" />
 									</div>

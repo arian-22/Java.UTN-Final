@@ -159,7 +159,7 @@ public class DataAlquileres {
 	}
 
 
-	public Cli_Veh_Alq getByNroAlquiler(int nro_alquiler) {
+	public Cli_Veh_Alq getByPatente(String nro_patente) {
 		
 		Cli_Veh_Alq cva = new Cli_Veh_Alq();
 		
@@ -170,9 +170,9 @@ public class DataAlquileres {
 			//Anda para Windows
 			//stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM `cli-veh-alq` cva INNER JOIN usuario u ON cva.mail = u.mail INNER JOIN vehículos v ON cva.nro_patente = v.nro_patente INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler INNER JOIN (SELECT va.nro_patente, max(va.fecha_desde) as 'fecha_max' FROM valores va group by va.nro_patente) pp on v.nro_patente = pp.nro_patente INNER JOIN valores val ON pp.nro_patente = val.nro_patente where cva.nro_alquiler = ? and fecha_max = val.fecha_desde group by cva.nro_alquiler");
 			//Anda para Linux
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM `cli-veh-alq` cva INNER JOIN usuario u ON cva.mail = u.mail INNER JOIN vehículos v ON cva.nro_patente = v.nro_patente INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler INNER JOIN (SELECT va.nro_patente, max(va.fecha_desde) as 'fecha_max' FROM valores va group by va.nro_patente) pp on v.nro_patente = pp.nro_patente INNER JOIN valores val ON pp.nro_patente = val.nro_patente where cva.nro_alquiler = ? and fecha_max = val.fecha_desde");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM `cli-veh-alq` cva INNER JOIN usuario u ON cva.mail = u.mail INNER JOIN vehículos v ON cva.nro_patente = v.nro_patente INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler INNER JOIN (SELECT va.nro_patente, max(va.fecha_desde) as 'fecha_max' FROM valores va group by va.nro_patente) pp on v.nro_patente = pp.nro_patente INNER JOIN valores val ON pp.nro_patente = val.nro_patente where cva.nro_patente = ? and fecha_max = val.fecha_desde");
 			
-			stmt.setInt(1, nro_alquiler);
+			stmt.setString(1, nro_patente);
 		    
 			rs = stmt.executeQuery();
 		    
@@ -307,6 +307,64 @@ public Alquiler getByNroAlquilerACancelar(int nro_alquiler) {
 		    	a.setFechaHasta(rs.getDate("fecha_hasta"));
 		    	a.setFechaCancelacion(rs.getString("fecha_cancelacion"));
 		    	a.setPrecioAlquiler(rs.getFloat("precio_alquiler"));	
+		    	a.setFechaFinalizacion(rs.getString("fecha_finalizacion"));
+		    	
+		    	cva.setVehiculo(v);
+		    	cva.setAlquiler(a);
+		    	
+		    	cvaList.add(cva);
+		    };
+		    
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}
+		return cvaList;}
+		
+		
+		public ArrayList<Cli_Veh_Alq> getByDNI(int dni) {
+			
+			ArrayList<Cli_Veh_Alq> cvaList = new ArrayList<Cli_Veh_Alq>();
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("select cva.nro_alquiler, u.mail, dni, nombre, apellido, fecha_desde, fecha_hasta, fecha_cancelacion, fecha_finalizacion, modelo, marca from usuario u inner join `cli-veh-alq` cva on u.mail = cva.mail inner join vehículos v on cva.nro_patente = v.nro_patente inner join alquileres a on cva.nro_alquiler = a.nro_alquiler where dni = ? and fecha_desde = CURDATE() and fecha_cancelacion is null and estado = 'Disponible' order by cva.nro_alquiler");
+			
+			stmt.setInt(1, dni);
+		    
+			rs = stmt.executeQuery();
+		    
+		    while(rs!=null && rs.next()){
+	
+		    	Cli_Veh_Alq cva = new Cli_Veh_Alq();
+		    	
+		    	Usuario u = new Usuario();
+		    	u.setMail(rs.getString("mail"));
+		    	u.setDni(rs.getInt("dni"));
+		    	u.setNombre(rs.getString("nombre"));
+		    	u.setApellido(rs.getString("apellido"));
+		    	
+		    	Vehiculos v = new Vehiculos();
+				v.setModelo(rs.getString("modelo"));
+				v.setMarca(rs.getString("marca"));
+			
+				Alquiler a = new Alquiler();
+		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));
+		    	a.setFechaDesde(rs.getDate("fecha_desde"));
+		    	a.setFechaHasta(rs.getDate("fecha_hasta"));
+		    	a.setFechaCancelacion(rs.getString("fecha_cancelacion"));
 		    	a.setFechaFinalizacion(rs.getString("fecha_finalizacion"));
 		    	
 		    	cva.setVehiculo(v);

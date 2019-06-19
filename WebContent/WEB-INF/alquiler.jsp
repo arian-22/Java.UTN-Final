@@ -88,13 +88,13 @@ $(document).ready(function(){
 	<div class="tab-content">
 		<div id="retiro" class="tab-pane fade in active">
 			<h1>Retiro de vehículos</h1>
-			<h3>Ingrese el número del alquiler del vehículo a retirar</h3>
+			<h3>Ingrese el número de documento del Cliente</h3>
 			<div class="row">
 				<div class="col-md-12">
 					<form class="form-horizontal" role="form" action="BuscarAlquiler" method="post">
 						<div class="form-group" style=" padding-left: 15px; display: flex;">
-							<label class="control-label" style="padding-right: 10px; float: left;"> N° de Alquiler </label>
-							<input type="text" class="form-control" name="num_alquiler" required style="width: 200px; float: left;">
+							<label class="control-label" style="padding-right: 10px; float: left;"> N° de Documento </label>
+							<input type="text" class="form-control" name="dni" required style="width: 200px; float: left;">
 							<button type="submit" name="btnReserva" class="btn btn-default" style="margin-left: 15px;">Buscar</button>
 						</div>
 					</form>
@@ -166,13 +166,13 @@ $(document).ready(function(){
 
 		<div id="devolucion" class="tab-pane fade">
 			<h1>Devolución</h1>
-			<h3>Ingrese el número del alquiler a registrar devolución</h3>
+			<h3>Ingrese la patente del vehículo a registrar devolución</h3>
 			<div class="row">
 				<div class="col-md-12">
 					<form class="form-horizontal" role="form" action="BuscarAlquiler" method="post">
 						<div class="form-group" style=" padding-left: 15px; display: flex;">
-							<label class="control-label" style="padding-right: 10px; float: left;"> N° de Alquiler </label>
-							<input type="text" class="form-control" name="num_alquiler" required style="width: 200px; float: left;">
+							<label class="control-label" style="padding-right: 10px; float: left;"> Patente </label>
+							<input type="text" class="form-control" name="nro_patente" required style="width: 200px; float: left;">
 							<button type="submit" name="btnDevolucion" class="btn btn-default" style="margin-left: 15px;">Buscar</button>
 						</div>
 					</form>

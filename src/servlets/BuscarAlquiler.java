@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,8 +52,10 @@ public class BuscarAlquiler extends HttpServlet {
 		
 				ControladorAlquiler ctrl = new ControladorAlquiler();
 				Cli_Veh_Alq alq = new Cli_Veh_Alq();
+				ArrayList<Cli_Veh_Alq> alquileres = new ArrayList<Cli_Veh_Alq>();
 				
-				alq = ctrl.buscarAlquiler(Integer.parseInt(request.getParameter("num_alquiler")));	
+				alquileres = ctrl.buscarAlquileresARetirar(Integer.parseInt(request.getParameter("dni")));	
+				alq = ctrl.buscarAlquilerADevolver(request.getParameter("nro_patente"));
 				
 				if (request.getParameter("btnReserva")!= null){	
 					if(alq.getAlquiler() == null){	

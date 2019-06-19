@@ -93,17 +93,23 @@ public class VehiculosDisponibles extends HttpServlet {
 				try {
 					vehiculos = ctrl.getStockVehiculosDisponiblesParaAlquilar(fecha_desde, fecha_hasta);
 					
-					request.getSession().setAttribute("vehiculos-stock-disponibles", vehiculos);
-					request.getSession().removeAttribute("errorModal");
-					request.getRequestDispatcher("WEB-INF/vehiculosDisponibles.jsp").forward(request, response);
-				} catch (SQLException e) {
+					if (vehiculos != null){
+					
+						request.getSession().setAttribute("vehiculos-stock-disponibles", vehiculos);
+						request.getSession().removeAttribute("errorModal");
+						request.getRequestDispatcher("WEB-INF/vehiculosDisponibles.jsp").forward(request, response);
+					} else {
+						request.getSession().setAttribute("errorModal", "No hay vehículos disponibles para la fecha ingresada");
+						request.getSession().removeAttribute("okModal");
+						request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response);
+					}
+					
+				}catch (SQLException e) {
 					request.getSession().setAttribute("errorModal", e.getMessage());
 					request.getSession().removeAttribute("okModal");
 					request.getRequestDispatcher("WEB-INF/nuevaReserva.jsp").forward(request, response);
 
 				}
-				
-				
 				
 			}else {
 				request.getSession().setAttribute("errorModal", "La fecha hasta debe ser mayor a la fecha desde.");

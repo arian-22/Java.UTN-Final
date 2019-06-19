@@ -21,7 +21,8 @@ if (session.getAttribute("nro-alquiler") != null) {
 			<h1>Su alquiler fue registrado correctamente.</h1>
 			<h2>Gracias por confiar en nosotros!</h2>
 			<br>
-			<h3>Su número de alquiler para retirar su vehículo es: <b><%= nroAlquiler %></b></h3>	
+			<h3>Su número de alquiler es: <b><%= nroAlquiler %></b></h3>	
+			<h3>Para retirar el vehículo preséntese con su DNI en el día correspondiente</h3>
 		</div>
 		<div class="col-md-6" style="text-align: center ; padding: 10em">
 			<img alt="Gracias" src="https://image.freepik.com/iconos-gratis/emoticon-cuadrada-cara-sonriente-con-los-ojos-cerrados_318-58502.png" height="120px" width="auto">

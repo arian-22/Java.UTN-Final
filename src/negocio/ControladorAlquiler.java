@@ -30,26 +30,37 @@ public class ControladorAlquiler {
 		return vehiculos;
 	}
 
-	public Cli_Veh_Alq buscarAlquiler(int nro_alquiler) {
+	public Cli_Veh_Alq buscarAlquilerADevolver(String nro_patente) {
 		
 		DataAlquileres dbAlquileres = new DataAlquileres();
 		
 		Cli_Veh_Alq alquiler = new Cli_Veh_Alq();
 		
-		alquiler = dbAlquileres.getByNroAlquiler(nro_alquiler);
+		alquiler = dbAlquileres.getByPatente(nro_patente);
 		
 		return alquiler;
 	}
 	
-	public Alquiler buscarAlquilerACancelar(int nro_alquiler) {
+	public ArrayList<Cli_Veh_Alq> buscarAlquileresARetirar(int dni) {
 		
-		DataAlquileres dbAlquileres = new DataAlquileres();		
+		DataAlquileres dbAlquileres = new DataAlquileres();
 		
-		Alquiler alquiler= new Alquiler();		
+		ArrayList<Cli_Veh_Alq> alquileres = new ArrayList<Cli_Veh_Alq>();
 		
-		alquiler = dbAlquileres.getByNroAlquilerACancelar(nro_alquiler);
+		alquileres = dbAlquileres.getByDNI(dni);
 		
-		return alquiler;
+		return alquileres;
+	}
+	
+	 public Alquiler buscarAlquilerACancelar(int nro_alquiler) {
+			
+			DataAlquileres dbAlquileres = new DataAlquileres();		
+			
+			Alquiler alquiler= new Alquiler();		
+			
+			alquiler = dbAlquileres.getByNroAlquilerACancelar(nro_alquiler);
+			
+			return alquiler;
 	}
 	
 	public ArrayList<Cli_Veh_Alq> buscarAlquileresDelCliente(String mail) {
