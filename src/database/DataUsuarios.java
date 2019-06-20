@@ -13,9 +13,8 @@ public class DataUsuarios {
 		
 	}
 	
-	public void add(Usuario u){		
+	public void add(Usuario u) throws SQLException{		
 		
-
 		PreparedStatement stmt = null;
 		
 		try {
@@ -37,26 +36,45 @@ public class DataUsuarios {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw e;
 		} 
-		
 	}
 	
-	public boolean authenticate(String email, String password) throws Exception 
-    {
+	public boolean authenticate(String email, String password) throws SQLException{
+    
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM usuario "
-				+ "WHERE mail = ? AND contraseña = ?");
-		stmt.setString(1, email);
-		stmt.setString(2, password);
-		
-        rs = stmt.executeQuery();
-
-        return rs.next();
+		try{
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM usuario "
+					+ "WHERE mail = ? AND contraseña = ?");
+			stmt.setString(1, email);
+			stmt.setString(2, password);
+			
+	        rs = stmt.executeQuery();
+	        
+	        if(rs!=null && rs.next()){
+	        	return true;
+	        }else{
+				throw new SQLException("Usuario Inexistente, mail y/o contraseña incorrectos");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		}finally{
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}	
     }
 	
-	public Usuario getById(String mail){
+	public Usuario getById(String mail) throws SQLException{
 		
 		Usuario p = null;
 		
@@ -68,7 +86,7 @@ public class DataUsuarios {
 			stmt.setString(1, mail);
 			rs = stmt.executeQuery();
 						
-			if(rs!=null && rs.next()){
+			while(rs!=null && rs.next()){
 				p = new Usuario();
 				p.setNombre(rs.getString("nombre"));
 				p.setApellido(rs.getString("apellido"));
@@ -80,13 +98,10 @@ public class DataUsuarios {
 				p.setDireccion(rs.getString("direccion"));
 				p.setTelefono(rs.getString("telefono"));
 				p.setAdmin(rs.getString("admin"));
-								
-				}else{
-					System.out.println("La consulta no devuelve nada.");
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
-			}finally{
+				throw e;
+			} finally{
 				if(rs!=null) {
 					try {
 						rs.close();
@@ -102,3 +117,4 @@ public class DataUsuarios {
 	}
 
 }
+

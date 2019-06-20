@@ -22,6 +22,25 @@ $(document).ready(function(){
 </script>
 
 <%}%>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%=titleModal%></h4>
+      </div>
+      <div class="modal-body">
+        <p><%=textModal%></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn <%=typeBtn%>" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <div class="row">
 	<div class="col-md-12" style="height: 100%;
     width: 100%;

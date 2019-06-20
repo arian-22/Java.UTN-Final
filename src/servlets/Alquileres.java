@@ -67,10 +67,12 @@ public class Alquileres extends HttpServlet {
 						request.getSession().removeAttribute("errorModal");
 						request.getSession().removeAttribute("alquiler-reserva");
 						request.getSession().setAttribute("okModal", "Se ha registrado el retiro del vehículo correctamente.");
+						request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						request.getSession().setAttribute("errorModal", e.getMessage());
 						request.getSession().removeAttribute("okModal");
+						request.getSession().removeAttribute("alquiler-reserva");
+						request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);						
 					}
 				}
 				else if (request.getParameter("btn-devolucion")!= null){
@@ -84,61 +86,65 @@ public class Alquileres extends HttpServlet {
 						ctrl.actualizarVehiculos(cva.getVehiculo(), false);
 						request.getSession().removeAttribute("errorModal");
 						request.getSession().setAttribute("okModal", "Se ha registrado la devolución del vehículo correctamente.");
+					
+						
+						Date fechaInicioCalculo = new Date();		
+						if( cva.getAlquiler().getFechaDesde().compareTo(fechaInicioCalculo) > 0) {
+							fechaInicioCalculo = cva.getAlquiler().getFechaDesde();
+						}
+						
+						if (cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) < 0){
+							//si la fechaHasta es anterior a la actual el compare da < 0
+							dias=(int) ((fechaInicioCalculo.getTime()-cva.getAlquiler().getFechaHasta().getTime())/86400000);
+							
+							totalAPagar = cva.getAlquiler().getPrecioAlquiler()+ dias*cva.getVehiculo().getPrecio() + dias * ((cva.getVehiculo().getPrecio()*25)/100);				
+						}			
+						else if(cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) > 0){
+							//si la fechaHasta es posterior a la actual el compare da > 0
+							dias = (int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaInicioCalculo.getTime())/86400000);
+							
+							totalAPagar = cva.getAlquiler().getPrecioAlquiler()+dias*cva.getVehiculo().getPrecio() +dias*(cva.getVehiculo().getPrecio()*50)/100;
+						}
+						else if(cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) == 0){
+							//si es devuelto el mismo día que termina el alquiler, el compare da 0
+							dias=(int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaInicioCalculo.getTime())/86400000);
+							
+							totalAPagar = cva.getAlquiler().getPrecioAlquiler();
+						}
+						
+						Date fechaActualDate = new Date();
+						SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+						String FechaActual = format.format(fechaActualDate);
+						
+						cva.getAlquiler().setFechaFinalizacion(FechaActual);
+						cva.getAlquiler().setPrecioFinalAlquiler(totalAPagar);
+						
+						try {
+							ctrlAlq.actualizarAlquiler(cva.getAlquiler());
+							request.getSession().removeAttribute("datosAlquier");
+							request.getSession().setAttribute("total-pagar", totalAPagar);
+							request.getSession().setAttribute("dias", dias);
+							request.getSession().setAttribute("precioAlquiler", cva.getAlquiler().getPrecioAlquiler());
+							request.getSession().setAttribute("datosDevolucion", 1);
+							
+							request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
+							
+						} catch (SQLException e) {
+							request.getSession().removeAttribute("datosDevolucion");
+							request.getSession().removeAttribute("okModal");
+							request.getSession().setAttribute("errorModal", e.getMessage());
+						}
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+						request.getSession().removeAttribute("datosDevolucion");
 						request.getSession().setAttribute("errorModal", e.getMessage());
 						request.getSession().removeAttribute("okModal");
 					}		
-					
-					Date fechaInicioCalculo = new Date();		
-					if( cva.getAlquiler().getFechaDesde().compareTo(fechaInicioCalculo) > 0) {
-						fechaInicioCalculo = cva.getAlquiler().getFechaDesde();
-					}
-					
-					if (cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) < 0){
-						//si la fechaHasta es anterior a la actual el compare da < 0
-						dias=(int) ((fechaInicioCalculo.getTime()-cva.getAlquiler().getFechaHasta().getTime())/86400000);
-						
-						totalAPagar = cva.getAlquiler().getPrecioAlquiler()+ dias*cva.getVehiculo().getPrecio() + dias * ((cva.getVehiculo().getPrecio()*25)/100);				
-					}			
-					else if(cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) > 0){
-						//si la fechaHasta es posterior a la actual el compare da > 0
-						dias = (int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaInicioCalculo.getTime())/86400000);
-						
-						totalAPagar = cva.getAlquiler().getPrecioAlquiler()+dias*cva.getVehiculo().getPrecio() +dias*(cva.getVehiculo().getPrecio()*50)/100;
-					}
-					else if(cva.getAlquiler().getFechaHasta().compareTo(fechaInicioCalculo) == 0){
-						//si es devuelto el mismo día que termina el alquiler, el compare da 0
-						dias=(int) ((cva.getAlquiler().getFechaHasta().getTime()-fechaInicioCalculo.getTime())/86400000);
-						
-						totalAPagar = cva.getAlquiler().getPrecioAlquiler();
-					}
-					
-					Date fechaActualDate = new Date();
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-					String FechaActual = format.format(fechaActualDate);
-					
-					cva.getAlquiler().setFechaFinalizacion(FechaActual);
-					cva.getAlquiler().setPrecioFinalAlquiler(totalAPagar);
-					
-					ctrlAlq.actualizarAlquiler(cva.getAlquiler());
-					
-					request.getSession().removeAttribute("datosAlquier");
-					request.getSession().setAttribute("total-pagar", totalAPagar);
-					request.getSession().setAttribute("dias", dias);
-					request.getSession().setAttribute("precioAlquiler", cva.getAlquiler().getPrecioAlquiler());
-					request.getSession().setAttribute("datosDevolucion", 1);
-					
-					}
-				request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
-				
+				}
 			}else {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		}else {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-		
 	}
-
 }

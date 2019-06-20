@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -51,22 +52,28 @@ public class CancelacionCliente extends HttpServlet {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			String FechaActual = format.format(fechaActualDate);
 			
-			alq = ctrl.buscarAlquilerACancelar(nroAlquiler);		
-			alq.setFechaCancelacion(FechaActual);
-			
-			dias = (int) ((alq.getFechaDesde().getTime()-fechaActualDate.getTime())/86400000);
-						
-			if(dias == 1 || dias == 0){
-				alq.setImporteCancelacion((alq.getPrecioAlquiler()*15)/100);
-
-			}else if(dias==2){
-				alq.setImporteCancelacion((alq.getPrecioAlquiler()*10)/100);
+			try {
+				alq = ctrl.buscarAlquilerACancelar(nroAlquiler);
 				
-			}else alq.setImporteCancelacion(0);
+				alq.setFechaCancelacion(FechaActual);
+				
+				dias = (int) ((alq.getFechaDesde().getTime()-fechaActualDate.getTime())/86400000);
+							
+				if(dias == 1 || dias == 0){
+					alq.setImporteCancelacion((alq.getPrecioAlquiler()*15)/100);
+				}else if(dias==2){
+					alq.setImporteCancelacion((alq.getPrecioAlquiler()*10)/100);
+				}else {
+					alq.setImporteCancelacion(0);
+				}
+				request.getSession().setAttribute("alquilerPorCancelar", alq);
+				request.getRequestDispatcher("WEB-INF/confirmacionCancelacionAlquiler.jsp").forward(request, response);
+				
+			} catch (SQLException e) {
+				request.getSession().setAttribute("errorModal", e.getMessage());
+				request.getRequestDispatcher("WEB-INF/cancelacionCliente.jsp").forward(request, response);
+			}		
 			
-			request.getSession().setAttribute("alquilerPorCancelar", alq);
-		
-		request.getRequestDispatcher("WEB-INF/confirmacionCancelacionAlquiler.jsp").forward(request, response);
 	}
 
 }

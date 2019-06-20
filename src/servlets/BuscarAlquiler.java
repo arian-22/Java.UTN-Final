@@ -1,7 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,42 +52,44 @@ public class BuscarAlquiler extends HttpServlet {
 		
 				ControladorAlquiler ctrl = new ControladorAlquiler();
 				Cli_Veh_Alq alq = new Cli_Veh_Alq();
-				ArrayList<Cli_Veh_Alq> alquileres = new ArrayList<Cli_Veh_Alq>();
-				
-				alquileres = ctrl.buscarAlquileresARetirar(Integer.parseInt(request.getParameter("dni")));	
-				alq = ctrl.buscarAlquilerADevolver(request.getParameter("nro_patente"));
+						
 				
 				if (request.getParameter("btnReserva")!= null){	
-					if(alq.getAlquiler() == null){	
-						request.getSession().removeAttribute("okModal");
-						request.getSession().setAttribute("errorModal", "El Alquiler no fue encontrado.");
-					}else {
-						if(alq.getVehiculo().getEstado().equals("En uso")) {
+					try {
+						alq = ctrl.buscarAlquilerARetirar(Integer.parseInt(request.getParameter("dni")));
+						if(alq.getAlquiler() == null){	
 							request.getSession().removeAttribute("okModal");
-							request.getSession().setAttribute("errorModal", "El vehículo ya ha sido retirado");
+							request.getSession().setAttribute("errorModal", "El cliente no tiene vehículo a retirar");
+							request.getSession().removeAttribute("alquiler-reserva");
 						}
 						else {
 							request.getSession().removeAttribute("errorModal");
 							request.getSession().setAttribute("alquiler-reserva", alq);
+							request.getSession().removeAttribute("datosDevolucion");
+							request.getSession().setAttribute("datosAlquier", 1);
 						}
+					} catch (SQLException e) {
+						request.getSession().removeAttribute("okModal");
+						request.getSession().setAttribute("errorModal", e.getMessage());
 					}
+					
 				}
 				else if(request.getParameter("btnDevolucion")!= null){
-					if(alq.getAlquiler() == null) {		
-						request.getSession().removeAttribute("okModal");
-						request.getSession().setAttribute("errorModal", "El Alquiler no fue encontrado.");
-					} else {
-						if(alq.getVehiculo().getEstado().equals("Disponible")) {
+					try {
+						alq = ctrl.buscarAlquilerADevolver(request.getParameter("nro_patente"));
+						if(alq.getAlquiler() == null) {		
 							request.getSession().removeAttribute("okModal");
-							request.getSession().setAttribute("errorModal", "El vehículo ya ha sido devuelto o aún no ha sido retirado.");
-						}
-						else {
+							request.getSession().removeAttribute("datosDevolucion");
+							request.getSession().setAttribute("errorModal", "El vehículo ya ha sido devuelto o aún no ha sido retirado");
+						} else {
 							request.getSession().removeAttribute("errorModal");
 							request.getSession().setAttribute("alquiler-dev", alq);
 							request.getSession().removeAttribute("datosDevolucion");
 							request.getSession().setAttribute("datosAlquier", 1);
 						}
-						
+					} catch (SQLException e) {
+						request.getSession().removeAttribute("okModal");
+						request.getSession().setAttribute("errorModal", e.getMessage());
 					}
 				}	
 				

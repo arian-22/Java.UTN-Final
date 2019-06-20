@@ -19,27 +19,23 @@ public class Controlador {
 		this.usuario = usuario;
 	}
 	
-	public void registrarUsuario(Usuario u){
+	public void registrarUsuario(Usuario u) throws SQLException{
 		DataUsuarios dbUsuario = new DataUsuarios();
 		
 		dbUsuario.add(u);
 	}
 	
-	public boolean auntenticarUsuario(String mail, String pass){
+	public boolean auntenticarUsuario(String mail, String pass) throws SQLException{
 		DataUsuarios dbUsuario = new DataUsuarios();
 		boolean logueo = false;
 		
-		try {
-			logueo = dbUsuario.authenticate(mail, pass);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return logueo;
+		logueo = dbUsuario.authenticate(mail, pass);
 		
+		System.out.println(logueo);
+		return logueo;
 	}
 
-	public Usuario recuperarUsuario(String mail) {
+	public Usuario recuperarUsuario(String mail) throws SQLException {
 		DataUsuarios dbUsuario = new DataUsuarios();
 		Usuario user = new Usuario();
 		
@@ -72,10 +68,10 @@ public class Controlador {
 		dbVehiculos.delete(nroPatente);
 	}
 	
-	public ArrayList<Vehiculos> getVehiculosPorTipo(String tipo) {
+	public ArrayList<Vehiculos> getVehiculosPorTipo(String tipo) throws SQLException {
 		DataVehiculos dv = new DataVehiculos();
 		
-		ArrayList<Vehiculos> vehiculos = dv.getAutosCamionetas(tipo);
+		ArrayList<Vehiculos> vehiculos = dv.getVehiculosPorTipo(tipo);
 		
 		return vehiculos;
 	} 

@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -45,7 +46,12 @@ public class Autos extends HttpServlet {
 		ControladorInforme ci = new ControladorInforme();
 		
 		ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-		vehiculos = ci.getStockVehiculos();
+		try {
+			vehiculos = ci.getStockVehiculos();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getSession().setAttribute("vehiculos-stock", vehiculos);
 		
 		request.getRequestDispatcher("WEB-INF/autos.jsp").forward(request, response);
