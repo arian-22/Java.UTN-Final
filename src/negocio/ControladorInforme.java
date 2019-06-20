@@ -21,7 +21,7 @@ public class ControladorInforme {
 		this.vehiculos = vehiculos;
 	}
 	
-	public ArrayList<Vehiculos> getStockVehiculos() {
+	public ArrayList<Vehiculos> getStockVehiculos() throws SQLException {
 		DataVehiculos dv = new DataVehiculos();
 		
 		vehiculos = dv.getVehiculos();
@@ -29,7 +29,7 @@ public class ControladorInforme {
 		return vehiculos;
 	}
 	
-	public ArrayList<Cli_Veh_Alq> getVehiculosAlquiladosActualmente(){
+	public ArrayList<Cli_Veh_Alq> getVehiculosAlquiladosActualmente() throws SQLException{
 		DataAlquileres da = new DataAlquileres();
 		
 		cva = da.getVehiculosAlquiladosActualmente();

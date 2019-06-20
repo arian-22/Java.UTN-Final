@@ -37,58 +37,58 @@ public class ControladorAlquiler {
 		return vehiculos;
 	}
 
-	public Cli_Veh_Alq buscarAlquilerADevolver(String nro_patente) {
+	public Cli_Veh_Alq buscarAlquilerADevolver(String nro_patente) throws SQLException {
 		
 		DataAlquileres dbAlquileres = new DataAlquileres();
 		
 		Cli_Veh_Alq alquiler = new Cli_Veh_Alq();
 		
-		alquiler = dbAlquileres.getByPatente(nro_patente);
+		alquiler = dbAlquileres.getAlquilerADevolver(nro_patente);
 		
 		return alquiler;
 	}
 	
-	public ArrayList<Cli_Veh_Alq> buscarAlquileresARetirar(int dni) {
+	public Cli_Veh_Alq buscarAlquilerARetirar(int dni) throws SQLException {
+		
+		DataAlquileres dbAlquileres = new DataAlquileres();
+		
+		Cli_Veh_Alq alquiler = new Cli_Veh_Alq();
+		
+		alquiler = dbAlquileres.getAlquilerARetirar(dni);
+		
+		return alquiler;
+	}
+	
+	 public Alquiler buscarAlquilerACancelar(int nro_alquiler) throws SQLException {
+			
+		DataAlquileres dbAlquileres = new DataAlquileres();		
+			
+		Alquiler alquiler= new Alquiler();		
+			
+		alquiler = dbAlquileres.getByNroAlquilerACancelar(nro_alquiler);
+			
+		return alquiler;
+	}
+	
+	public ArrayList<Cli_Veh_Alq> buscarAlquileresDelCliente(String mail) throws SQLException {
 		
 		DataAlquileres dbAlquileres = new DataAlquileres();
 		
 		ArrayList<Cli_Veh_Alq> alquileres = new ArrayList<Cli_Veh_Alq>();
 		
-		alquileres = dbAlquileres.getByDNI(dni);
-		
-		return alquileres;
-	}
-	
-	 public Alquiler buscarAlquilerACancelar(int nro_alquiler) {
-			
-			DataAlquileres dbAlquileres = new DataAlquileres();		
-			
-			Alquiler alquiler= new Alquiler();		
-			
-			alquiler = dbAlquileres.getByNroAlquilerACancelar(nro_alquiler);
-			
-			return alquiler;
-	}
-	
-	public ArrayList<Cli_Veh_Alq> buscarAlquileresDelCliente(String mail) {
-		
-		DataAlquileres dbAlquileres = new DataAlquileres();
-		
-		ArrayList<Cli_Veh_Alq> alquileres = new ArrayList<Cli_Veh_Alq>();
-		
-		alquileres = dbAlquileres.getByMail(mail);		
+		alquileres = dbAlquileres.getAlquileresCliente(mail);		
 				
 		return alquileres;
 	}
 
-	public void actualizarAlquiler(Alquiler alq) {
+	public void actualizarAlquiler(Alquiler alq) throws SQLException {
 		DataAlquileres alquiler = new DataAlquileres();
 		
 		alquiler.actualizarAlquiler(alq);
 		
 	}
 	
-	public int registrarAlquiler(String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, String tarjetaCredito) {
+	public int registrarAlquiler(String patenteVehiculo, String fecha_desde, String fecha_hasta, String mailUsuario, float precioAlquiler, String tarjetaCredito) throws SQLException {
 		
 		DataAlquileres dataAlquileres = new DataAlquileres();
 		

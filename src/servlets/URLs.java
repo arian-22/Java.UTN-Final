@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -59,7 +60,12 @@ public class URLs extends HttpServlet {
 
 			Controlador ctrl = new Controlador();
 			ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-			vehiculos = ctrl.getVehiculosPorTipo("A");
+			try {
+				vehiculos = ctrl.getVehiculosPorTipo("A");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			request.getSession().setAttribute("vehiculos-stock", vehiculos);
 			
 			request.getRequestDispatcher("WEB-INF/autos.jsp").forward(request, response);
@@ -68,7 +74,12 @@ public class URLs extends HttpServlet {
 
 			Controlador ctrl = new Controlador();
 			ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-			vehiculos = ctrl.getVehiculosPorTipo("C");
+			try {
+				vehiculos = ctrl.getVehiculosPorTipo("C");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			request.getSession().setAttribute("vehiculos-stock", vehiculos);
 			request.getRequestDispatcher("WEB-INF/camionetas.jsp").forward(request, response);
 
@@ -86,7 +97,12 @@ public class URLs extends HttpServlet {
 
 			ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
 
-			cva = ctrl.buscarAlquileresDelCliente(cliente.getMail());
+			try {
+				cva = ctrl.buscarAlquileresDelCliente(cliente.getMail());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			request.getSession().setAttribute("alquileresCliente", cva);
 
@@ -102,7 +118,12 @@ public class URLs extends HttpServlet {
 
 			ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
 
-			cva = ctrl.buscarAlquileresDelCliente(cliente.getMail());
+			try {
+				cva = ctrl.buscarAlquileresDelCliente(cliente.getMail());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			request.getSession().setAttribute("alquileresCliente", cva);
 

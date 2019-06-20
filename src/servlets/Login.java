@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,24 +38,48 @@ public class Login extends HttpServlet {
 		String pass = request.getParameter("pass");
 				
 		boolean existe = false;
-		existe = controlador.auntenticarUsuario(mail, pass);
+		try {
+			System.out.println("entro1");
+			existe = controlador.auntenticarUsuario(mail, pass);
+			System.out.println(existe);
+			System.out.println("entro4");
+			if (existe){
+				usuario = new Usuario();
+				System.out.println("entro6");
+				try {
+					usuario = controlador.recuperarUsuario(mail);
+
+					request.getSession().setAttribute("user", usuario);	
+					request.getSession().setAttribute("msjErrorFecha", null);	
+					
+					System.out.println("entro7");
+					if(usuario.getAdmin().equals("S")){
+						request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);	
+					}else{
+						request.getRequestDispatcher("WEB-INF/inicioCliente.jsp").forward(request, response);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("entro5");
+				}
 		
-		if (existe){
-			usuario = new Usuario();
-			usuario = controlador.recuperarUsuario(mail);
-	
-			request.getSession().setAttribute("user", usuario);	
-			request.getSession().setAttribute("msjErrorFecha", null);	
-			
-			if(usuario.getAdmin().equals("S")){
-				request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);	
-			}else{
-				request.getRequestDispatcher("WEB-INF/inicioCliente.jsp").forward(request, response);
+			}else{			
+				System.out.println("entro9");
+				request.getSession().setAttribute("errorModal", "El usuario no existe");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
-		}else{			
-			request.getSession().setAttribute("errorModal", "El usuario no existe");
+			
+			System.out.println("entro2");
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("entro3");
+			request.getSession().setAttribute("errorModal", e1.getMessage());
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
+		
+		
 		
 	}
 

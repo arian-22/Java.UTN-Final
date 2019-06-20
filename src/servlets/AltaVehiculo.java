@@ -78,10 +78,10 @@ public class AltaVehiculo extends HttpServlet {
 				} catch (SQLException e) {
 					request.getSession().setAttribute("errorModal", e.getMessage());
 					request.getSession().removeAttribute("okModal");
-		
+				}finally {
+					request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);					
 				}
 				
-				request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
 			
 			}else {
 				request.getRequestDispatcher("login.jsp").forward(request, response);

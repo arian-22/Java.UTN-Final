@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -52,13 +53,16 @@ public class ConfirmaCancelacionAlquiler extends HttpServlet {
 		Alquiler alq = (Alquiler) request.getSession().getAttribute("alquilerPorCancelar");
 		
 		cliente = (Usuario)request.getSession().getAttribute("user");
-		ctrl.actualizarAlquiler(alq);
-		cva = ctrl2.buscarAlquileresDelCliente(cliente.getMail());
-		
-		request.getSession().setAttribute("alquileresCliente", cva);
-	
-		request.getRequestDispatcher("WEB-INF/cancelacionCliente.jsp").forward(request, response);
-		
+		try {
+			ctrl.actualizarAlquiler(alq);
+			cva = ctrl2.buscarAlquileresDelCliente(cliente.getMail());
+			request.getSession().setAttribute("alquileresCliente", cva);
+			request.getRequestDispatcher("WEB-INF/cancelacionCliente.jsp").forward(request, response);
+			
+		} catch (SQLException e) {
+			request.getSession().setAttribute("errorModal", e.getMessage());
+			request.getSession().removeAttribute("okModal");
+		}
 		
 	}
 

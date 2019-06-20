@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,11 +59,18 @@ public class RegistrarAlquiler extends HttpServlet {
 		String mailUsuario = usuario.getMail();
 	
 		float precioAlquiler = (float) request.getSession().getAttribute("precioTotal");
-		int nroAlquiler = ctrl.registrarAlquiler(patenteVehiculo, fecha_desde, fecha_hasta, mailUsuario, precioAlquiler, tarjetaCredito);
+		int nroAlquiler;
+		try {
+			request.getSession().removeAttribute("errorModal"); 
+			nroAlquiler = ctrl.registrarAlquiler(patenteVehiculo, fecha_desde, fecha_hasta, mailUsuario, precioAlquiler, tarjetaCredito);
+			request.getSession().setAttribute("nro-alquiler", nroAlquiler);
+			request.getRequestDispatcher("WEB-INF/confirmacionAlquiler.jsp").forward(request, response);
+		} catch (SQLException e) {
+			request.getSession().setAttribute("errorModal", e.getMessage());
+			request.getRequestDispatcher("WEB-INF/detalleConfirmacionAlquiler.jsp").forward(request, response);
+		}
 	
-		request.getSession().setAttribute("nro-alquiler", nroAlquiler);
 		
-		request.getRequestDispatcher("WEB-INF/confirmacionAlquiler.jsp").forward(request, response);
 	}
 
 }

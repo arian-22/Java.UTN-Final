@@ -1,6 +1,8 @@
  	package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,9 +57,15 @@ public class RegistroUsuario extends HttpServlet {
 		usuario.setTelefono(request.getParameter("telefono"));
 		usuario.setAdmin("N");
 		
-		controlador.registrarUsuario(usuario);
+		try {
+			controlador.registrarUsuario(usuario);
+			request.getSession().removeAttribute("errorModal");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		} catch (SQLException e) {
+			request.getSession().setAttribute("errorModal", e.getMessage());
+			request.getRequestDispatcher("registrarse.jsp").forward(request, response);
+		}
 		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }

@@ -4,6 +4,45 @@
 
 <%@ include file="cabecera.jsp"%>
 
+<!-- Modal para errores  -->
+<% 
+String titleModal = "";
+String typeBtn = "";
+String textModal = "";
+if(session.getAttribute("errorModal") != null){ 
+	titleModal = "Error";
+	typeBtn = "btn-danger";
+	textModal = (String) session.getAttribute("errorModal");
+	session.removeAttribute("errorModal");
+%>
+<script>
+$(document).ready(function(){
+	$('#myModal').modal({
+	  keyboard: false
+	})
+});
+</script>
+<%
+}
+%>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%=titleModal%></h4>
+      </div>
+      <div class="modal-body">
+        <p><%=textModal%></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn <%=typeBtn%>" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Fin Modal -->
+
 <br><br><br>
 
 <%
@@ -13,7 +52,7 @@ if (session.getAttribute("alquilerPorCancelar") != null) {
 
 <div style="width: 50%;  margin: auto 20%" class="panel panel-info">
 	<div class="panel-heading">
-		<h1 class="panel-title"><b>¿Está seguro?</b></h1>
+		<h1 class="panel-title"><b>¿Está seguro/a?</b></h1>
 	</div>
 
 	<div class="panel-body">

@@ -25,7 +25,7 @@ public class DataVehiculos {
 		
 		rs = stmt.executeQuery();
 					
-		if(rs!=null && rs.next()){
+		while(rs!=null && rs.next()){
 			v = new Vehiculos();
 			v.setPatente(rs.getString("nro_patente"));
 			v.setModelo(rs.getString("modelo"));
@@ -39,12 +39,8 @@ public class DataVehiculos {
 			v.setImagen(rs.getString("imagen"));
 			v.setKm(rs.getInt("km"));
 			v.setPrecio(rs.getFloat("precio_base"));
-			
-			}else{
-				throw new SQLException("El vehículo que intenta buscar no existe. Por favor, vuelva a intentar.");
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw e;
 		}finally{
 			if(rs!=null) {
@@ -93,7 +89,6 @@ public class DataVehiculos {
 
 				
 			} catch (SQLException e) {
-				e.printStackTrace();	
 				throw e;
 				
 			} finally {
@@ -102,7 +97,7 @@ public class DataVehiculos {
 			}
 			
 		}
-	public void delete(String nroPatente) {
+	public void delete(String nroPatente) throws SQLException {
 		
 		PreparedStatement stmt = null;
 		try {
@@ -112,18 +107,18 @@ public class DataVehiculos {
 		}catch (SQLException e) {
 			
 			e.printStackTrace();
+			throw e;
 		}finally {
 			FactoryConexion.getInstancia().releaseConn();
 		}
 		
 	}
 
-	public ArrayList<Vehiculos> getVehiculos() {
+	public ArrayList<Vehiculos> getVehiculos() throws SQLException {
 		ArrayList<Vehiculos> vehiculos = new ArrayList<>();
 		
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		
+		ResultSet rs = null;	
 		
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM vehículos");
@@ -146,11 +141,9 @@ public class DataVehiculos {
 				v.setKm(rs.getFloat("km"));
 				
 				vehiculos.add(v);
-		    };
-		    
+		    }
 		} catch (SQLException e) {
-			
-			e.printStackTrace();
+			throw e;
 		}finally {
 			if(rs!=null) {
 				try {
@@ -163,7 +156,6 @@ public class DataVehiculos {
 			FactoryConexion.getInstancia().releaseConn();
 		}
     
-	    
 	    return vehiculos;
 	}
 	
@@ -275,10 +267,8 @@ public class DataVehiculos {
 				v.setPrecio(rs.getFloat("precio_base"));
 				
 				vehiculos.add(v);
-		    };
-		    
+		    }
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw e;
 		}finally {
 			if(rs!=null) {
@@ -329,7 +319,6 @@ public class DataVehiculos {
 			}	
 					
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw e;
 			
 		} finally {
@@ -338,12 +327,11 @@ public class DataVehiculos {
 		
 	}
 	
-	public ArrayList<Vehiculos> getAutosCamionetas(String tipo) {
+	public ArrayList<Vehiculos> getVehiculosPorTipo(String tipo) throws SQLException {
 		ArrayList<Vehiculos> vehiculos = new ArrayList<>();
 		
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
 		
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM vehículos where tipo = ?");
@@ -366,11 +354,9 @@ public class DataVehiculos {
 				v.setKm(rs.getFloat("km"));
 				
 				vehiculos.add(v);
-		    };
-		    
+		    }
 		} catch (SQLException e) {
-			
-			e.printStackTrace();
+			throw e;
 		}finally {
 			if(rs!=null) {
 				try {
