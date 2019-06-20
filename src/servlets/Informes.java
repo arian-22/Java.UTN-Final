@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -59,8 +60,24 @@ public class Informes extends HttpServlet {
 				ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
 				cva = ci.getVehiculosAlquiladosActualmente();
 				request.getSession().setAttribute("alquileres actuales", cva);
-						
-				request.getRequestDispatcher("WEB-INF/informes.jsp").forward(request, response);
+				
+				ArrayList<Cli_Veh_Alq> alqDevolver = new ArrayList<Cli_Veh_Alq>();
+				try {
+					alqDevolver = ci.getVehiculosADevolverHoy();
+					if (alqDevolver.size() != 0) {
+						request.getSession().setAttribute("bandera", 0);
+						request.getSession().setAttribute("vehiculos a devolver", alqDevolver);
+						request.getRequestDispatcher("WEB-INF/informes.jsp").forward(request, response);
+					} else {
+						request.getSession().removeAttribute("vehiculos a devolver");
+						request.getSession().setAttribute("bandera", 1);
+						request.getRequestDispatcher("WEB-INF/informes.jsp").forward(request, response);
+					}
+					
+				} catch (SQLException e) {
+					request.getSession().setAttribute("errorModal", e.getMessage());
+				}
+				
 			
 			}else {
 				request.getRequestDispatcher("login.jsp").forward(request, response);

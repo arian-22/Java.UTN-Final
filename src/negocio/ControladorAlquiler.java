@@ -21,6 +21,13 @@ public class ControladorAlquiler {
 		this.vehiculos = vehiculos;
 	}
 	
+	public int getValidaReservasCliente(String mail, String fechaDesde, String fechaHasta) throws SQLException{
+		
+		DataVehiculos dv = new DataVehiculos();
+		
+		return dv.getValidaReservasCliente(mail, fechaDesde, fechaHasta);
+	}
+	
 	public ArrayList<Vehiculos> getStockVehiculosDisponiblesParaAlquilar(String fechaDesde, String fechaHasta) throws SQLException {
 		
 		DataVehiculos dv = new DataVehiculos();

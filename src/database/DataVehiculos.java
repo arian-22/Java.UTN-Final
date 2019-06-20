@@ -166,6 +166,60 @@ public class DataVehiculos {
 	    
 	    return vehiculos;
 	}
+	
+	public int getValidaReservasCliente(String mail, String fechaDesde, String fechaHasta) throws SQLException {
+		int cantRegistros = 0; 
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+				
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * \n" + 
+					"FROM alquileres alq\n" + 
+					"INNER JOIN `cli-veh-alq` cva ON\n" + 
+					"	alq.nro_alquiler = cva.nro_alquiler\n" + 
+					"WHERE cva.mail = ? \n" + 
+					"	AND (alq.fecha_cancelacion is null)\n" + 
+					"	AND ( (alq.fecha_desde between ? AND ?) \n" + 
+					"		OR (alq.fecha_hasta between ? AND ?) \n" + 
+					"		OR (alq.fecha_desde <= ? AND alq.fecha_hasta >= ?) \n" + 
+					"		or (alq.fecha_hasta <= ? AND fecha_desde >= ?) )" );
+			
+			stmt.setString(1, mail);
+			stmt.setString(2, fechaDesde);
+			stmt.setString(3, fechaHasta);
+			stmt.setString(4, fechaDesde);
+			stmt.setString(5, fechaHasta);
+			stmt.setString(6, fechaDesde);
+			stmt.setString(7, fechaDesde);
+			stmt.setString(8, fechaHasta);
+			stmt.setString(9, fechaHasta);
+			
+			rs = stmt.executeQuery();
+		    
+		    while(rs!=null && rs.next()){
+		    	cantRegistros += 1;
+		    }
+		
+		    System.out.println("cantidad de registros: " + cantRegistros);
+		    
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}
+		
+		
+		return cantRegistros;
+	}
 
 	public ArrayList<Vehiculos> getVehiculosDisponiblesParaAlquilar(String fechaDesde, String fechaHasta) throws SQLException {
 		ArrayList<Vehiculos> vehiculos = new ArrayList<>();

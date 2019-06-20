@@ -13,7 +13,7 @@
 						<div class="caption">
 							<h3>Ver Informes</h3>
 							<p>
-								- Vehículos de EasyCar.<br> - Vehículos reservados.
+								- Vehículos de EasyCar.<br> - Vehículos reservados.<br> - Vehículos a Devolver Hoy.
 							</p>
 							<form action="Informes" method="post">
 								<button type="submit" class="btn btn-primary colorFondoBase">Ingresar</button>

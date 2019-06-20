@@ -20,6 +20,7 @@
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#stock">Stock de Vehículos</a></li>
 				<li><a href="#alquilados">Vehículos Alquilados Actualmente</a></li>
+				<li><a href="#aDevolver">Vehículos a Devolver Hoy</a></li>
 			</ul>
 
 			<div class="tab-content">
@@ -117,16 +118,75 @@
 
 								</tr>
 								<%} 
-									
 									}%>
 
 							</tbody>
 						</table>
 					</div>
 				</div>
+					
+					<div id="aDevolver" class="tab-pane fade">
+						<h2>Vehículos a Devolver Hoy  </h2>
+
+						<% if(session.getAttribute("vehiculos a devolver")!=null){ 
+								int hayVehiculos = (Integer)session.getAttribute("bandera");
+								
+								if (hayVehiculos != 1){		 
+					    	%>
+								<div class="container-fluid">
+										<table class="table table-striped">
+											<thead>
+												<tr class="bg-primary colorFondoBase">
+													<th scope="col">Nro. Alquiler</th>
+													<th scope="col">Patente</th>
+													<th scope="col">Marca</th>
+													<th scope="col">Modelo</th>
+													<th scope="col">Tipo</th>
+													<th scope="col">Cliente</th>
+													<th scope="col">Nro. Documento</th>
+													<th scope="col">Fecha Desde</th>
+													<th scope="col">Fecha Hasta</th>
+												</tr>
+											</thead>
+											<tbody>
+				
+											<%  
+												ArrayList<Cli_Veh_Alq> alqDevolver = new ArrayList<Cli_Veh_Alq>();
+												alqDevolver = (ArrayList<Cli_Veh_Alq>)session.getAttribute("vehiculos a devolver");
+													  
+												for(int i = 0 ; i < alqDevolver.size() ; i++){
+														 										  
+											%>
+												<tr>
+													<th scope="row"><%=  alqDevolver.get(i).getAlquiler().getNro_alquiler()  %></th>
+													<td><%= alqDevolver.get(i).getVehiculo().getPatente()  %></td>
+													<td><%= alqDevolver.get(i).getVehiculo().getMarca()  %></td>
+													<td><%= alqDevolver.get(i).getVehiculo().getModelo()  %></td>
+													<td><%= alqDevolver.get(i).getVehiculo().getTipo()  %></td>
+													<td><%= alqDevolver.get(i).getCliente().getApellido()  %>, <%= alqDevolver.get(i).getCliente().getNombre() %></td>
+													<td><%= alqDevolver.get(i).getCliente().getDni()  %></td>
+													<td><%= alqDevolver.get(i).getAlquiler().getFechaDesde() %></td>
+													<td><%= alqDevolver.get(i).getAlquiler().getFechaHasta()  %></td>
+				
+												</tr>
+												<%
+												   }
+													%>
+				
+											</tbody>
+										</table>
+									</div>
+								<% } else {	%>
+									<div>
+										<h1>sdsadsfds</h1>
+									</div>
+								<% } 
+								}
+								%>
+						</div>
+					</div>
 			</div>
 		</div>
 	</div>	
-</div>
 
 <%@ include file="footer.html"%>

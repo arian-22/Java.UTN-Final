@@ -1,5 +1,6 @@
 package negocio;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import database.DataAlquileres;
@@ -32,6 +33,14 @@ public class ControladorInforme {
 		DataAlquileres da = new DataAlquileres();
 		
 		cva = da.getVehiculosAlquiladosActualmente();
+		
+		return cva;
+	}
+
+	public ArrayList<Cli_Veh_Alq> getVehiculosADevolverHoy() throws SQLException {
+		DataAlquileres da = new DataAlquileres();
+		
+		cva = da.getVehiculosADevolverHoy();
 		
 		return cva;
 	}
