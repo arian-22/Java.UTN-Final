@@ -121,7 +121,15 @@ public class DataVehiculos {
 		ResultSet rs = null;	
 		
 		try {
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM vehículos");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT *\n" + 
+					"FROM vehículos v\n" +
+					"INNER JOIN (\n" +
+						"SELECT va.nro_patente, max(va.fecha_desde) as 'fecha_max'\n" +
+						"FROM valores va\n" +
+						"group by va.nro_patente) pp on v.nro_patente = pp.nro_patente\n" +
+					"INNER JOIN valores val ON pp.nro_patente = val.nro_patente\n" +
+					"where fecha_max = val.fecha_desde\n" +
+					"group by v.nro_patente");
 	
 		    rs = stmt.executeQuery();
 		    
@@ -137,8 +145,8 @@ public class DataVehiculos {
 				v.setEstado(rs.getString("estado"));
 				v.setBaul(rs.getString("baul"));
 				v.setTipo(rs.getString("tipo"));
-				v.setImagen(rs.getString("imagen"));
 				v.setKm(rs.getFloat("km"));
+				v.setPrecio(rs.getFloat("precio_base"));
 				
 				vehiculos.add(v);
 		    }
@@ -334,7 +342,16 @@ public class DataVehiculos {
 		ResultSet rs = null;
 		
 		try {
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM vehículos where tipo = ?");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT *\n" + 
+					"FROM vehículos v\n" +
+					"INNER JOIN (\n" +
+						"SELECT va.nro_patente, max(va.fecha_desde) as 'fecha_max'\n" +
+						"FROM valores va\n" +
+						"group by va.nro_patente) pp on v.nro_patente = pp.nro_patente\n" +
+					"INNER JOIN valores val ON pp.nro_patente = val.nro_patente\n" +
+					"where tipo = ? and fecha_max = val.fecha_desde\n" +
+					"group by v.nro_patente");
+			
 			stmt.setString(1, tipo);
 		    rs = stmt.executeQuery();
 		    
@@ -352,6 +369,7 @@ public class DataVehiculos {
 				v.setTipo(rs.getString("tipo"));
 				v.setImagen(rs.getString("imagen"));
 				v.setKm(rs.getFloat("km"));
+				v.setPrecio(rs.getFloat("precio_base"));
 				
 				vehiculos.add(v);
 		    }

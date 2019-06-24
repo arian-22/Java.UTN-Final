@@ -41,8 +41,8 @@
 									<th scope="col">Estado</th>
 									<th scope="col">Baul</th>
 									<th scope="col">Tipo</th>
-									<th scope="col">Imagen</th>
 									<th scope="col">Km</th>
+									<th scope="col">Precio</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -65,8 +65,8 @@
 									<td><%= vehiculos.get(i).getEstado() %></td>
 									<td><%= vehiculos.get(i).getBaul() %></td>
 									<td><%= vehiculos.get(i).getTipo() %></td>
-									<td><%= vehiculos.get(i).getImagen() %></td>
 									<td><%= vehiculos.get(i).getKm() %></td>
+									<td><%= vehiculos.get(i).getPrecio() %></td>
 								</tr>
 								<%}  
 									
