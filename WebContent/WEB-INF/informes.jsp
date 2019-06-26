@@ -176,13 +176,13 @@
 											</tbody>
 										</table>
 									</div>
+								<% } 	%>
+									
 								<% } else {	%>
-									<div>
-										<h1>sdsadsfds</h1>
-									</div>
-								<% } 
-								}
-								%>
+								
+								<h3>No hay vehículos a devolver en el día de hoy!</h3>
+								
+							<% } %>
 						</div>
 					</div>
 			</div>
