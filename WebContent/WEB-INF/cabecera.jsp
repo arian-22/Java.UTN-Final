@@ -46,44 +46,20 @@
 			<div class="col-md-12">
 				<nav class="navbar navbar-default navbar-fixed-top"
 					role="navigation">
-				<div class="navbar-header">
-
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only"></span><span class="icon-bar"></span><span
-							class="icon-bar"></span><span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.jsp" style="font-size: 30px;"><font
-						color="orange">EasyCar</font></a>
-				</div>
-
-				<!-- <div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown">Vehículos<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-
-								<li>
-									<form action="URLs" method="post">
-										<button type="submit" name="btn-stock-autos" style="width:100%; height:100%; display: content;">Autos</button>
-									</form>
-								</li>
-								<li>
-									<form action="URLs" method="post">
-										<button type="submit" name="btn-stock-camionetas" style="width:100%; height:100%; display: content;">Camionetas</button>
-									</form>
-								</li>
-
-							</ul></li>
-						<li><a href="#">Promociones</a></li>
-
-						<li><a href="#">Nosotros</a></li>
-					</ul> -->
+					<div class="navbar-header">
+	
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only"></span><span class="icon-bar"></span><span
+								class="icon-bar"></span><span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="index.jsp" style="font-size: 30px;"><font
+							color="orange">EasyCar</font></a>
+					</div>
 
 					<ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
 						<% if(session.getAttribute("user")==null){ %>
-						<li><a href="login.jsp">Inicir Sesión</a></li>
+						<li><a href="login.jsp">Iniciar Sesión</a></li>
 
 						<%}else{
 										Usuario u = new Usuario();
@@ -110,18 +86,14 @@
 						
 						<li class="dropdown"><a href="inicioCliente.jsp" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>,	<%= u.getNombre() %><strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<!-- <li><a href="#">Perfil</a></li> -->
 								<li><a href="http://localhost:8080/AlquilerDeVehiculos/URLs?btnVerReservas=11">Mis Reservas</a></li>
-								<!-- <li><a href="#">Configuración</a></li>
-								<li><a href="#">Ayuda</a></li> -->
 								<li class="divider"></li>
 								<li><a href="CerrarSesion">Cerrar sesión</a></li>
 							</ul>
 						</li>
 						<%} } %>
 					</ul>
-				</div>
-
 				</nav>
 			</div>
 		</div>
+	</div>
