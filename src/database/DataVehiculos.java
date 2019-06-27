@@ -199,8 +199,6 @@ public class DataVehiculos {
 		    while(rs!=null && rs.next()){
 		    	cantRegistros += 1;
 		    }
-		
-		    System.out.println("cantidad de registros: " + cantRegistros);
 		    
 		} catch (SQLException e) {
 			e.printStackTrace();

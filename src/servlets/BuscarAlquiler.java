@@ -52,9 +52,11 @@ public class BuscarAlquiler extends HttpServlet {
 		
 				ControladorAlquiler ctrl = new ControladorAlquiler();
 				Cli_Veh_Alq alq = new Cli_Veh_Alq();
-						
 				
+				request.getSession().removeAttribute("errorModal");
+								
 				if (request.getParameter("btnReserva")!= null){	
+					request.getSession().removeAttribute("datosDevolucion");
 					try {
 						alq = ctrl.buscarAlquilerARetirar(Integer.parseInt(request.getParameter("dni")));
 						if(alq.getAlquiler() == null){	
@@ -80,6 +82,7 @@ public class BuscarAlquiler extends HttpServlet {
 						if(alq.getAlquiler() == null) {		
 							request.getSession().removeAttribute("okModal");
 							request.getSession().removeAttribute("datosDevolucion");
+							request.getSession().removeAttribute("alquiler-dev");
 							request.getSession().setAttribute("errorModal", "El vehículo ya ha sido devuelto o aún no ha sido retirado");
 						} else {
 							request.getSession().removeAttribute("errorModal");

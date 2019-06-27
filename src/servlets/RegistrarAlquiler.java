@@ -49,7 +49,6 @@ public class RegistrarAlquiler extends HttpServlet {
 		vehiculo = (Vehiculos) request.getSession().getAttribute("vehiculo");
 		String patenteVehiculo = vehiculo.getPatente();
 		
-		System.out.println(request.getParameter("credit-card"));
 		String tarjetaCredito = request.getParameter("credit-card");
 		
 		String fecha_desde = (String) request.getSession().getAttribute("fecha-desde");

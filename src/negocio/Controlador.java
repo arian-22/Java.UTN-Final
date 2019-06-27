@@ -31,7 +31,6 @@ public class Controlador {
 		
 		logueo = dbUsuario.authenticate(mail, pass);
 		
-		System.out.println(logueo);
 		return logueo;
 	}
 

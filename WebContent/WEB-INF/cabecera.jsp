@@ -18,11 +18,10 @@
 
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<!-- <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
 
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<script src="js/ie-emulation-modes-warning.js"></script>
-
+<!-- <script src="js/ie-emulation-modes-warning.js"></script> -->
 <link href="./css/personalizado.css" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -97,9 +96,9 @@
 
 							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>, <%= u.getNombre() %><strong	class="caret"></strong></a>
 								<ul class="dropdown-menu">
-									<!-- <li><a href="#">Perfil</a></li>
-									<li><a href="#">Configuración</a></li>
-									<li><a href="#">Ayuda</a></li> -->
+									<li><a href="Informes">Informes</a></li>
+									<li><a href="URLs?routeAdmin=alq">Alquileres</a></li>
+									<li><a href="URLs?routeAdmin=abm">ABM Vehiculos</a></li>
 									<li class="divider"></li>
 									<li><a href="CerrarSesion">Cerrar sesión</a></li>
 								</ul>

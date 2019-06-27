@@ -46,9 +46,9 @@ public class URLs extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//doGet(request, response);
+		
 		if (request.getParameter("btn-home-admin") != null) {
 			request.getRequestDispatcher("WEB-INF/inicioAdmin.jsp").forward(request, response);
 
@@ -137,6 +137,21 @@ public class URLs extends HttpServlet {
 			request.setAttribute("msjErrorReserva",null);
 			
 			request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
+		}
+		
+		else if (request.getParameter("routeAdmin") != null) {
+			
+			if(request.getParameter("routeAdmin").equals("inf")){				
+				request.getRequestDispatcher("WEB-INF/informes.jsp").forward(request, response);
+			}
+			else if(request.getParameter("routeAdmin").equals("alq")){				
+				request.getRequestDispatcher("WEB-INF/alquiler.jsp").forward(request, response);
+			}
+			else if(request.getParameter("routeAdmin").equals("abm")){				
+				request.getRequestDispatcher("WEB-INF/abmVehiculos.jsp").forward(request, response);
+			}
+	
+		
 		}
 	}
 

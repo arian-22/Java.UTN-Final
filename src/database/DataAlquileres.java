@@ -486,10 +486,8 @@ public class DataAlquileres {
 				stmt.setInt(8, alq.getNro_alquiler());
 				
 				stmt.execute();
-				System.out.println("update");
 														
 			} catch (SQLException e) {
-				System.out.println(e);
 				throw e;
 				
 			} finally {
@@ -526,7 +524,6 @@ public class DataAlquileres {
 			rs = stmt2.getGeneratedKeys();
 			if(rs!=null && rs.next()){
 				nroAlquiler = rs.getInt(1);
-				System.out.println("Nro. Alquiler: " + nroAlquiler);
 			}
 			
 			String insertCLI_VEH_ALQ = "INSERT INTO `cli-veh-alq` (mail, nro_alquiler, nro_patente) VALUES (?, ?, ?)";
@@ -537,25 +534,19 @@ public class DataAlquileres {
 			stmt3.execute();
 			
 			FactoryConexion.getInstancia().getConn().commit();
-			System.out.println("Commit");
 
 		}
 		catch (Exception e) {
 			try {
 				FactoryConexion.getInstancia().getConn().rollback();
-				System.out.println("Rollback");
-
 			} catch (SQLException e1) {
-				System.out.println("Error :" + e1);
 				throw e1;
 			}
-			System.out.println("Error: " + e);
 		}
 		finally {
 			try {
 				FactoryConexion.getInstancia().getConn().setAutoCommit(true);
 			} catch (SQLException e2) {
-				System.out.println("Finally error: " + e2);
 				throw e2;
 			}
 		}

@@ -60,6 +60,7 @@ public class RegistroUsuario extends HttpServlet {
 		try {
 			controlador.registrarUsuario(usuario);
 			request.getSession().removeAttribute("errorModal");
+			request.getSession().setAttribute("user", usuario);	
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} catch (SQLException e) {
 			request.getSession().setAttribute("errorModal", e.getMessage());

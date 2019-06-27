@@ -1,5 +1,12 @@
 <%@ include file="cabecera.jsp"%>
 
+<script type="text/javascript">
+	function limpiaModal(){
+		$('#myModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+	}
+</script>
 <%
 	Cli_Veh_Alq a = new Cli_Veh_Alq();
 	Cli_Veh_Alq a2 = new Cli_Veh_Alq();
@@ -66,7 +73,7 @@ $(document).ready(function(){
         <p><%=textModal%></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn <%=typeBtn%>" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn <%=typeBtn%>" onClick="limpiaModal()">Cerrar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
