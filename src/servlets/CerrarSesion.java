@@ -26,7 +26,7 @@ public class CerrarSesion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());	
 		request.getSession().invalidate();
 		
@@ -40,9 +40,6 @@ public class CerrarSesion extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		//request.getSession().invalidate();
-		
-		//request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }
