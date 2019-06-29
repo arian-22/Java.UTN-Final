@@ -59,6 +59,7 @@ public class EliminarVehiculo extends HttpServlet {
 				try {
 					ctrl.eliminarVehiculo(vehiculo.getPatente());
 					request.getSession().removeAttribute("errorModal");
+					request.getSession().removeAttribute("vehiculo-baja");
 					request.getSession().setAttribute("okModal", "Se ha eliminado el vehículo correctamente.");
 		
 				} catch (SQLException e) {

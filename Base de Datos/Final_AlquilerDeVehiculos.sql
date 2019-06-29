@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `Final_AlquilerDeVehiculos` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `Final_AlquilerDeVehiculos`;
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: Final_AlquilerDeVehiculos
 -- ------------------------------------------------------
--- Server version	5.7.25-0ubuntu0.18.04.2
+-- Server version	5.7.26-0ubuntu0.18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,7 +34,7 @@ CREATE TABLE `alquileres` (
   `fecha_finalizacion` date DEFAULT NULL,
   `precio_final_alquiler` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`nro_alquiler`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `alquileres` (
 
 LOCK TABLES `alquileres` WRITE;
 /*!40000 ALTER TABLE `alquileres` DISABLE KEYS */;
-INSERT INTO `alquileres` VALUES (1,'2018-03-21','2018-03-24',NULL,NULL,0,NULL,NULL),(2,'2018-07-09','2018-07-27',NULL,NULL,0,NULL,NULL),(3,'2018-03-10','2018-03-13',NULL,NULL,0,NULL,NULL),(4,'2018-03-03','2018-03-06',NULL,NULL,0,NULL,NULL),(5,'2018-03-13','2018-03-15',NULL,NULL,0,NULL,NULL),(6,'2018-03-05','2018-03-07',NULL,NULL,0,NULL,NULL),(7,'2018-03-09','2018-03-11',NULL,NULL,0,NULL,NULL),(8,'2018-03-11','2018-03-15',NULL,NULL,0,NULL,NULL),(10,'2018-10-21','2018-09-30',NULL,NULL,2541,NULL,NULL),(11,'2018-11-16','2018-11-17','2018-11-03',0,121,NULL,NULL),(12,'2018-11-16','2018-11-24','2018-11-03',0,968,NULL,NULL),(13,'2018-11-09','2018-12-01',NULL,NULL,24200,NULL,NULL),(14,'2018-11-04','2018-11-17','2018-11-03',2145,14300,NULL,NULL),(15,'2019-04-17','2019-04-26','2019-04-02',0,11700,'2019-04-02','56550.0');
+INSERT INTO `alquileres` VALUES (1,'2019-06-30','2019-07-02',NULL,NULL,180,NULL,NULL),(2,'2019-07-04','2019-07-08',NULL,NULL,4600,NULL,NULL),(3,'2019-07-09','2019-07-10',NULL,NULL,1500,NULL,NULL),(4,'2019-06-30','2019-07-03',NULL,NULL,4800,NULL,NULL),(5,'2019-07-05','2019-07-07',NULL,NULL,158,NULL,NULL),(6,'2019-07-03','2019-07-05',NULL,NULL,0,NULL,NULL),(7,'2019-07-10','2019-07-12',NULL,NULL,242,NULL,NULL),(8,'2019-07-05','2019-07-08','2019-06-29',0,4500,NULL,'0.0'),(9,'2019-07-05','2019-07-08',NULL,NULL,4500,NULL,NULL);
 /*!40000 ALTER TABLE `alquileres` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,84 +68,8 @@ CREATE TABLE `cli-veh-alq` (
 
 LOCK TABLES `cli-veh-alq` WRITE;
 /*!40000 ALTER TABLE `cli-veh-alq` DISABLE KEYS */;
-INSERT INTO `cli-veh-alq` VALUES ('arian.valles@outlook.com',1,'ar 433 ia'),('arian.valles@outlook.com',6,'ar 019 ia'),('arian.valles@outlook.com',10,'aa 123 bb'),('arian.valles@outlook.com',11,'aa 123 bb'),('arian.valles@outlook.com',12,'aa 123 bb'),('arian.valles@outlook.com',13,'aa 123 bb'),('arian.valles@outlook.com',14,'aa 123 bb'),('arian.valles@outlook.com',15,'ee 412 sa'),('ceci.acciarini@gmail.com',4,'aa 123 bb'),('ceci.acciarini@hotmail.com',2,'ag 588 fy'),('noe.cano210@gmail.com',3,'ff 465 ih'),('noe.cano210@gmail.com',5,'ci 522 qs'),('noe.cano210@gmail.com',8,'aw 745 cv'),('noe_04_2@hotmail.com',7,'ml 142 ab');
+INSERT INTO `cli-veh-alq` VALUES ('arian.valles@outlook.com',4,'AW 745 CV'),('arian.valles@outlook.com',5,'CE 528 CI'),('ceci.acciarini@hotmail.com',6,'AR 019 IA'),('ceci.acciarini@hotmail.com',7,'AA 123 BB'),('esteban@quito.com',8,'ZE 461 CD'),('esteban@quito.com',9,'ZE 461 CD'),('noe.cano210@gmail.com',1,'AG 588 FY'),('noe.cano210@gmail.com',2,'AA 546 BC'),('noe.cano210@gmail.com',3,'CE 245 CI');
 /*!40000 ALTER TABLE `cli-veh-alq` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `detalles-penalizacion`
---
-
-DROP TABLE IF EXISTS `detalles-penalizacion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `detalles-penalizacion` (
-  `id_detalle` int(11) NOT NULL,
-  `descripcion` varchar(200) NOT NULL,
-  `importe` double NOT NULL,
-  `id_comprobante` int(11) NOT NULL,
-  PRIMARY KEY (`id_detalle`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `detalles-penalizacion`
---
-
-LOCK TABLES `detalles-penalizacion` WRITE;
-/*!40000 ALTER TABLE `detalles-penalizacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `detalles-penalizacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `devolucion`
---
-
-DROP TABLE IF EXISTS `devolucion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `devolucion` (
-  `nro_alquiler` int(11) NOT NULL,
-  `fecha_devolucion` date NOT NULL,
-  `id_comprobante` int(11) NOT NULL,
-  `mail` varchar(60) NOT NULL,
-  `hora` time(5) NOT NULL,
-  PRIMARY KEY (`nro_alquiler`,`fecha_devolucion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `devolucion`
---
-
-LOCK TABLES `devolucion` WRITE;
-/*!40000 ALTER TABLE `devolucion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `devolucion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `pagos`
---
-
-DROP TABLE IF EXISTS `pagos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pagos` (
-  `id_comprobante` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `importe_alquiler` double NOT NULL,
-  `importe_total` double NOT NULL,
-  PRIMARY KEY (`id_comprobante`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pagos`
---
-
-LOCK TABLES `pagos` WRITE;
-/*!40000 ALTER TABLE `pagos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pagos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -177,7 +101,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('arian.valles@outlook.com','arian',38587019,'Arian','Valles','Italia 2037','1994-12-09','154650787','2018-12-20','12','N'),('ceci.acciarini@gmail.com','ceci',38815528,'Cecilia','Acciarini','Mitre 1356','1995-03-25','15586667','2022-01-01',NULL,'S'),('ceci.acciarini@hotmail.com','ceci',38815528,'Cecilia','Acciarini','Mitre 1356','1995-03-25','15586667','2022-01-01',NULL,'N'),('elary22@live.com','arian',38587019,'Arian','Valles','Italia 2037','1994-12-09','32232432432','2222-03-09',NULL,'S'),('noe.cano210@gmail.com','noe',34720593,'Noelia','Cano','Amenabo 2150','1989-10-02','156930684','2023-05-01',NULL,'N'),('noe_04_2@hotmail.com','noe',34720593,'Noelia','Cano','Amenabo 2150','1989-10-02','156930684','2023-05-01',NULL,'S');
+INSERT INTO `usuario` VALUES ('arian.valles@outlook.com','arian',38587019,'Arian','Valles','Italia 2037','1994-12-09','154650787','2018-12-20','534535353453453533','N'),('ceci.acciarini@gmail.com','ceci',38815528,'Cecilia','Acciarini','Mitre 1356','1995-03-25','15586667','2022-01-01',NULL,'S'),('ceci.acciarini@hotmail.com','ceci',38815528,'Cecilia','Acciarini','Mitre 1356','1995-03-25','15586667','2022-01-01','534535353453453533','N'),('elary22@live.com','arian',38587019,'Arian','Valles','Italia 2037','1994-12-09','32232432432','2222-03-09',NULL,'S'),('esteban@quito.com','arian',34556437,'Esteban','Quito','Roca 390','2019-06-19','35678765432','2019-06-28','534535353453453533','N'),('noe.cano210@gmail.com','noe',34720593,'Noelia','Cano','Amenabo 2150','1989-10-02','156930684','2023-05-01','534535353453453533','N'),('noe2@live.com','noe',154,'noelia','cano','cordoba 1659','1111-11-11','43211122333','2222-02-11',NULL,'N'),('noe_04_2@hotmail.com','noe',34720593,'Noelia','Cano','Amenabo 2150','1989-10-02','156930684','2023-05-01',NULL,'S');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +116,7 @@ CREATE TABLE `valores` (
   `fecha_desde` date NOT NULL,
   `nro_patente` varchar(10) NOT NULL,
   `precio_base` double NOT NULL,
-  PRIMARY KEY (`fecha_desde`,`nro_patente`)
+  PRIMARY KEY (`fecha_desde`,`nro_patente`,`precio_base`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -202,7 +126,7 @@ CREATE TABLE `valores` (
 
 LOCK TABLES `valores` WRITE;
 /*!40000 ALTER TABLE `valores` DISABLE KEYS */;
-INSERT INTO `valores` VALUES ('2017-01-01','aa 123 bb',1100),('2017-01-01','aa 546 bc',1150),('2017-01-01','ag 588 fy',1250),('2017-01-01','ar 019 ia',1550),('2017-01-01','aw 745 cv',1600),('2017-01-01','cb 023 cs',1200),('2017-01-01','ce 528 ci',1300),('2017-01-01','ci 522 qs',1350),('2017-01-01','ee 412 sa',1300),('2017-01-01','lv 666 aa',1550),('2017-01-01','ml 142 ab',1200),('2017-01-01','no 593 ee',1550),('2017-01-01','rj 002 te',1200),('2018-04-10','4dgrf32',140),('2018-07-10','ce 245 ci',1500),('2018-07-18','ar 019 ia',0),('2018-07-18','ar 433 ia',0),('2018-07-18','ci 522 qs',0),('2018-07-18','er 194 sa',80),('2018-08-08','ag 588 fy',0),('2018-08-08','ar 433 ia',0),('2018-08-21','aa 123 bb',84),('2018-08-22','ag 588 fy',90),('2018-08-23','ce 528 ci',79),('2018-08-27','aa 123 bb',121),('2018-08-27','ar 433 ia',0),('2019-04-02','ee 412 sa',1300),('2019-04-02','rj 002 te',1200);
+INSERT INTO `valores` VALUES ('2017-01-01','AA 123 BB',1100),('2017-01-01','AA 546 BC',1150),('2017-01-01','AG 588 FY',1250),('2017-01-01','AR 019 IA',1550),('2017-01-01','AW 745 CV',1600),('2017-01-01','CB 023 CS',1200),('2017-01-01','CE 528 CI',1300),('2017-01-01','CI 522 QS',1350),('2017-01-01','EE 412 SA',1300),('2017-01-01','LV 666 AA',1550),('2017-01-01','ML 142 AB',1200),('2017-01-01','NO 593 EE',1550),('2017-01-01','RJ 002 TE',1200),('2018-04-10','4DGRF32',140),('2018-07-10','CE 245 CI',1500),('2018-07-18','AR 019 IA',0),('2018-07-18','AR 433 IA',0),('2018-07-18','CI 522 QS',0),('2018-07-18','ER 194 SA',80),('2018-08-08','AG 588 FY',0),('2018-08-08','AR 433 IA',0),('2018-08-21','AA 123 BB',84),('2018-08-22','AG 588 FY',90),('2018-08-23','CE 528 CI',79),('2018-08-27','AA 123 BB',121),('2018-08-27','AR 433 IA',0),('2019-04-02','CN 123 AN',1500),('2019-04-02','EE 412 SA',1300),('2019-04-02','RJ 002 TE',1200),('2019-04-04','CN 123 AQ',1500),('2019-04-04','ZE 461 CD',1500),('2019-04-05','DA 333 AD',1570),('2019-06-29','AR 019 IA',100),('2019-06-29','AR 433 IA',102),('2019-06-29','CI 522 QS',49);
 /*!40000 ALTER TABLE `valores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +159,7 @@ CREATE TABLE `vehículos` (
 
 LOCK TABLES `vehículos` WRITE;
 /*!40000 ALTER TABLE `vehículos` DISABLE KEYS */;
-INSERT INTO `vehículos` VALUES ('aa 123 bb','Corsa','Chevrolet',4,2016,'Manual','Disponible','No','A',NULL,1250),('aa 546 bc','Corsa Classic','Chevrolet',5,2016,'Manual','Disponible','Si','A',NULL,5742),('ag 588 fy','Corolla','Toyota',5,2016,'Manual','En uso','Si','A',NULL,0),('ar 019 ia','Captiva','Chevrolet',7,2016,'Manual','En uso','Si','C',NULL,0),('ar 433 ia','Toro','FIat',2,2018,'Automatica','En uso','S','A',NULL,313),('aw 745 cv','Spin','Chevrolet',7,2016,'Manual','Disponible','Si','C',NULL,42500),('cb 023 cs','Etios','Toyota',5,2017,'Manual','Disponible','Si','A',NULL,0),('ce 245 ci','C3','Citroen',4,2018,'Manual','Disponible','No','A',NULL,2500),('ce 528 ci','Saveiro','Volkswagen',2,2016,'Automática','Disponible','Si','C',NULL,52860),('ci 522 qs','Duster','Renault',5,2016,'Automática','En uso','Si','C',NULL,0),('ee 412 sa','Kangoo','Renault',2,2016,'Manual','Disponible','Si','C',NULL,20001),('er 194 sa','Toro','Fiat',7,2019,'Automatica','Disponible','S','A',NULL,0),('ff 465 ih','Toro','FIat',4,2016,'Manual','En reparacion','S','A',NULL,391),('lv 666 aa','Ranger','Ford',5,2017,'Automática','Disponible','Si','C',NULL,0),('ml 142 ab','Fiesta Kinetic','Ford',5,2017,'Automática','Disponible','No','A',NULL,35008),('no 593 ee','Hilux','Toyota',5,2017,'Manual','Disponible','Si','C',NULL,0),('qq 123 ww','Siena','Fiat',5,2014,'Manual','Disponibli','Si','A',NULL,1000),('rj 002 te','Onix','Chevrolet',4,2018,'Manual','Disponible','Si','A',NULL,23695);
+INSERT INTO `vehículos` VALUES ('AA 123 BB','Corsa','Chevrolet',4,2016,'Manual','Disponible','No','A',NULL,1250),('AA 546 BC','Corsa Classic','Chevrolet',5,2016,'Manual','Disponible','Si','A',NULL,5742),('AG 588 FY','Corolla','Toyota',5,2016,'Manual','Disponible','Si','A',NULL,0),('AR 019 IA','Captiva','Chevrolet',4,2016,'Manual','Disponible','on','C',NULL,1002),('AR 433 IA','Toro','FIat',2,2018,'Automatica','En uso',NULL,'A',NULL,313),('AW 745 CV','Spin','Chevrolet',7,2016,'Manual','Disponible','Si','C',NULL,42500),('CB 023 CS','Etios','Toyota',5,2017,'Manual','Disponible','Si','A',NULL,0),('CE 245 CI','C3','Citroen',4,2018,'Manual','Disponible','No','A',NULL,2500),('CE 528 CI','Saveiro','Volkswagen',2,2016,'Automática','Disponible','Si','C',NULL,52860),('CI 522 QS','Duster','Renault',5,2016,'Automática','Disponible','on','C',NULL,0),('CN 123 AN','Focus','Ford',5,2019,'Manual','Disponible','Si','A',NULL,0),('CN 123 AQ','Onix','BMW',3,2019,'Automática','Disponible','Si','A',NULL,23695),('DA 333 AD','Clio','Fiat',3,2012,'Manual','Disponible','Si','C',NULL,23695),('EE 412 SA','Kangoo','Renault',2,2016,'Manual','Disponible','Si','C',NULL,20001),('ER 194 SA','Toro','Fiat',7,2019,'Automatica','Disponible','S','A',NULL,0),('FF 465 IH','Toro','FIat',4,2016,'Manual','Disponible','S','A',NULL,391),('LV 666 AA','Ranger','Ford',5,2017,'Automática','Disponible','Si','C',NULL,0),('ML 142 AB','Fiesta Kinetic','Ford',5,2017,'Automática','Disponible','No','A',NULL,35008),('NO 593 EE','Hilux','Toyota',5,2017,'Manual','Disponible','Si','C',NULL,0),('QQ 123 WW','Siena','Fiat',5,2014,'Manual','Disponibli','Si','A',NULL,1000),('ZE 461 CD','Onix','Ford',3,2018,'Automática','Disponible','Si','A',NULL,23695);
 /*!40000 ALTER TABLE `vehículos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -248,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-02 15:13:59
+-- Dump completed on 2019-06-29 18:57:53

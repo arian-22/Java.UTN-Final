@@ -257,67 +257,52 @@ $(document).ready(function(){
 					
 					
 					<div class="container-fluid">
-						<div class="row">
-								<%-- <div class="col-md-12">
-								
-								<%
-								if (session.getAttribute("alquiler-dev") != null) {
-									Cli_Veh_Alq a = new Cli_Veh_Alq();
-									a = (Cli_Veh_Alq) session.getAttribute("alquiler-dev");
-									 Float totalApagar = (Float) session.getAttribute("total-pagar");
-									 Integer dias = (Integer) session.getAttribute("dias");
-									 Float precioAlquiler = (Float) session.getAttribute("precioAlquiler");
-									 
-									 
-									 if (session.getAttribute("datosAlquier") != null) {
-							%>
-																
-									<div class="alert alert-dismissable alert-info">
-										<h4>
-											<strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%></strong>
-										</h4>
-
-										<strong> Patente: <%=a.getVehiculo().getPatente()%></strong> 
-										<br> 
-										<strong> Fecha Desde: <%=a.getAlquiler().getFechaDesde()%></strong>
-										<br> 
-										<strong> Fecha Hasta: <%=a.getAlquiler().getFechaHasta()%></strong> 
-										<br> 
-										<strong> Cliente: <%=a.getCliente().getNombre() + ' ' + a.getCliente().getApellido()%></strong>
-										<br>
-										
-										<form role="form" action="Alquileres" method="post">
-											<div>
-												<button type="submit" name="btn-devolucion" class="btn btn-danger btn-default">Registrar Devolución</button>
-												<button type="button" class="btn btn-default" data-dismiss="alert" aria-hidden="true">Cancelar</button>
-											</div>
-										</form>
-									</div>
- --%>
+						<div class="row">						
 
 								<%
 															
 								if (session.getAttribute("datosDevolucion") != null) {
 								%>
-								<div class="col-md-12">
-									<div class="alert alert-dismissable alert-success">
-										<h4><strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%></strong></h4>
-
-										<strong> Patente: <%=a.getVehiculo().getPatente()%>
-										</strong> <br> <strong> Cliente: <%=a.getCliente().getNombre() + ' ' + a.getCliente().getApellido()%>
-										</strong> <br> <strong> Fecha Desde: <%=a.getAlquiler().getFechaDesde()%>
-										</strong> <br> <strong> Fecha Hasta: <%=a.getAlquiler().getFechaHasta()%>
-										</strong> <br> <strong> Precio del Alquiler: AR$ <%= precioAlquiler%>
-										</strong> <br> <strong> Días de diferencia con la fecha de entrega: <%= dias%>
-										</strong> <br>
-										<h4>
-											 <strong> TOTAL A PAGAR: AR$  <%= totalApagar%> </strong>
-										</h4>
-										
-									</div>
-
-								</div>
-								
+		<div style="margin: 6% 30%; box-shadow: 0px 0px 20px 4px;" class="panel panel-info">
+			<div class="panel-heading" style="text-align: center;">
+				<h1 class="panel-title" style="font-size: 26px; font-weight: bold;">Datos de la Devolución</h1>
+			</div>
+		
+			<div class="panel-body" style="text-align: center; font-size: 18px;">
+			
+				<div class="row">
+					<div class="col-md-6">
+					<h4><strong> Nro de Alquiler: <%=a.getAlquiler().getNro_alquiler()%></strong></h4>
+						<hr>
+						
+						<p><b>Patente</b> 
+						<p><%=a.getVehiculo().getPatente()%></p>
+						
+						<p><b>Cliente</b></p>
+						<p><%=a.getCliente().getNombre() + ' ' + a.getCliente().getApellido()%></p>					
+						
+					</div>
+					
+					<div class="col-md-6">					
+						<p><b>Fecha Desde</b></p>
+						<p><%= a.getAlquiler().getFechaDesde() %></p>
+					
+						<p><b>Fecha Hasta</b></p>
+						<p><%= a.getAlquiler().getFechaHasta() %></p>
+					
+						<p><b>Precio del Alquiler:</b></p>
+						<p>AR$<%= precioAlquiler%></p>
+						
+					</div>
+					<p><b>Días de diferencia con la fecha de entrega: </b><%= dias%></p>
+				</div>
+				<hr>
+				<div>
+					 <p><span class="label label-default colorFondoBase" style="font-size: 28px;">TOTAL A PAGAR: AR$  <%= totalApagar%> </span></p>
+				</div>
+			</div>
+	
+		</div>					
 							<%} 
 								
 								}

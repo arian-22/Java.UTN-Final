@@ -86,7 +86,7 @@
 						
 						<li class="dropdown"><a href="inicioCliente.jsp" class="dropdown-toggle" data-toggle="dropdown"><%= u.getApellido() %>,	<%= u.getNombre() %><strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<li><a href="http://localhost:8080/AlquilerDeVehiculos/URLs?btnVerReservas=11">Mis Reservas</a></li>
+								<li><a href="URLs?btnVerReservas=11">Mis Reservas</a></li>
 								<li class="divider"></li>
 								<li><a href="CerrarSesion">Cerrar sesión</a></li>
 							</ul>

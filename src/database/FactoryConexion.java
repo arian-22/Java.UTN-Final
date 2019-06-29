@@ -6,7 +6,8 @@ import java.sql.*;
 public class FactoryConexion {
 	
 	private String dbDriver = "com.mysql.jdbc.Driver";
-	private String host = "localhost";
+	//private String host = "localhost";
+	private String host = "node33622-alquilerdevehiculos.jelastic.saveincloud.net";
 	private String port = "3306";
 	private String user = "java";
 	private String pass = "java";

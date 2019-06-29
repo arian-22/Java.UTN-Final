@@ -228,22 +228,27 @@ public class DataVehiculos {
 		try {
 
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT v.nro_patente, v.modelo, v.marca, v.cant_asientos, v.año, v.transmision, v.estado, v.baul, v.tipo, v.imagen, v.km, pp.precio_base, pp.fecha_max\n" + 
-					"FROM vehículos v \n" + 
+					"FROM vehículos v\n" + 
 					"INNER JOIN (\n" + 
-					"	SELECT aa.nro_patente, aa.precio_base, max(aa.fecha_desde) as 'fecha_max'\n" + 
-					"    FROM valores aa\n" + 
-					"    group by aa.nro_patente) pp on v.nro_patente=pp.nro_patente\n" + 
+					"	SELECT aa.nro_patente, t.precio_base, t.fecha_desde as 'fecha_max'\n" + 
+					"	FROM (\n" + 
+					"		  SELECT v.nro_patente, MAX(v.fecha_desde) as MaxTime\n" + 
+					"		  FROM valores v\n" + 
+					"		  group by v.nro_patente\n" + 
+					"	) aa\n" + 
+					"	INNER JOIN valores t ON t.nro_patente = aa.nro_patente AND t.fecha_desde = aa.MaxTime \n" + 
+					") pp on v.nro_patente=pp.nro_patente\n" + 
 					"WHERE v.nro_patente NOT IN (\n" + 
-					"	SELECT DISTINCT v.nro_patente \n" + 
-					"	FROM vehículos v \n" + 
-					"	INNER JOIN `cli-veh-alq` cva ON v.nro_patente = cva.nro_patente \n" + 
+					"	SELECT DISTINCT v.nro_patente\n" + 
+					"	FROM vehículos v\n" + 
+					"	INNER JOIN `cli-veh-alq` cva ON v.nro_patente = cva.nro_patente\n" + 
 					"	INNER JOIN usuario u ON cva.mail = u.mail \n" + 
-					"	INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler \n" + 
-					"	WHERE 	((DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) <= ? and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY) >= ?) or	\n" + 
-								"(DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) <= ? and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY) >= ?) or \n" + 
-								"((? between DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY)) and (? between DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY))) or \n" + 
-								"((DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) <= ?) and (DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY) >= ?))) \n" + 
-								"and a.fecha_cancelacion is null) \n" +
+					"	INNER JOIN alquileres a ON cva.nro_alquiler = a.nro_alquiler\n" + 
+					"	WHERE 	((DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) <= ? and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY) >= ?) or\n" + 
+					"			(DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) <= ? and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY) >= ?) or\n" + 
+					"			((? between DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY)) and (? between DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) and DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY))) or \n" + 
+					"			((DATE_ADD(a.fecha_desde, INTERVAL -1 DAY) <= ?) and (DATE_ADD(a.fecha_hasta, INTERVAL 1 DAY) >= ?)))\n" + 
+					"		and a.fecha_cancelacion is null)\n" + 
 					"ORDER BY v.nro_patente" );
 			
 			stmt.setString(1, fechaDesde);
