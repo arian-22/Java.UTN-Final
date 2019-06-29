@@ -27,7 +27,12 @@
 				<div id="stock" class="tab-pane fade in active">
 
 					<h2>Stock de Vehiculos</h2>
-
+					
+					
+					<% if(session.getAttribute("vehiculos-stock")!=null){ 
+						  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
+						  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock");
+					%>
 					<div class="container-fluid">
 						<table class="table table-striped">
 							<thead>
@@ -47,13 +52,10 @@
 							</thead>
 							<tbody>
 
-								<% if(session.getAttribute("vehiculos-stock")!=null){ 
-									  ArrayList<Vehiculos> vehiculos = new ArrayList<Vehiculos>();
-									  vehiculos = (ArrayList<Vehiculos>)session.getAttribute("vehiculos-stock");
-									  
-									  for(int i = 0 ; i < vehiculos.size() ; i++){
-										 
-										  %>
+								
+							<%  
+							  for(int i = 0 ; i < vehiculos.size() ; i++){
+							%>
 								<tr>
 
 									<th scope="row"><%=  vehiculos.get(i).getPatente()  %></th>
@@ -68,18 +70,28 @@
 									<td><%= vehiculos.get(i).getKm() %></td>
 									<td><%= vehiculos.get(i).getPrecio() %></td>
 								</tr>
-								<%}  
-									
-									}%>
-
+							<%}   %>
 
 							</tbody>
 						</table>
 					</div>
+				<%} else {	%>
+				
+				<h3>No hay vehículos en stock actualmente.</h3>
+				
+			<% } %>
+					
+					
+					
 				</div>
 
 				<div id="alquilados" class="tab-pane fade">
 					<h2>Vehículos Alquilados Actualmente</h2>
+					
+					<% if(session.getAttribute("alquileres actuales")!=null){ 
+						  ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
+						  cva = (ArrayList<Cli_Veh_Alq>)session.getAttribute("alquileres actuales");
+					%>	 
 
 					<div class="container-fluid">
 						<table class="table table-striped">
@@ -98,10 +110,7 @@
 							</thead>
 							<tbody>
 
-								<% if(session.getAttribute("alquileres actuales")!=null){ 
-									  ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
-									  cva = (ArrayList<Cli_Veh_Alq>)session.getAttribute("alquileres actuales");
-									  
+								<%
 									  for(int i = 0 ; i < cva.size() ; i++){
 										 										  
 										  %>
@@ -117,12 +126,16 @@
 									<td><%= cva.get(i).getAlquiler().getFechaHasta()  %></td>
 
 								</tr>
-								<%} 
-									}%>
+								<%} %>
 
 							</tbody>
 						</table>
 					</div>
+					<%} else {	%>
+					
+					<h3>No hay vehículos a alquilados actualmente.</h3>
+					
+				<% } %>
 				</div>
 					
 					<div id="aDevolver" class="tab-pane fade">
@@ -180,7 +193,7 @@
 									
 								<% } else {	%>
 								
-								<h3>No hay vehículos a devolver en el día de hoy!</h3>
+								<h3>No hay vehículos a devolver en el día de hoy.</h3>
 								
 							<% } %>
 						</div>

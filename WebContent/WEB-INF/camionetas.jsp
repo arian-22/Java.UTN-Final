@@ -25,7 +25,7 @@
 			  
 					<div class="card card-price">
 					  <div class="card-img">
-					      <img src="https://loremflickr.com/600/400/cars?random=<%= i %>" class="img-responsive">
+					      <img src="./img/imagenes/vehiculos/<%=vehiculos.get(i).getTipo()%><%=(int) (Math.random() * 6) + 1%>.jpg" class="img-responsive">
 					      <div class="card-caption">
 					        <span class="h2"><%=vehiculos.get(i).getModelo()%></span>
 					        <p><%=vehiculos.get(i).getMarca()%></p>

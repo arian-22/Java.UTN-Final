@@ -255,8 +255,9 @@ public class DataVehiculos {
 			stmt.setString(7, fechaDesde);
 			stmt.setString(8, fechaHasta);
 			rs = stmt.executeQuery();
-		    
+					    
 		    while(rs!=null && rs.next()){
+		    	
 		    	Vehiculos v = new Vehiculos();
 		    	
 		    	v.setPatente(rs.getString("nro_patente"));

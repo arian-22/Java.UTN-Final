@@ -58,14 +58,15 @@ public class Informes extends HttpServlet {
 				
 				try {
 					vehiculos = ci.getStockVehiculos();
-				
-					request.getSession().setAttribute("vehiculos-stock", vehiculos);
+					if(!vehiculos.isEmpty()) {
+						request.getSession().setAttribute("vehiculos-stock", vehiculos);						
+					}
 					
 					ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
-					
 					cva = ci.getVehiculosAlquiladosActualmente();
-					
-					request.getSession().setAttribute("alquileres actuales", cva);
+					if(!cva.isEmpty()) {
+						request.getSession().setAttribute("alquileres actuales", cva);
+					}
 					
 					ArrayList<Cli_Veh_Alq> alqDevolver = new ArrayList<Cli_Veh_Alq>();
 				

@@ -69,6 +69,14 @@ $(document).ready(function(){
 
 			<h1 style="text-align: center">Mis Reservas</h1>
 			<div id="stock" class="tab-pane fade in active">
+			
+			<%
+				Date hoy = new Date();
+				java.sql.Date hoy2 = new java.sql.Date(hoy.getTime()) ;
+				if (session.getAttribute("alquileresCliente") != null) {
+					ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
+					cva = (ArrayList<Cli_Veh_Alq>) session.getAttribute("alquileresCliente");		
+			%>
 
 				<div class="container-fluid">
 					<table class="table table-hover">
@@ -86,14 +94,9 @@ $(document).ready(function(){
 							</tr>
 						</thead>
 						<tbody>
-							<%
-								Date hoy = new Date();
-								java.sql.Date hoy2 = new java.sql.Date(hoy.getTime()) ;
-								if (session.getAttribute("alquileresCliente") != null) {
-									ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
-									cva = (ArrayList<Cli_Veh_Alq>) session.getAttribute("alquileresCliente");																	
+																						
 
-									for (int i = 0; i < cva.size(); i++) {
+							<%		for (int i = 0; i < cva.size(); i++) {
 										
 										String colorEstado = "";
 										boolean esCancelable = false;
@@ -167,12 +170,14 @@ $(document).ready(function(){
 										</td>
 									</tr>
 									<%
-								}
-							}
-							%>
+								}	%>
 						</tbody>
 					</table>
 				</div>
+				<%} else{
+				%>
+					<h3>Aún no posee reservas de alquieres.</h3>
+				<% } %>
 			</div>			
 			<hr>
 		</div>

@@ -96,12 +96,13 @@ public class URLs extends HttpServlet {
 			ControladorAlquiler ctrl = new ControladorAlquiler();
 
 			ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
-
+			
+			request.getSession().removeAttribute("errorModal");
+			
 			try {
 				cva = ctrl.buscarAlquileresDelCliente(cliente.getMail());
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				request.getSession().setAttribute("errorModal", e.getMessage());
 			}
 
 			request.getSession().setAttribute("alquileresCliente", cva);
@@ -117,15 +118,15 @@ public class URLs extends HttpServlet {
 			ControladorAlquiler ctrl = new ControladorAlquiler();
 
 			ArrayList<Cli_Veh_Alq> cva = new ArrayList<Cli_Veh_Alq>();
-
+			request.getSession().removeAttribute("errorModal");
 			try {
 				cva = ctrl.buscarAlquileresDelCliente(cliente.getMail());
+				if(!cva.isEmpty()) {	
+					request.getSession().setAttribute("alquileresCliente", cva);
+				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				request.getSession().setAttribute("errorModal", e.getMessage());
 			}
-
-			request.getSession().setAttribute("alquileresCliente", cva);
 
 			request.getRequestDispatcher("WEB-INF/cancelacionCliente.jsp").forward(request, response);
 		}

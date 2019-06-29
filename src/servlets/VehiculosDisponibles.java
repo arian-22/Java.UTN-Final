@@ -106,7 +106,7 @@ public class VehiculosDisponibles extends HttpServlet {
 							
 							vehiculos = ctrl.getStockVehiculosDisponiblesParaAlquilar(fecha_desde, fecha_hasta);
 							
-							if (vehiculos != null){
+							if (!vehiculos.isEmpty()){
 							
 								request.getSession().setAttribute("vehiculos-stock-disponibles", vehiculos);
 								request.getSession().removeAttribute("errorModal");
