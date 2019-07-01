@@ -292,7 +292,7 @@ public class DataAlquileres {
 		ResultSet rs = null;
 		
 		try {
-			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("select a.nro_alquiler, fecha_desde, fecha_hasta,fecha_cancelacion, fecha_finalizacion, precio_alquiler, modelo, marca, km from `cli-veh-alq` cva inner join vehículos v on cva.nro_patente = v.nro_patente inner join alquileres a on cva.nro_alquiler = a.nro_alquiler where mail = ? order by fecha_desde desc");
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement("select a.nro_alquiler, fecha_desde, fecha_hasta,fecha_cancelacion, fecha_finalizacion, precio_alquiler, modelo, marca, km, estado from `cli-veh-alq` cva inner join vehículos v on cva.nro_patente = v.nro_patente inner join alquileres a on cva.nro_alquiler = a.nro_alquiler where mail = ? order by fecha_desde desc");
 			
 			stmt.setString(1, mail);
 		    
@@ -306,6 +306,7 @@ public class DataAlquileres {
 				v.setModelo(rs.getString("modelo"));
 				v.setMarca(rs.getString("marca"));
 				v.setKm(rs.getFloat("km"));
+				v.setEstado(rs.getString("estado"));
 			
 				Alquiler a = new Alquiler();
 		    	a.setNro_alquiler(rs.getInt("nro_alquiler"));

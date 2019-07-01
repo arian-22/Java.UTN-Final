@@ -101,12 +101,22 @@ $(document).ready(function(){
 										String colorEstado = "";
 										boolean esCancelable = false;
 										
-										String estado = "Cancelado";
-										String classEstado = "warning";
+										String estado = "Pendiente de retirar";
+										String classEstado="success";
 										
-										if(cva.get(i).getAlquiler().getFechaCancelacion() == null){
+										if(cva.get(i).getVehiculo().getEstado().equals("En uso")){
+											estado = "En uso";
+											classEstado = "info";
+										}
+											
+										if(cva.get(i).getAlquiler().getFechaCancelacion() != null ){
+											estado = "Cancelado";
+											classEstado = "warning";									
+										}
+										
+										if(cva.get(i).getAlquiler().getFechaCancelacion() == null  && cva.get(i).getAlquiler().getFechaFinalizacion()!= null){
 											estado = "Finalizado";
-											classEstado = "success";
+											classEstado = "default";
 										}
 										
 										if( (cva.get(i).getAlquiler().getFechaDesde().after(hoy) ) && (cva.get(i).getAlquiler().getFechaCancelacion() == null &&  cva.get(i).getAlquiler().getFechaFinalizacion() == null) ){
@@ -114,7 +124,7 @@ $(document).ready(function(){
 											esCancelable = true;
 											
 										}
-										
+												
 									%>
 									<tr style="background-color:<%= colorEstado%>;">
 		
